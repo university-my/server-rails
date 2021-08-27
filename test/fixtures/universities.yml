@@ -4,3 +4,12 @@ sumdu:
   short_name: СумДУ
   full_name: Сумський державний університет
   url: sumdu
+  website: https://sumdu.edu.ua/uk
+  uid: 1
+
+khnue:
+  short_name: ХНЕУ
+  full_name: Харківський національний економічний університет
+  url: khnue
+  website: https://www.hneu.edu.ua
+  uid: 3

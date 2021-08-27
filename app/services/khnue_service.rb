@@ -42,26 +42,10 @@ module KhnueService
     # 01-09-2020 - first week
     # Date.current.cweek - ('01-09-2020'.to_date.cweek)
 
-    # New logic
-    weeks_shift = date.cweek + '01-05-2020'.to_date.cweek
-    # weeks_shift + 1
+    first_week_date = '01-09-2021'.to_date
+    week = (date.cweek - first_week_date.cweek) + 1
 
-    # Old logic
-    # weeks_shift = 11
-    # current_week = date.cweek
-    # week_number = 1
-    #
-    # if current_week == 11
-    #   week_number = 1
-    #
-    # elsif current_week > weeks_shift
-    #   week_number = current_week - weeks_shift
-    #
-    # elsif weeks_shift > current_week
-    #   week_number = current_week + weeks_shift
-    # end
-    #
-    # week_number
+    return week
   end
 
   def self.parse_and_save_records(doc)
