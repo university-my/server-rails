@@ -1,3 +1,5 @@
+[![Ruby](https://github.com/university-my/server-rails/actions/workflows/ruby.yml/badge.svg)](https://github.com/university-my/server-rails/actions/workflows/ruby.yml)
+
 # Hello
 
 Please, check out Wiki pages:
