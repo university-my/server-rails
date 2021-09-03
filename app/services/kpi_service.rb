@@ -2,6 +2,7 @@
 
 require 'net/http'
 require 'json'
+require 'timeout'
 
 module KpiService
   #
@@ -300,16 +301,28 @@ module KpiService
 
     offset = 0
 
+    timeout_in_seconds = 10
+
     while offset < groups_total_count
-      # Get json with groups from API
-      json = KpiService.get_groups(offset)
 
-      # Save to database
-      KpiService.save_groups_from(json)
+      begin
+        Timeout.timeout(timeout_in_seconds) do
 
-      offset += 100
+         # Get json with groups from API
+         json = KpiService.get_groups(offset)
+
+        # Save to database
+        KpiService.save_groups_from(json)
+
+        offset += 100
+
+      end
+    rescue Timeout::Error
+      next
     end
+
   end
+end
 
   # Make request to API for get total count of all groups
   def self.groups_count
@@ -329,6 +342,11 @@ module KpiService
   def self.get_groups(offset)
     # Perform network request and parse JSON
     url = "https://api.rozklad.org.ua/v2/groups/?filter={%27limit%27:100,%27offset%27:#{offset}}"
+
+    p '###'
+    p url
+    p '###'
+
     json = ApplicationRecord.perform_request(url)
     json
   end
