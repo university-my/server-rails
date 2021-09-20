@@ -1,9 +1,10 @@
-[![Ruby](https://github.com/university-my/server-rails/actions/workflows/ruby.yml/badge.svg)](https://github.com/university-my/server-rails/actions/workflows/ruby.yml)
-
 # Hello
 
-Please, check out Wiki pages:
-- [Development](https://github.com/university-my/server-rails/wiki/Development#development)
-- [Production](https://github.com/university-my/server-rails/wiki/Production#production)
+## Production
 
-![Layout](https://raw.githubusercontent.com/university-my/server-rails/main/app/assets/images/Layout%202.png)
+`git pull`
+
+`bundle install`
+
+`rake db:migrate RAILS_ENV=production`
+
