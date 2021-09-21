@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  mount Blazer::Engine, at: "blazer"
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
