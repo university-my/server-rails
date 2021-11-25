@@ -61,6 +61,11 @@ class PolitekService
     # Parse JSON
     json = JSON.parse(response.body)
     data = json['data']
+
+    if data.nil?
+      raise DataNotFoundError
+    end
+
     return data
   end
 
@@ -263,5 +268,10 @@ class PolitekService
   def self.import_records_for_auditorium(auditorium, selected_pair_date)
     # Do nothing here
   end
+
+
+class DataNotFoundError < StandardError
+  # Used when the parser was unable to parse the schedule
+end;
 
 end

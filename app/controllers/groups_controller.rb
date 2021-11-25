@@ -38,14 +38,26 @@ class GroupsController < ApplicationController
 
     @records = RecordsHelper.fetch_records(@university, @group, pair_date)
 
-    if @records.blank?
-      @group.import_records(pair_date)
+    begin
+      if @records.blank?
+        @group.import_records(pair_date)
 
-    elsif @group.need_to_update_records
+      elsif @group.need_to_update_records
+        @group.import_records(pair_date)
+      end
+      
+    rescue PolitekService::DataNotFoundError => e
+      service = University.service_for(@university.uid)
+      timetable_url = service.constantize.send("timetable_url") # Call static method on class
 
-      # Update
-      @group.import_records(pair_date)
+      render partial: 'records/parsing_error', locals: {
+        university: @university,
+        pair_date: pair_date,
+        timetable_url: timetable_url
+      }
+      return
     end
+
 
     # Select records one more time
     @records = RecordsHelper.fetch_records(@university, @group, pair_date)
