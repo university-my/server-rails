@@ -183,6 +183,127 @@ if University.kneu.nil?
     )
 end
 
+sumdu = University.sumdu
+sumdu.picture_white = "sumdu-white.svg"
+sumdu.picture_dark = "sumdu.svg"
+sumdu.show_classrooms = true
+sumdu.show_groups = true
+sumdu.show_teachers = true
+sumdu.show_disciplines = true
+sumdu.save
+
+kpi = University.kpi
+kpi.picture_white = "kpi-white.svg"
+kpi.picture_dark = "kpi.svg"
+kpi.show_groups = true
+kpi.show_teachers = true
+kpi.save
+
+khnue = University.khnue
+khnue.picture_white = "KNEU_white.svg"
+khnue.picture_dark = "KNEU_black.svg"
+khnue.show_groups = true
+khnue.show_teachers = true
+khnue.save
+
+pnu = University.pnu
+pnu.picture_white = "PNU_white.svg"
+pnu.picture_dark = "PNU_Black.svg"
+pnu.show_groups = true
+pnu.show_teachers = true
+pnu.save
+
+znau = University.znau
+znau.picture_white = "Polissya_white.svg"
+znau.picture_dark = "Polissya_black.svg"
+znau.show_groups = true
+znau.show_teachers = true
+znau.save
+
+nuft = University.nuft
+nuft.picture_white = "NUHT_white.svg"
+nuft.picture_dark = "NUHT_black.svg"
+nuft.show_groups = true
+nuft.show_teachers = true
+nuft.save
+
+sspu = University.sspu
+sspu.picture_white = "SDPU_White.svg"
+sspu.picture_dark = "SDPU_Black.svg"
+sspu.show_groups = true
+sspu.show_teachers = true
+sspu.save
+
+gpnu = University.gpnu
+gpnu.picture_white = "GPNU_white.svg"
+gpnu.picture_dark = "GPNU_black.svg"
+gpnu.show_groups = true
+gpnu.show_teachers = true
+gpnu.save
+
+lnu = University.lnu
+lnu.picture_white = "LNU_white.svg"
+lnu.picture_dark = "LNU_black.svg"
+lnu.show_groups = true
+lnu.show_teachers = true
+lnu.save
+
+nuwm = University.nuwm
+nuwm.picture_white = "NUWM_white_original.svg"
+nuwm.picture_dark = "NUWM_black_original.svg"
+nuwm.show_groups = true
+nuwm.show_teachers = true
+nuwm.save
+
+ubs = University.ubs
+ubs.picture_white = "UBS_white.svg"
+ubs.picture_dark = "UBS_black.svg"
+ubs.show_groups = true
+ubs.show_teachers = true
+ubs.save
+
+ldubgd = University.ldubgd
+ldubgd.picture_white = "LDUBGD_white.svg"
+ldubgd.picture_dark = "LDUBGD_black.svg"
+ldubgd.show_groups = true
+ldubgd.show_teachers = true
+ldubgd.save
+
+nung = University.nung
+nung.picture_white = "NUNG_white.svg"
+nung.picture_dark = "NUNG_black.svg"
+nung.show_groups = true
+nung.show_teachers = true
+nung.save
+
+npu = University.npu
+npu.picture_white = "NPU_white.svg"
+npu.picture_dark = "NPU_black.svg"
+npu.show_groups = true
+npu.show_teachers = true
+npu.save
+
+ktepc_knute = University.ktepc_knute
+ktepc_knute.picture_white = "KTEPCKNUTE_white.svg"
+ktepc_knute.picture_dark = "KTEPCKNUTE_black.svg"
+ktepc_knute.show_groups = true
+ktepc_knute.show_teachers = true
+ktepc_knute.save
+
+ugi = University.ugi
+ugi.picture_white = "UGI_white.svg"
+ugi.picture_dark = "UGI_black.svg"
+ugi.show_groups = true
+ugi.show_teachers = true
+ugi.save
+
+kneu = University.kneu
+kneu.picture_white = "KNEU_white.svg"
+kneu.picture_dark = "KNEU_black.svg"
+kneu.show_groups = true
+kneu.show_teachers = true
+kneu.save
+
 # Buildings for SumDU
 sumdu_buildings = [
   { name: "АК", description: "" },
