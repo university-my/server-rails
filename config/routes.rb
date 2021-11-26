@@ -114,6 +114,7 @@ Rails.application.routes.draw do
       resources :records, only: [] do
         collection do
           get :test
+          get :parsing_error
         end
       end
     end

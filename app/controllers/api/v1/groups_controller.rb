@@ -16,15 +16,21 @@ class Api::V1::GroupsController < ApplicationController
 
     @records = fetch_records(university, @group, pair_date)
 
-    if @records.blank?
-      @group.import_records(pair_date)
+    begin
+      if @records.blank?
+        @group.import_records(pair_date)
 
-    elsif @group.need_to_update_records
-
-      # Update
-      @group.import_records(pair_date)
+      elsif @group.need_to_update_records
+        @group.import_records(pair_date)
+      end
+    rescue PolitekService::DataNotFoundError => e
+      render status: 404, json: {
+        error: "Failed to parse a schedule",
+        code: "1001"
+      }
+      return
     end
-
+    
     # Select records one more time
     @records = fetch_records(university, @group, pair_date)
   end
