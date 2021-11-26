@@ -92,4 +92,9 @@
 
 `rails runner 'NungService.import_teachers'`
 
+---
+
+`rails runner 'NpuService.import_groups'`
+
+`rails runner 'NpuService.import_teachers'`
 
