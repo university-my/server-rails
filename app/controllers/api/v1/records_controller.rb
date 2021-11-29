@@ -7,9 +7,9 @@ class Api::V1::RecordsController < ApplicationController
   end
 
   # GET /api/v1/records/parsing_error
-  # Testing 404 response with custom code
+  # Testing 500 response with custom code
   def parsing_error
-    render status: 404, json: {
+    render status: 500, json: {
       error: "Failed to parse a schedule",
       code: "1001"
     }
