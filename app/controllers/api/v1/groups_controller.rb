@@ -24,7 +24,7 @@ class Api::V1::GroupsController < ApplicationController
         @group.import_records(pair_date)
       end
     rescue PolitekService::DataNotFoundError => e
-      render status: 404, json: {
+      render status: 500, json: {
         error: "Failed to parse a schedule",
         code: "1001"
       }

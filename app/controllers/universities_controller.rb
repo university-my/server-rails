@@ -24,6 +24,6 @@ class UniversitiesController < ApplicationController
   end
 
   def list
-    @universities = University.where(is_hidden: false).all
+    @universities = University.where(is_hidden: false).order('id').all
   end
 end

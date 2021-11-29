@@ -92,4 +92,26 @@
 
 `rails runner 'NungService.import_teachers'`
 
+---
 
+`rails runner 'NpuService.import_groups'`
+
+`rails runner 'NpuService.import_teachers'`
+
+---
+
+`rails runner 'KtepcKnuteService.import_groups'`
+
+`rails runner 'KtepcKnuteService.import_teachers'`
+
+---
+
+`rails runner 'KneuService.import_groups'`
+
+`rails runner 'KneuService.import_teachers'`
+
+---
+
+`rails runner 'UgiService.import_groups'`
+
+`rails runner 'UgiService.import_teachers'`
