@@ -115,3 +115,9 @@
 `rails runner 'UgiService.import_groups'`
 
 `rails runner 'UgiService.import_teachers'`
+
+---
+
+`rails runner 'ZuService.import_groups'`
+
+`rails runner 'ZuService.import_teachers'`
