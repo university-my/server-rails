@@ -183,6 +183,16 @@ if University.kneu.nil?
     )
 end
 
+if University.zu.nil?
+  University.create(
+    short_name: "ЖУ",
+    full_name: 'Житомирський державний університет імені Івана Франка',
+    url: "zu",
+    website: 'https://zu.edu.ua',
+    uid: 20
+    )
+end
+
 sumdu = University.sumdu
 sumdu.picture_white = "sumdu-white.svg"
 sumdu.picture_dark = "sumdu.svg"
@@ -303,6 +313,11 @@ kneu.picture_dark = "KNEU_black.svg"
 kneu.show_groups = true
 kneu.show_teachers = true
 kneu.save
+
+zu = University.zu
+zu.show_groups = true
+zu.show_teachers = true
+zu.save
 
 # Buildings for SumDU
 sumdu_buildings = [

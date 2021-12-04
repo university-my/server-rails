@@ -29,7 +29,8 @@ class University < ApplicationRecord
     { uid: 16, service: 'NpuService'},
     { uid: 17, service: 'KtepcKnuteService'},
     { uid: 18, service: 'UgiService'},
-    { uid: 19, service: 'KneuService'}
+    { uid: 19, service: 'KneuService'},
+    { uid: 20, service: 'ZuService'}
   ]
 end
 
@@ -115,6 +116,10 @@ end
 
   def self.kneu
     University.find_by(uid: 19)
+  end
+
+  def self.zu
+    University.find_by(uid: 20)
   end
 
 end
