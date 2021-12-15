@@ -229,6 +229,12 @@ module KhnueService
     buildings_ids = request_buildings
 
     request_auditoriums(buildings_ids)
+
+    # Iterate all to generate UUID (if empty)
+    University.khnue.auditorium.all? { |object|
+      UniversitiesHelper.generate_uuid(object)
+      object.save
+    }
   end
 
   # 1. Request building for import auditoriums
@@ -320,6 +326,12 @@ module KhnueService
 
     # Teachers
     request_teachers(departments_ids)
+
+    # Iterate all to generate UUID (if empty)
+    University.khnue.teachers.all? { |object|
+      UniversitiesHelper.generate_uuid(object)
+      object.save
+    }
   end
 
   # 1. Request departments for import teachers
@@ -414,6 +426,12 @@ module KhnueService
 
     # Specialities
     request_specialities(faculties_ids)
+
+    # Iterate all to generate UUID (if empty)
+    University.khnue.groups.all? { |object|
+      UniversitiesHelper.generate_uuid(object)
+      object.save
+    }
   end
 
   # 1. Request faculties for import groups

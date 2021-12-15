@@ -1,5 +1,5 @@
 json.group do
-  json.extract! @group, :id, :name
+  json.extract! @group, :id, :name, :uuid
 end
 
 json.records do

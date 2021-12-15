@@ -102,6 +102,12 @@ class PolitekService
       Rails.logger.error(e)
       next
     end
+
+    # Iterate all to generate UUID (if empty)
+    university.groups.all? { |object|
+      UniversitiesHelper.generate_uuid(object)
+      object.save
+    }
     
   end
 
@@ -138,6 +144,12 @@ class PolitekService
       Rails.logger.error(e)
       next
     end
+    
+    # Iterate all to generate UUID (if empty)
+    university.teachers.all? { |object|
+      UniversitiesHelper.generate_uuid(object)
+      object.save
+    }
     
   end
 

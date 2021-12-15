@@ -265,6 +265,12 @@ class SumduService
       Rails.logger.error e
       next
     end
+
+    # Iterate all to generate UUID (if empty)
+    University.sumdu.auditorium.all? { |object|
+      UniversitiesHelper.generate_uuid(object)
+      object.save
+    }
   end
 
   #
@@ -313,6 +319,12 @@ class SumduService
       Rails.logger.error(e)
       next
     end
+
+    # Iterate all to generate UUID (if empty)
+    University.sumdu.groups.all? { |object|
+      UniversitiesHelper.generate_uuid(object)
+      object.save
+    }
   end
 
   #
@@ -361,6 +373,12 @@ class SumduService
       Rails.logger.error(e)
       next
     end
+
+    # Iterate all to generate UUID (if empty)
+    University.sumdu.teachers.all? { |object|
+      UniversitiesHelper.generate_uuid(object)
+      object.save
+    }
   end
 
   #

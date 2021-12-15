@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_20_215932) do
+ActiveRecord::Schema.define(version: 2021_12_15_134850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,11 +80,13 @@ ActiveRecord::Schema.define(version: 2021_09_20_215932) do
     t.integer "building_id"
     t.string "lowercase_name"
     t.boolean "is_hidden", default: false
+    t.string "uuid", default: ""
     t.index ["building_id"], name: "index_auditoriums_on_building_id"
     t.index ["slug"], name: "index_auditoriums_on_slug", unique: true
     t.index ["slug_en"], name: "index_auditoriums_on_slug_en"
     t.index ["slug_uk"], name: "index_auditoriums_on_slug_uk"
     t.index ["university_id"], name: "index_auditoriums_on_university_id"
+    t.index ["uuid"], name: "index_auditoriums_on_uuid"
   end
 
   create_table "auditoriums_disciplines", id: false, force: :cascade do |t|
@@ -259,12 +261,14 @@ ActiveRecord::Schema.define(version: 2021_09_20_215932) do
     t.integer "course"
     t.integer "stream"
     t.boolean "is_hidden", default: false
+    t.string "uuid", default: ""
     t.index ["faculty_id"], name: "index_groups_on_faculty_id"
     t.index ["slug"], name: "index_groups_on_slug"
     t.index ["slug_en"], name: "index_groups_on_slug_en"
     t.index ["slug_uk"], name: "index_groups_on_slug_uk"
     t.index ["speciality_id"], name: "index_groups_on_speciality_id"
     t.index ["university_id"], name: "index_groups_on_university_id"
+    t.index ["uuid"], name: "index_groups_on_uuid"
   end
 
   create_table "groups_records", id: false, force: :cascade do |t|
@@ -320,11 +324,13 @@ ActiveRecord::Schema.define(version: 2021_09_20_215932) do
     t.string "lowercase_name"
     t.integer "department_id"
     t.boolean "is_hidden", default: false
+    t.string "uuid", default: ""
     t.index ["department_id"], name: "index_teachers_on_department_id"
     t.index ["slug"], name: "index_teachers_on_slug", unique: true
     t.index ["slug_en"], name: "index_teachers_on_slug_en"
     t.index ["slug_uk"], name: "index_teachers_on_slug_uk"
     t.index ["university_id"], name: "index_teachers_on_university_id"
+    t.index ["uuid"], name: "index_teachers_on_uuid"
   end
 
   create_table "universities", force: :cascade do |t|

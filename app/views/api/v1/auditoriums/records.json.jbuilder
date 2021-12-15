@@ -1,5 +1,5 @@
 json.auditorium do
-  json.extract! @auditorium, :id, :name
+  json.extract! @auditorium, :id, :name, :uuid
 end
 
 json.records do
