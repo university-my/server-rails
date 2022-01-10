@@ -1,5 +1,5 @@
 json.teacher do
-  json.extract! @teacher, :id, :name
+  json.extract! @teacher, :id, :name, :uuid
 end
 
 json.records do

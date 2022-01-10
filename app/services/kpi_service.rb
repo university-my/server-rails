@@ -322,6 +322,12 @@ module KpiService
     end
 
   end
+
+  # Iterate all to generate UUID (if empty)
+  University.kpi.groups.all? { |object|
+    UniversitiesHelper.generate_uuid(object)
+    object.save
+  }
 end
 
   # Make request to API for get total count of all groups
@@ -450,6 +456,12 @@ end
 
       offset += 100
     end
+
+    # Iterate all to generate UUID (if empty)
+    University.kpi.teachers.all? { |object|
+      UniversitiesHelper.generate_uuid(object)
+      object.save
+    }
   end
 
   # Make request to API for get total count of all teachers
