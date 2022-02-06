@@ -1,5 +1,5 @@
-json.auditorium do
-  json.extract! @auditorium, :id, :name, :uuid
+json.model do
+  json.partial! partial: 'auditoriums/auditorium', auditorium: @auditorium
 end
 
 json.records do

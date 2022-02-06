@@ -1,5 +1,5 @@
-json.teacher do
-  json.extract! @teacher, :id, :name, :uuid
+json.model do
+  json.partial! partial: 'teachers/teacher', teacher: @teacher
 end
 
 json.records do

@@ -1,5 +1,5 @@
-json.group do
-  json.extract! @group, :id, :name, :uuid
+json.model do
+  json.partial! partial: 'groups/group', group: @group
 end
 
 json.records do

@@ -3,6 +3,7 @@ class Api::V1::RecordsController < ApplicationController
   # GET /api/v1/records/test
   # For testing serialization of records on the client
   def test
+    @auditorium = University.sumdu.auditorium.first
     @records = Record.limit(10)
   end
 
