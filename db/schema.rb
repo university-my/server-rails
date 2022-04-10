@@ -71,18 +71,18 @@ ActiveRecord::Schema.define(version: 2021_12_15_134850) do
   create_table "auditoriums", force: :cascade do |t|
     t.string "name"
     t.integer "server_id"
-    t.integer "university_id"
+    t.bigint "university_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
     t.string "slug_en"
     t.string "slug_uk"
-    t.integer "building_id"
+    t.bigint "building_id"
     t.string "lowercase_name"
     t.boolean "is_hidden", default: false
     t.string "uuid", default: ""
     t.index ["building_id"], name: "index_auditoriums_on_building_id"
-    t.index ["slug"], name: "index_auditoriums_on_slug", unique: true
+    t.index ["slug"], name: "index_auditoriums_on_slug"
     t.index ["slug_en"], name: "index_auditoriums_on_slug_en"
     t.index ["slug_uk"], name: "index_auditoriums_on_slug_uk"
     t.index ["university_id"], name: "index_auditoriums_on_university_id"
@@ -90,8 +90,8 @@ ActiveRecord::Schema.define(version: 2021_12_15_134850) do
   end
 
   create_table "auditoriums_disciplines", id: false, force: :cascade do |t|
-    t.integer "auditorium_id"
-    t.integer "discipline_id"
+    t.bigint "auditorium_id"
+    t.bigint "discipline_id"
     t.index ["auditorium_id"], name: "index_auditoriums_disciplines_on_auditorium_id"
     t.index ["discipline_id"], name: "index_auditoriums_disciplines_on_discipline_id"
   end
@@ -155,7 +155,7 @@ ActiveRecord::Schema.define(version: 2021_12_15_134850) do
   create_table "buildings", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.integer "university_id"
+    t.bigint "university_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "server_id"
@@ -172,7 +172,7 @@ ActiveRecord::Schema.define(version: 2021_12_15_134850) do
     t.string "name"
     t.string "description"
     t.integer "server_id"
-    t.integer "university_id"
+    t.bigint "university_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
@@ -186,7 +186,7 @@ ActiveRecord::Schema.define(version: 2021_12_15_134850) do
 
   create_table "discipline_name_suggestions", force: :cascade do |t|
     t.string "name"
-    t.integer "discipline_id"
+    t.bigint "discipline_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["discipline_id"], name: "index_discipline_name_suggestions_on_discipline_id"
@@ -195,7 +195,7 @@ ActiveRecord::Schema.define(version: 2021_12_15_134850) do
   create_table "disciplines", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.integer "university_id"
+    t.bigint "university_id"
     t.string "visible_name", default: ""
     t.string "slug"
     t.string "slug_en"
@@ -207,15 +207,15 @@ ActiveRecord::Schema.define(version: 2021_12_15_134850) do
   end
 
   create_table "disciplines_groups", id: false, force: :cascade do |t|
-    t.integer "discipline_id"
-    t.integer "group_id"
+    t.bigint "discipline_id"
+    t.bigint "group_id"
     t.index ["discipline_id"], name: "index_disciplines_groups_on_discipline_id"
     t.index ["group_id"], name: "index_disciplines_groups_on_group_id"
   end
 
   create_table "disciplines_teachers", id: false, force: :cascade do |t|
-    t.integer "discipline_id"
-    t.integer "teacher_id"
+    t.bigint "discipline_id"
+    t.bigint "teacher_id"
     t.index ["discipline_id"], name: "index_disciplines_teachers_on_discipline_id"
     t.index ["teacher_id"], name: "index_disciplines_teachers_on_teacher_id"
   end
@@ -223,7 +223,7 @@ ActiveRecord::Schema.define(version: 2021_12_15_134850) do
   create_table "faculties", force: :cascade do |t|
     t.string "name"
     t.integer "server_id"
-    t.integer "university_id"
+    t.bigint "university_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
@@ -249,15 +249,15 @@ ActiveRecord::Schema.define(version: 2021_12_15_134850) do
   create_table "groups", force: :cascade do |t|
     t.string "name"
     t.integer "server_id"
-    t.integer "university_id"
+    t.bigint "university_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
     t.string "slug_en"
     t.string "slug_uk"
     t.string "lowercase_name"
-    t.integer "faculty_id"
-    t.integer "speciality_id"
+    t.bigint "faculty_id"
+    t.bigint "speciality_id"
     t.integer "course"
     t.integer "stream"
     t.boolean "is_hidden", default: false
@@ -272,8 +272,8 @@ ActiveRecord::Schema.define(version: 2021_12_15_134850) do
   end
 
   create_table "groups_records", id: false, force: :cascade do |t|
-    t.integer "group_id"
-    t.integer "record_id"
+    t.bigint "group_id"
+    t.bigint "record_id"
     t.index ["group_id"], name: "index_groups_records_on_group_id"
     t.index ["record_id"], name: "index_groups_records_on_record_id"
   end
@@ -284,13 +284,13 @@ ActiveRecord::Schema.define(version: 2021_12_15_134850) do
     t.string "reason"
     t.string "kind"
     t.string "time"
-    t.integer "auditorium_id"
-    t.integer "teacher_id"
+    t.bigint "auditorium_id"
+    t.bigint "teacher_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "university_id"
+    t.bigint "university_id"
     t.datetime "pair_start_date"
-    t.integer "discipline_id"
+    t.bigint "discipline_id"
     t.index ["auditorium_id"], name: "index_records_on_auditorium_id"
     t.index ["discipline_id"], name: "index_records_on_discipline_id"
     t.index ["teacher_id"], name: "index_records_on_teacher_id"
@@ -300,7 +300,7 @@ ActiveRecord::Schema.define(version: 2021_12_15_134850) do
   create_table "specialities", force: :cascade do |t|
     t.string "name"
     t.integer "server_id"
-    t.integer "university_id"
+    t.bigint "university_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
@@ -315,18 +315,18 @@ ActiveRecord::Schema.define(version: 2021_12_15_134850) do
   create_table "teachers", force: :cascade do |t|
     t.string "name"
     t.integer "server_id"
-    t.integer "university_id"
+    t.bigint "university_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
     t.string "slug_en"
     t.string "slug_uk"
     t.string "lowercase_name"
-    t.integer "department_id"
+    t.bigint "department_id"
     t.boolean "is_hidden", default: false
     t.string "uuid", default: ""
     t.index ["department_id"], name: "index_teachers_on_department_id"
-    t.index ["slug"], name: "index_teachers_on_slug", unique: true
+    t.index ["slug"], name: "index_teachers_on_slug"
     t.index ["slug_en"], name: "index_teachers_on_slug_en"
     t.index ["slug_uk"], name: "index_teachers_on_slug_uk"
     t.index ["university_id"], name: "index_teachers_on_university_id"
@@ -346,9 +346,9 @@ ActiveRecord::Schema.define(version: 2021_12_15_134850) do
     t.text "description", default: ""
     t.string "picture_white", default: ""
     t.string "picture_dark", default: ""
-    t.boolean "show_classrooms", default: false
-    t.boolean "show_groups", default: false
-    t.boolean "show_teachers", default: false
+    t.boolean "show_classrooms", default: true
+    t.boolean "show_groups", default: true
+    t.boolean "show_teachers", default: true
     t.boolean "show_disciplines", default: false
   end
 
@@ -364,4 +364,10 @@ ActiveRecord::Schema.define(version: 2021_12_15_134850) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "auditoriums", "buildings"
+  add_foreign_key "groups", "faculties"
+  add_foreign_key "groups", "specialities"
+  add_foreign_key "records", "disciplines"
+  add_foreign_key "records", "universities"
+  add_foreign_key "teachers", "departments"
 end

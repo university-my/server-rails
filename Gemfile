@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.2'
+ruby '2.7.5'
 
 # Bundle edge Rails instead: gem 'rails', GitHub: 'rails/rails'
-gem 'rails', '~> 5.2.4.4'
+gem 'rails', '~> 5.2.6.3'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use postgresql as the database for Active Record
