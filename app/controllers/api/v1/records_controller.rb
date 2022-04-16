@@ -4,7 +4,7 @@ class Api::V1::RecordsController < ApplicationController
   # For testing serialization of records on the client
   def test
     @auditorium = University.sumdu.auditorium.first
-    @records = Record.limit(10)
+    @records = Lesson.limit(10)
   end
 
   # GET /api/v1/records/parsing_error

@@ -39,4 +39,10 @@ sitemap.xml.gz
 
 # RubyMine
 .idea/*
+
+# Project related files
 exported_disciplines.json
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project

@@ -27,7 +27,7 @@ class Api::V1::AuditoriumsController < ApplicationController
   end
 
   def fetch_records(university, auditorium, pair_date)
-    Record.where(university: university)
+    Lesson.where(university: university)
           .where(auditorium: auditorium)
           .where(pair_start_date: pair_date.all_day)
           .order(:pair_start_date)

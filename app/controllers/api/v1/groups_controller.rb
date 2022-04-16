@@ -36,7 +36,7 @@ class Api::V1::GroupsController < ApplicationController
   end
 
   def fetch_records(university, group, pair_date)
-    Record.joins(:groups)
+    Lesson.joins(:groups)
           .where(university: university)
           .where('groups.id': group.id)
           .where(pair_start_date: pair_date.all_day)

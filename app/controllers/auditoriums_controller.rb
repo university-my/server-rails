@@ -34,29 +34,29 @@ class AuditoriumsController < ApplicationController
     @auditorium = Auditorium.find_by!(university_id: @university.id, id: params[:id])
     # Date
     pair_date = pair_date_from(params)
-    @records = Record.where(university: @university)
+    @lessons = Lesson.where(university: @university)
                      .where(auditorium: @auditorium)
                      .where(pair_start_date: pair_date.all_day)
                      .order(:pair_start_date)
                      .order(:pair_name)
 
-    if @records.blank?
+    if @lessons.blank?
       @auditorium.import_records(pair_date)
     elsif @auditorium.need_to_update_records
       @auditorium.import_records(pair_date)
     end
 
-    # Select records one more time
-    @records = Record.where(university: @university)
+    # Select one more time
+    @lessons = Lesson.where(university: @university)
                      .where(auditorium: @auditorium)
                      .where(pair_start_date: pair_date.all_day)
                      .order(:pair_start_date)
                      .order(:pair_name)
 
-    if @records.blank?
+    if @lessons.blank?
 
-      # Try to find records on the next days
-      next_records = Record.where(university: @university)
+      # Try to find for the next days
+      next_lessons = Lesson.where(university: @university)
       .where(auditorium: @auditorium)
       .where("pair_start_date >= :date", date: pair_date.tomorrow.beginning_of_day)
       .order(:pair_start_date)
@@ -64,11 +64,11 @@ class AuditoriumsController < ApplicationController
       .limit(1)
       
       render partial: 'records/empty', locals: {
-        next_records: next_records
+        next_lessons: next_lessons
       }
     else
       render partial: 'records/show', locals: {
-        records: @records,
+        records: @lessons,
         university: @university,
         pair_date: pair_date
       }

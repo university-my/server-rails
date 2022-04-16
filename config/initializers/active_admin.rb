@@ -306,7 +306,7 @@ ActiveAdmin.setup do |config|
   # By default, the footer shows the current Active Admin version. You can
   # override the content of the footer here.
   #
-  config.footer = '© 2019-2020 Мій Університет'
+  config.footer = '© 2019-2022 Мій Університет'
 
   # == Sorting
   #

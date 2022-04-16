@@ -14,13 +14,13 @@ class Api::V1::TeachersController < ApplicationController
     # Date
     pair_date = pair_date_from(params)
 
-    @records = Record.where(university: university)
+    @lessons = Lesson.where(university: university)
     .where(teacher_id: @teacher.id)
     .where(pair_start_date: pair_date.all_day)
     .order(:pair_start_date)
     .order(:pair_name)
 
-    if @records.blank?
+    if @lessons.blank?
       @teacher.import_records(pair_date)
 
     elsif @teacher.need_to_update_records
@@ -29,8 +29,8 @@ class Api::V1::TeachersController < ApplicationController
       @teacher.import_records(pair_date)
     end
 
-    # Select records one more time
-    @records = Record.where(university: university)
+    # Select one more time
+    @lessons = Lesson.where(university: university)
     .where(teacher_id: @teacher.id)
     .where(pair_start_date: pair_date.all_day)
     .order(:pair_start_date)
