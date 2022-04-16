@@ -271,6 +271,13 @@ ActiveRecord::Schema.define(version: 2022_04_16_074752) do
     t.index ["uuid"], name: "index_groups_on_uuid"
   end
 
+  create_table "groups_lessons", id: false, force: :cascade do |t|
+    t.bigint "group_id"
+    t.bigint "lesson_id"
+    t.index ["group_id"], name: "index_groups_lessons_on_group_id"
+    t.index ["lesson_id"], name: "index_groups_lessons_on_lesson_id"
+  end
+
   create_table "groups_records", id: false, force: :cascade do |t|
     t.bigint "group_id"
     t.bigint "record_id"
@@ -281,6 +288,8 @@ ActiveRecord::Schema.define(version: 2022_04_16_074752) do
   create_table "lessons", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "university_id"
+    t.index ["university_id"], name: "index_lessons_on_university_id"
   end
 
   create_table "records", force: :cascade do |t|
@@ -372,6 +381,7 @@ ActiveRecord::Schema.define(version: 2022_04_16_074752) do
   add_foreign_key "auditoriums", "buildings"
   add_foreign_key "groups", "faculties"
   add_foreign_key "groups", "specialities"
+  add_foreign_key "lessons", "universities"
   add_foreign_key "records", "disciplines"
   add_foreign_key "records", "universities"
   add_foreign_key "teachers", "departments"

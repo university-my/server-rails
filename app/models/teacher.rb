@@ -28,6 +28,7 @@ class Teacher < ApplicationRecord
   # Associations
   has_and_belongs_to_many :disciplines, optional: true
   has_many :records, dependent: :nullify
+  has_many :lessons, dependent: :nullify
   belongs_to :university, optional: true
   belongs_to :department, optional: true
 
