@@ -59,18 +59,18 @@ class GroupsController < ApplicationController
     end
 
 
-    # Select records one more time
-    @records = LessonsHelper.fetch(@university, @group, pair_date)
+    # Select one more time
+    @lessons = LessonsHelper.fetch(@university, @group, pair_date)
 
-    if @records.blank?
-      # Try to find records on the next days
+    if @lessons.blank?
+      # Try to find for the next days
       next_lessons = LessonsHelper.next(@university, @group, pair_date)
       render partial: 'records/empty', locals: {
         next_lessons: next_lessons
       }
     else
       render partial: 'records/show', locals: {
-        records: @records,
+        lessons: @lessons,
         university: @university,
         pair_date: pair_date
       }
