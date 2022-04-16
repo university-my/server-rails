@@ -3,9 +3,7 @@ class SumduJob < ApplicationJob
 
   def perform(*args)
     SumduService.import_teachers
-
     SumduService.import_groups
-
     SumduService.import_auditoriums
   end
 

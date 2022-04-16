@@ -138,12 +138,12 @@ every 1.day, at: ['10:21 am', '10:21 pm'] do
 end
 
 # KTEPC KNUTE
-every 1.day, at: ['10:22 am', '10:22 pm'] do
-  runner 'KtepcKnuteService.import_groups'
-end
-every 1.day, at: ['10:23 am', '10:23 pm'] do
-  runner 'KtepcKnuteService.import_teachers'
-end
+# every 1.day, at: ['10:22 am', '10:22 pm'] do
+#   runner 'KtepcKnuteService.import_groups'
+# end
+# every 1.day, at: ['10:23 am', '10:23 pm'] do
+#   runner 'KtepcKnuteService.import_teachers'
+# end
 
 # UGI
 every 1.day, at: ['10:24 am', '10:24 pm'] do
