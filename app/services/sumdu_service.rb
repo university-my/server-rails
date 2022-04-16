@@ -276,7 +276,6 @@ class SumduService
   #
   # Import groups from SumDU API
   #
-  # bin/rails runner 'SumduService.import_groups'
   def self.import_groups
     # Perform network request and parse JSON
     url = "#{self.sumdu_api_url}?method=getGroups"

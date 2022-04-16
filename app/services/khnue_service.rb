@@ -418,7 +418,6 @@ module KhnueService
   # Import groups from KHNUE API
   #
 
-  # bin/rails runner 'KhnueService.import_groups'
   def self.import_groups
     # Faculties
     faculties_ids = request_faculties

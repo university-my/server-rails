@@ -16,14 +16,12 @@ class UgiService
     University.ugi
   end
 
-  # rails runner 'UgiService.import_groups'
   def self.import_groups
     groups = PolitekService.load_objects('groups', self.timetable_url)
 
     PolitekService.save_groups(groups, self.university, self.server_id)
   end
 
-  # rails runner 'UgiService.import_teachers'
   def self.import_teachers
     teachers = PolitekService.load_objects('teachers', self.timetable_url)
 

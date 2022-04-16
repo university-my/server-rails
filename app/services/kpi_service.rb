@@ -293,7 +293,6 @@ module KpiService
   # Import groups from KPI API
   #
 
-  # bin/rails runner 'KpiService.import_groups'
   def self.import_groups
     groups_total_count = KpiService.groups_count
 
