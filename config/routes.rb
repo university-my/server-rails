@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :lessons
   mount Blazer::Engine, at: "blazer"
 
   devise_for :admin_users, ActiveAdmin::Devise.config
