@@ -165,7 +165,7 @@ class PolitekService
 
         parsed_data = self.parse_html(lesson['html'])
 
-        self.save_or_update_record(
+        self.save_or_update_lessons(
           pair_start_date,
           lesson['number'],
           parsed_data.join('; '),
@@ -194,7 +194,7 @@ class PolitekService
 
         parsed_data = self.parse_html(lesson['html'])
 
-        self.save_or_update_record(
+        self.save_or_update_lessons(
           pair_start_date,
           lesson['number'],
           parsed_data.join('; '),
@@ -237,10 +237,8 @@ class PolitekService
     return data
   end
 
-  #
-  # Record
-  #
-  def self.save_or_update_record(pair_start_date, pair_name, reason, time, teacher, groups, university)
+
+  def self.save_or_update_lessons(pair_start_date, pair_name, reason, time, teacher, groups, university)
     # Conditions for find existing pair
     conditions = {}
     conditions[:university_id] = university.id
@@ -249,32 +247,31 @@ class PolitekService
     conditions[:reason] = reason
     conditions[:time] = time
 
-    # Try to find existing record first
-    record = Record.find_by(conditions)
+    # Try to find first
+    lesson = Lesson.find_by(conditions)
 
-    if record.nil?
-      # New record
-      record = Record.new
+    if lesson.nil?
+      lesson = Lesson.new
     end
 
-    # Update record
-    record.pair_start_date = pair_start_date
-    record.time = time
-    record.pair_name = pair_name
-    record.name = ''
-    record.reason = reason
-    record.kind = ''
-    record.university = university
+    # Update
+    lesson.pair_start_date = pair_start_date
+    lesson.time = time
+    lesson.pair_name = pair_name
+    lesson.name = ''
+    lesson.reason = reason
+    lesson.kind = ''
+    lesson.university = university
 
     # Associations
-    record.teacher = teacher
+    lesson.teacher = teacher
 
     # Push only unique groups
     groups.each do |group|
-      record.groups << group unless record.groups.include?(group)
+      lesson.groups << group unless lesson.groups.include?(group)
     end
 
-    return if record.save
+    return if lesson.save
   end
 
   def self.import_records_for_auditorium(auditorium, selected_pair_date)

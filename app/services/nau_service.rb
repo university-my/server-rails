@@ -168,40 +168,39 @@ module NauService
     conditions[:pair_name] = pair_number
 
     # Try to find existing record first
-    record = Record.find_by(conditions)
+    lesson = Lesson.find_by(conditions)
 
-    if record.nil?
-      # Save new record
-      record = Record.new
-      record.pair_start_date = pair_start_date
-      record.pair_name = pair_number
-      record.name = name
-      record.university = university
+    if lesson.nil?
+      lesson = Lesson.new
+      lesson.pair_start_date = pair_start_date
+      lesson.pair_name = pair_number
+      lesson.name = name
+      lesson.university = university
 
       # Push only unique groups
-      unless record.groups.include?(group)
-        record.groups << group
+      unless lesson.groups.include?(group)
+        lesson.groups << group
       end
 
-      unless record.save
-        # Go to the next iteration if record can't be saved
-        Rails.logger.error(record.errors.full_messages)
+      unless lesson.save
+        # Go to the next iteration if lesson can't be saved
+        Rails.logger.error(lesson.errors.full_messages)
       end
     else
-      # Update record
-      record.pair_start_date = pair_start_date
-      record.pair_name = pair_number
-      record.name = name
-      record.university = university
+      # Update lesson
+      lesson.pair_start_date = pair_start_date
+      lesson.pair_name = pair_number
+      lesson.name = name
+      lesson.university = university
 
       # Push only unique groups
-      unless record.groups.include?(group)
-        record.groups << group
+      unless lesson.groups.include?(group)
+        lesson.groups << group
       end
 
-      unless record.save
-        # Go to the next iteration if record can't be saved
-        Rails.logger.error(record.errors.full_messages)
+      unless lesson.save
+        # Go to the next iteration if lesson can't be saved
+        Rails.logger.error(lesson.errors.full_messages)
       end
     end
   end

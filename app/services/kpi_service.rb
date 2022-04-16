@@ -121,35 +121,34 @@ module KpiService
         conditions[:kind] = kind
         conditions[:time] = time
 
-        # Try to find existing record first
-        record = Record.find_by(conditions)
+        # Try to find first
+        lesson = Lesson.find_by(conditions)
 
-        if record.nil?
-          # New record
-          record = Record.new
+        if lesson.nil?
+          lesson = Lesson.new
         end
 
-        record.pair_start_date = pair_start_date
-        record.time = time
-        record.pair_name = pair_name
-        record.name = name_string
-        record.kind = kind
-        record.university = university
+        lesson.pair_start_date = pair_start_date
+        lesson.time = time
+        lesson.pair_name = pair_name
+        lesson.name = name_string
+        lesson.kind = kind
+        lesson.university = university
 
         # Associations
-        record.auditorium = auditoriums.first
-        record.teacher = teacher
+        lesson.auditorium = auditoriums.first
+        lesson.teacher = teacher
 
         # Push only unique groups
-        record.groups << group unless record.groups.include?(group)
+        lesson.groups << group unless lesson.groups.include?(group)
 
         # Save or update Discipline
         discipline = save_discipline(name_string, auditoriums.first, groups, teacher)
-        record.discipline = discipline
+        lesson.discipline = discipline
 
-        unless record.save
-          # Go to the next iteration if record can't be saved
-          Rails.logger.error(record.errors.full_messages)
+        unless lesson.save
+          # Go to the next iteration if can't save
+          Rails.logger.error(lesson.errors.full_messages)
           next
         end
       rescue StandardError => e
@@ -246,38 +245,37 @@ module KpiService
         conditions[:time] = time
         conditions[:teacher_id] = teacher.id
 
-        # Try to find existing record first
-        record = Record.find_by(conditions)
+        # Try to find first
+        lesson = Lesson.find_by(conditions)
 
-        if record.nil?
-          # New record
-          record = Record.new
+        if lesson.nil?
+          lesson = Lesson.new
         end
 
-        # Update record
-        record.pair_start_date = pair_start_date
-        record.time = time
-        record.pair_name = pair_name
-        record.name = name_string
-        record.kind = kind
-        record.university = university
+        # Update
+        lesson.pair_start_date = pair_start_date
+        lesson.time = time
+        lesson.pair_name = pair_name
+        lesson.name = name_string
+        lesson.kind = kind
+        lesson.university = university
 
         # Associations
-        record.teacher = teacher
-        record.auditorium = auditoriums.first
+        lesson.teacher = teacher
+        lesson.auditorium = auditoriums.first
 
         # Push only unique groups
         groups.each do |group|
-          record.groups << group unless record.groups.include?(group)
+          lesson.groups << group unless lesson.groups.include?(group)
         end
 
         # Save or update Discipline
         discipline = save_discipline(name_string, auditoriums.first, groups, teacher)
-        record.discipline = discipline
+        lesson.discipline = discipline
 
-        unless record.save
-          # Go to the next iteration if record can't be saved
-          Rails.logger.error(record.errors.full_messages)
+        unless lesson.save
+          # Go to the next iteration if can't save
+          Rails.logger.error(lesson.errors.full_messages)
           next
         end
       rescue StandardError => e
