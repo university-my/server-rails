@@ -82,7 +82,7 @@ class TeachersController < ApplicationController
       }
     else
       render partial: "records/show", locals: {
-        records: @lessons,
+        lessons: @lessons,
         university: @university,
         pair_date: pair_date
       }

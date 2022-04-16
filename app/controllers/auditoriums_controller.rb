@@ -5,15 +5,15 @@ class AuditoriumsController < ApplicationController
     @university = University.find_by!(url: params[:university_url])
     @query = params['query']
     @auditoriums = if @query.present?
-                     @university.auditorium
-                                .where(is_hidden: false)
-                                .where('lowercase_name LIKE ?', "%#{@query.downcase}%")
-                                .paginate(page: params[:page], per_page: 6)
-                   else
-                     @university.auditorium
-                                .where(is_hidden: false)
-                                .paginate(page: params[:page], per_page: 6)
-                   end
+     @university.auditorium
+     .where(is_hidden: false)
+     .where('lowercase_name LIKE ?', "%#{@query.downcase}%")
+     .paginate(page: params[:page], per_page: 6)
+   else
+     @university.auditorium
+     .where(is_hidden: false)
+     .paginate(page: params[:page], per_page: 6)
+   end
   end
 
   # GET /auditoriums/1
@@ -68,7 +68,7 @@ class AuditoriumsController < ApplicationController
       }
     else
       render partial: 'records/show', locals: {
-        records: @lessons,
+        lessons: @lessons,
         university: @university,
         pair_date: pair_date
       }
