@@ -27,7 +27,6 @@ class Teacher < ApplicationRecord
 
   # Associations
   has_and_belongs_to_many :disciplines, optional: true
-  has_many :records, dependent: :nullify
   has_many :lessons, dependent: :nullify
   belongs_to :university, optional: true
   belongs_to :department, optional: true
@@ -38,7 +37,7 @@ class Teacher < ApplicationRecord
   end
 
 
-  # Import records for teacher
+  # Import for teacher
   def import_records(date)
     # Find a class
     service = University.service_for(university.uid)
@@ -50,7 +49,7 @@ class Teacher < ApplicationRecord
   end
 
 
-  # Check if need to update records in the Teacher
+  # Check if need to update data for the Teacher
   def need_to_update_records
     needToUpdate = false
 

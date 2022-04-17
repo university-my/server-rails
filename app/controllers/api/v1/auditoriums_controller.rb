@@ -14,7 +14,7 @@ class Api::V1::AuditoriumsController < ApplicationController
     # Date
     pair_date = pair_date_from(params)
 
-    @records = fetch_records(university, @auditorium, pair_date)
+    @records = fetch_lessons(university, @auditorium, pair_date)
 
     if @records.blank?
       @auditorium.import_records(pair_date)
@@ -23,10 +23,10 @@ class Api::V1::AuditoriumsController < ApplicationController
     end
 
     # Select records one more time
-    @records = fetch_records(university, @auditorium, pair_date)
+    @records = fetch_lessons(university, @auditorium, pair_date)
   end
 
-  def fetch_records(university, auditorium, pair_date)
+  def fetch_lessons(university, auditorium, pair_date)
     Lesson.where(university: university)
           .where(auditorium: auditorium)
           .where(pair_start_date: pair_date.all_day)

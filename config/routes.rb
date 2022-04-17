@@ -111,8 +111,7 @@ Rails.application.routes.draw do
         resources :buildings, only: [:index], param: :id
       end
 
-      # Records API
-      resources :records, only: [] do
+      resources :lessons, only: [] do
         collection do
           get :test
           get :parsing_error

@@ -31,7 +31,7 @@ class Api::V1::GroupsController < ApplicationController
       return
     end
     
-    # Select records one more time
+    # Select one more time
     @records = fetch_records(university, @group, pair_date)
   end
 

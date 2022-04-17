@@ -102,7 +102,7 @@ module KhnueService
   end
 
   #
-  # Import records for auditorium from KHNUE API
+  # Import for auditorium from KHNUE API
   #
 
   def self.import_records_for_auditorium(auditorium, date)
@@ -120,7 +120,7 @@ module KhnueService
   end
 
   #
-  # Import records for group from KHNUE API
+  # Import for group from KHNUE API
   #
 
   def self.import_records_for_group(group, date)
@@ -142,7 +142,7 @@ module KhnueService
   end
 
   #
-  # Import records for teacher from KHNUE API
+  # Import for teacher from KHNUE API
   #
 
   def self.import_records_for_teacher(teacher, date)

@@ -11,7 +11,7 @@ class SumduService
   end
 
   #
-  # Import records for auditorium from SumDU API
+  # Import for auditorium from SumDU API
   #
   def self.import_records_for_auditorium(auditorium, date)
     start_date = date.strftime('%d.%m.%Y')
@@ -28,7 +28,7 @@ class SumduService
 
     university = University.sumdu
 
-    # Save records
+    # Save
     json.each do |object|
       # Get data from JSON
       date_string = object['DATE_REG']
@@ -78,7 +78,7 @@ class SumduService
   end
 
   #
-  # Import records for group from SumDU API
+  # Import for group from SumDU API
   #
   def self.import_records_for_group(group, date)
     start_date = date.strftime('%d.%m.%Y')
@@ -95,7 +95,7 @@ class SumduService
 
     university = University.sumdu
 
-    # Save records
+    # Save
     json.each do |object|
       # Get data from JSON
       date_string = object['DATE_REG']
@@ -140,7 +140,7 @@ class SumduService
   end
 
   #
-  # Import records for teacher from SumDU API
+  # Import for teacher from SumDU API
   #
   def self.import_records_for_teacher(teacher, date)
     start_date = date.strftime('%d.%m.%Y')
@@ -159,7 +159,7 @@ class SumduService
 
     university = University.sumdu
 
-    # Save records
+    # Save
     json.each do |object|
       # Get data from JSON
       date_string = object['DATE_REG']

@@ -38,7 +38,7 @@ module KpiService
   end
 
   #
-  # Import records for group from KPI API
+  # Import for group from KPI API
   #
 
   def self.import_records_for_group(group, selected_pair_date)
@@ -60,7 +60,7 @@ module KpiService
 
     groups = [group]
 
-    # Save records
+    # Save
     data.each do |object|
       # Get data from JSON
       time = object['time_start']
@@ -108,7 +108,7 @@ module KpiService
         pair_time = time.to_time
         pair_start_date = (start_date.strftime('%F') + ' ' + pair_time.to_s(:time)).to_datetime
 
-        # Don't update old records because we don't want to override it
+        # Don't update old data because we don't want to override it
         current_date = Date.today.beginning_of_day
         next if start_date < current_date
 
@@ -163,7 +163,7 @@ module KpiService
   end
 
   #
-  # Import records for teacher from KPI API
+  # Import for teacher from KPI API
   #
 
   def self.import_records_for_teacher(teacher, selected_pair_date)
@@ -183,7 +183,7 @@ module KpiService
 
     university = University.kpi
 
-    # Save records
+    # Save
     data.each do |object|
       # Get data from JSON
       time = object['time_start']
@@ -231,7 +231,7 @@ module KpiService
         pair_time = time.to_time
         pair_start_date = (start_date.strftime('%F') + ' ' + pair_time.to_s(:time)).to_datetime
 
-        # Don't update old records because we don't want to override it
+        # Don't update old data because we don't want to override it
         current_date = Date.today.beginning_of_day
         next if start_date < current_date
 

@@ -1,13 +1,12 @@
-class Api::V1::RecordsController < ApplicationController
+class Api::V1::LessonsController < ApplicationController
 
-  # GET /api/v1/records/test
-  # For testing serialization of records on the client
+  # GET /api/v1/lessons/test
   def test
     @auditorium = University.sumdu.auditorium.first
     @records = Lesson.limit(10)
   end
 
-  # GET /api/v1/records/parsing_error
+  # GET /api/v1/lessons/parsing_error
   # Testing 500 response with custom code
   def parsing_error
     render status: 500, json: {
