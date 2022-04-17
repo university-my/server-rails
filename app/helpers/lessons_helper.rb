@@ -1,4 +1,4 @@
-module  RecordsHelper
+module LessonsHelper
 
   # Get pair date from params or use today date
   def pair_date_string_from(params)
@@ -19,8 +19,8 @@ module  RecordsHelper
     l(date, format: '%A, %e %B')
   end
 
-  def self.fetch_records(university, group, pair_date)
-    Record.joins(:groups)
+  def self.fetch(university, group, pair_date)
+    Lesson.joins(:groups)
     .where(university: university)
     .where('groups.id': group.id)
     .where(pair_start_date: pair_date.all_day)
@@ -28,8 +28,8 @@ module  RecordsHelper
     .order(:pair_name)
   end
 
-  def self.next_records(university, group, pair_date)
-    Record.joins(:groups)
+  def self.next(university, group, pair_date)
+    Lesson.joins(:groups)
     .where(university: university)
     .where('groups.id': group.id)
     .where("pair_start_date >= :date", date: pair_date.tomorrow.beginning_of_day)

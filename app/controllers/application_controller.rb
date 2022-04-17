@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include Pundit::Authorization
   rescue_from Pundit::NotAuthorizedError, with: :member_not_authorized
 
-  include RecordsHelper
+  include LessonsHelper
   
   before_action :check_host
 

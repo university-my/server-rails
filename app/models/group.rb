@@ -26,7 +26,7 @@ class Group < ApplicationRecord
   validates :server_id, presence: true, numericality: { other_than: 0 }, uniqueness: false
 
   # Associations
-  has_and_belongs_to_many :records, optional: true, dependent: :nullify
+  has_and_belongs_to_many :lessons, optional: true, dependent: :nullify
   has_and_belongs_to_many :disciplines, optional: true
   belongs_to :university, optional: true
   belongs_to :faculty, optional: true
@@ -38,7 +38,7 @@ class Group < ApplicationRecord
   end
 
 
-  # Import records for current Group
+  # Import for current Group
   def import_records(date)
     # Find a class
     service = University.service_for(university.uid)
@@ -50,7 +50,7 @@ class Group < ApplicationRecord
   end
 
 
-  # Check if need to update records in the Group
+  # Check if need to update for the Group
   def need_to_update_records
     needToUpdate = false
 

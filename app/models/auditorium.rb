@@ -28,7 +28,7 @@ class Auditorium < ApplicationRecord
 
   # Associations
   has_and_belongs_to_many :disciplines, optional: true
-  has_many :records, dependent: :nullify
+  has_many :lessons, dependent: :nullify
   belongs_to :university, optional: true
   belongs_to :building, optional: true
 
@@ -38,7 +38,7 @@ class Auditorium < ApplicationRecord
   end
 
 
-  # Import records for current Auditorium
+  # Import for current Auditorium
   def import_records(date)
     # Find a class
     service = University.service_for(university.uid)
@@ -50,7 +50,7 @@ class Auditorium < ApplicationRecord
   end
 
 
-  # Check if need to update records in the Auditorium
+  # Check if need to update for the Auditorium
   def need_to_update_records
     needToUpdate = false
 

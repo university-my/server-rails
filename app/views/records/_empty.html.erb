@@ -6,15 +6,15 @@
 		</div>
 	</div>
 
-	<% if defined?(next_records) && next_records.count > 0 %>
+	<% if defined?(next_lessons) && next_lessons.count > 0 %>
 	<div class="row mb-4">
 		<div class="col">
 			<div class="alert alert-secondary" role="alert">
 				<p><span class="font-weight-light">Знайдено розклад на іншу дату:</span>
-					<span class="font-weight-bold"><%= l next_records.first.pair_start_date, format: "%A, %e %b %Y" %></span></p>
+					<span class="font-weight-bold"><%= l next_lessons.first.pair_start_date, format: "%A, %e %b %Y" %></span></p>
 					<div class="btn-group mr-3 mb-2" role="group">
 						<form action="" method="get">
-							<input type="hidden" id="start" name="pair_date" value="<%= next_records.first.pair_start_date %>">
+							<input type="hidden" id="start" name="pair_date" value="<%= next_lessons.first.pair_start_date %>">
 							<input type="submit" class="btn btn-primary" value="Дивитися">
 						</form>
 					</div>

@@ -119,7 +119,7 @@ ActiveAdmin.setup do |config|
   # roots for each namespace.
   #
   # Default:
-  config.root_to = 'records#index'
+  config.root_to = 'universities#index'
 
   # == Admin Comments
   #
@@ -306,7 +306,7 @@ ActiveAdmin.setup do |config|
   # By default, the footer shows the current Active Admin version. You can
   # override the content of the footer here.
   #
-  config.footer = '© 2019-2020 Мій Університет'
+  config.footer = '© 2019-2022 Мій Університет'
 
   # == Sorting
   #

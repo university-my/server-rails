@@ -1,4 +1,4 @@
-class Record < ApplicationRecord
+class Lesson < ApplicationRecord
 
   # Associations
   belongs_to :auditorium, optional: true

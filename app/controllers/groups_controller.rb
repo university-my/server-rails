@@ -36,10 +36,10 @@ class GroupsController < ApplicationController
     # Date
     pair_date = pair_date_from(params)
 
-    @records = RecordsHelper.fetch_records(@university, @group, pair_date)
+    @lessons = LessonsHelper.fetch(@university, @group, pair_date)
 
     begin
-      if @records.blank?
+      if @lessons.blank?
         @group.import_records(pair_date)
 
       elsif @group.need_to_update_records
@@ -59,18 +59,18 @@ class GroupsController < ApplicationController
     end
 
 
-    # Select records one more time
-    @records = RecordsHelper.fetch_records(@university, @group, pair_date)
+    # Select one more time
+    @lessons = LessonsHelper.fetch(@university, @group, pair_date)
 
-    if @records.blank?
-      # Try to find records on the next days
-      next_records = RecordsHelper.next_records(@university, @group, pair_date)
+    if @lessons.blank?
+      # Try to find for the next days
+      next_lessons = LessonsHelper.next(@university, @group, pair_date)
       render partial: 'records/empty', locals: {
-        next_records: next_records
+        next_lessons: next_lessons
       }
     else
       render partial: 'records/show', locals: {
-        records: @records,
+        lessons: @lessons,
         university: @university,
         pair_date: pair_date
       }

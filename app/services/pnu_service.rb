@@ -17,7 +17,6 @@ class PnuService
   end
   
 
-  # bin/rails runner 'PnuService.import_groups'
   def self.import_groups
     groups = PolitekService.load_objects('groups', self.timetable_url)
 
@@ -25,10 +24,6 @@ class PnuService
   end
 
 
-  #
-  # Import teachers
-  #
-  # bin/rails runner 'PnuService.import_teachers'
   def self.import_teachers
     teachers = PolitekService.load_objects('teachers', self.timetable_url)
 

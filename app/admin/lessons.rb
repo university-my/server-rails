@@ -1,4 +1,4 @@
-ActiveAdmin.register Record do
+ActiveAdmin.register Lesson do
 
   permit_params :name, :pair_name, :created_at, :updated_at, :reason, :kind, :time, :auditorium_id, :teacher_id, :pair_start_date
 
@@ -21,9 +21,9 @@ ActiveAdmin.register Record do
 
     # University
     if current_admin_user.is_admin?
-      column t('university') do |record|
-        if record.university
-          link_to record.university.short_name, admin_university_path(record.university_id)
+      column t('university') do |lesson|
+        if lesson.university
+          link_to lesson.university.short_name, admin_university_path(lesson.university_id)
         end
       end
     end

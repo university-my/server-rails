@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_15_134850) do
+ActiveRecord::Schema.define(version: 2022_04_17_103446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -271,14 +271,15 @@ ActiveRecord::Schema.define(version: 2021_12_15_134850) do
     t.index ["uuid"], name: "index_groups_on_uuid"
   end
 
-  create_table "groups_records", id: false, force: :cascade do |t|
+  create_table "groups_lessons", id: false, force: :cascade do |t|
     t.bigint "group_id"
-    t.bigint "record_id"
-    t.index ["group_id"], name: "index_groups_records_on_group_id"
-    t.index ["record_id"], name: "index_groups_records_on_record_id"
+    t.bigint "lesson_id"
+    t.index ["group_id"], name: "index_groups_lessons_on_group_id"
+    t.index ["lesson_id"], name: "index_groups_lessons_on_lesson_id"
   end
 
-  create_table "records", force: :cascade do |t|
+  create_table "lessons", force: :cascade do |t|
+    t.datetime "pair_start_date"
     t.string "name"
     t.string "pair_name"
     t.string "reason"
@@ -286,15 +287,14 @@ ActiveRecord::Schema.define(version: 2021_12_15_134850) do
     t.string "time"
     t.bigint "auditorium_id"
     t.bigint "teacher_id"
+    t.bigint "discipline_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "university_id"
-    t.datetime "pair_start_date"
-    t.bigint "discipline_id"
-    t.index ["auditorium_id"], name: "index_records_on_auditorium_id"
-    t.index ["discipline_id"], name: "index_records_on_discipline_id"
-    t.index ["teacher_id"], name: "index_records_on_teacher_id"
-    t.index ["university_id"], name: "index_records_on_university_id"
+    t.index ["auditorium_id"], name: "index_lessons_on_auditorium_id"
+    t.index ["discipline_id"], name: "index_lessons_on_discipline_id"
+    t.index ["teacher_id"], name: "index_lessons_on_teacher_id"
+    t.index ["university_id"], name: "index_lessons_on_university_id"
   end
 
   create_table "specialities", force: :cascade do |t|
@@ -367,7 +367,6 @@ ActiveRecord::Schema.define(version: 2021_12_15_134850) do
   add_foreign_key "auditoriums", "buildings"
   add_foreign_key "groups", "faculties"
   add_foreign_key "groups", "specialities"
-  add_foreign_key "records", "disciplines"
-  add_foreign_key "records", "universities"
+  add_foreign_key "lessons", "universities"
   add_foreign_key "teachers", "departments"
 end

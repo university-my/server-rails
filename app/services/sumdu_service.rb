@@ -11,7 +11,7 @@ class SumduService
   end
 
   #
-  # Import records for auditorium from SumDU API
+  # Import for auditorium from SumDU API
   #
   def self.import_records_for_auditorium(auditorium, date)
     start_date = date.strftime('%d.%m.%Y')
@@ -28,7 +28,7 @@ class SumduService
 
     university = University.sumdu
 
-    # Save records
+    # Save
     json.each do |object|
       # Get data from JSON
       date_string = object['DATE_REG']
@@ -64,8 +64,8 @@ class SumduService
         pair_time = time.split('-').first
         pair_start_date = (date_string + ' ' + pair_time).to_datetime
 
-        # Save or update Record
-        save_or_update_record(pair_start_date, time, name_string, pair_name, reason, kind, auditorium, teacher, groups, university)
+        # Save or update
+        save_or_update_lesson(pair_start_date, time, name_string, pair_name, reason, kind, auditorium, teacher, groups, university)
       rescue StandardError => e
         Rails.logger.error(e)
         next
@@ -78,7 +78,7 @@ class SumduService
   end
 
   #
-  # Import records for group from SumDU API
+  # Import for group from SumDU API
   #
   def self.import_records_for_group(group, date)
     start_date = date.strftime('%d.%m.%Y')
@@ -95,7 +95,7 @@ class SumduService
 
     university = University.sumdu
 
-    # Save records
+    # Save
     json.each do |object|
       # Get data from JSON
       date_string = object['DATE_REG']
@@ -126,8 +126,8 @@ class SumduService
         pair_time = time.split('-').first
         pair_start_date = (date_string + ' ' + pair_time).to_datetime
 
-        # Save or update Record
-        save_or_update_record(pair_start_date, time, name_string, pair_name, reason, kind, auditorium, teacher, [group], university)
+        # Save or update
+        save_or_update_lesson(pair_start_date, time, name_string, pair_name, reason, kind, auditorium, teacher, [group], university)
       rescue StandardError => e
         Rails.logger.error(e)
         next
@@ -140,7 +140,7 @@ class SumduService
   end
 
   #
-  # Import records for teacher from SumDU API
+  # Import for teacher from SumDU API
   #
   def self.import_records_for_teacher(teacher, date)
     start_date = date.strftime('%d.%m.%Y')
@@ -159,7 +159,7 @@ class SumduService
 
     university = University.sumdu
 
-    # Save records
+    # Save
     json.each do |object|
       # Get data from JSON
       date_string = object['DATE_REG']
@@ -195,8 +195,8 @@ class SumduService
         pair_time = time.split('-').first
         pair_start_date = (date_string + ' ' + pair_time).to_datetime
 
-        # Save or update Record
-        save_or_update_record(pair_start_date, time, name_string, pair_name, reason, kind, auditorium, teacher, groups, university)
+        # Save or update
+        save_or_update_lesson(pair_start_date, time, name_string, pair_name, reason, kind, auditorium, teacher, groups, university)
       rescue StandardError => e
         Rails.logger.error(e)
         next
@@ -276,7 +276,6 @@ class SumduService
   #
   # Import groups from SumDU API
   #
-  # bin/rails runner 'SumduService.import_groups'
   def self.import_groups
     # Perform network request and parse JSON
     url = "#{self.sumdu_api_url}?method=getGroups"
@@ -381,10 +380,8 @@ class SumduService
     }
   end
 
-  #
-  # Record
-  #
-  def self.save_or_update_record(pair_start_date, time, name_string, pair_name, reason, kind, auditorium, teacher, groups, university)
+
+  def self.save_or_update_lesson(pair_start_date, time, name_string, pair_name, reason, kind, auditorium, teacher, groups, university)
     # Conditions for find existing pair
     conditions = {}
     conditions[:university_id] = university.id
@@ -395,37 +392,36 @@ class SumduService
     conditions[:kind] = kind
     conditions[:time] = time
 
-    # Try to find existing record first
-    record = Record.find_by(conditions)
+    # Try to find first
+    lesson = Lesson.find_by(conditions)
 
-    if record.nil?
-      # New record
-      record = Record.new
+    if lesson.nil?
+      lesson = Lesson.new
     end
 
-    # Update record
-    record.pair_start_date = pair_start_date
-    record.time = time
-    record.pair_name = pair_name
-    record.name = name_string
-    record.reason = reason
-    record.kind = kind
-    record.university = university
+    # Update
+    lesson.pair_start_date = pair_start_date
+    lesson.time = time
+    lesson.pair_name = pair_name
+    lesson.name = name_string
+    lesson.reason = reason
+    lesson.kind = kind
+    lesson.university = university
 
     # Associations
-    record.auditorium = auditorium
-    record.teacher = teacher
+    lesson.auditorium = auditorium
+    lesson.teacher = teacher
 
     # Push only unique groups
     groups.each do |group|
-      record.groups << group unless record.groups.include?(group)
+      lesson.groups << group unless lesson.groups.include?(group)
     end
 
-    # Save or update Discipline
+    # Discipline
     discipline = save_discipline(name_string, auditorium, groups, teacher)
-    record.discipline = discipline
+    lesson.discipline = discipline
 
-    return if record.save
+    return if lesson.save
   end
 
   #

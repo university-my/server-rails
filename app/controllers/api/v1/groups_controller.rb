@@ -31,12 +31,12 @@ class Api::V1::GroupsController < ApplicationController
       return
     end
     
-    # Select records one more time
+    # Select one more time
     @records = fetch_records(university, @group, pair_date)
   end
 
   def fetch_records(university, group, pair_date)
-    Record.joins(:groups)
+    Lesson.joins(:groups)
           .where(university: university)
           .where('groups.id': group.id)
           .where(pair_start_date: pair_date.all_day)

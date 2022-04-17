@@ -88,7 +88,7 @@ module KhnueService
       end
 
       # Save to DB
-      save_or_update_record(
+      save_or_update_lesson(
         date_string,
         start_time_string,
         name_string,
@@ -102,7 +102,7 @@ module KhnueService
   end
 
   #
-  # Import records for auditorium from KHNUE API
+  # Import for auditorium from KHNUE API
   #
 
   def self.import_records_for_auditorium(auditorium, date)
@@ -120,7 +120,7 @@ module KhnueService
   end
 
   #
-  # Import records for group from KHNUE API
+  # Import for group from KHNUE API
   #
 
   def self.import_records_for_group(group, date)
@@ -142,7 +142,7 @@ module KhnueService
   end
 
   #
-  # Import records for teacher from KHNUE API
+  # Import for teacher from KHNUE API
   #
 
   def self.import_records_for_teacher(teacher, date)
@@ -159,7 +159,7 @@ module KhnueService
     Rails.logger.error(errors.full_messages) unless teacher.save
   end
 
-  def self.save_or_update_record(date_string, start_time_string, name_string, pair_name, kind, auditorium_id, teacher_name, groups_ids)
+  def self.save_or_update_lesson(date_string, start_time_string, name_string, pair_name, kind, auditorium_id, teacher_name, groups_ids)
     university = University.khnue
 
     begin
@@ -184,37 +184,36 @@ module KhnueService
       conditions[:kind] = kind
       conditions[:time] = start_time_string
 
-      # Try to find existing record first
-      record = Record.find_by(conditions)
+      # Try to find first
+      lesson = Lesson.find_by(conditions)
 
-      if record.nil?
-        # Save new record
-        record = Record.new
+      if lesson.nil?
+        lesson = Lesson.new
       end
 
-      record.pair_start_date = pair_start_date
-      record.time = start_time_string
-      record.pair_name = pair_name
-      record.name = name_string
-      record.reason = nil
-      record.kind = kind
-      record.university = university
+      lesson.pair_start_date = pair_start_date
+      lesson.time = start_time_string
+      lesson.pair_name = pair_name
+      lesson.name = name_string
+      lesson.reason = nil
+      lesson.kind = kind
+      lesson.university = university
 
       # Associations
-      record.auditorium = auditorium
-      record.teacher = teacher
+      lesson.auditorium = auditorium
+      lesson.teacher = teacher
 
       # Push only unique groups
       groups.each do |group|
-        record.groups << group unless record.groups.include?(group)
+        lesson.groups << group unless lesson.groups.include?(group)
       end
 
       # Save or update Discipline
       discipline = save_discipline(name_string, auditorium, groups, teacher)
-      record.discipline = discipline
+      lesson.discipline = discipline
 
-      # Try to save record
-      Rails.logger.error(record.errors.full_messages) unless record.save
+      # Save
+      Rails.logger.error(lesson.errors.full_messages) unless lesson.save
     rescue StandardError => e
       Rails.logger.error(e)
     end
@@ -419,7 +418,6 @@ module KhnueService
   # Import groups from KHNUE API
   #
 
-  # bin/rails runner 'KhnueService.import_groups'
   def self.import_groups
     # Faculties
     faculties_ids = request_faculties

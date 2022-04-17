@@ -16,7 +16,6 @@ class KtepcKnuteService
     University.ktepc_knute
   end
 
-  # rails runner 'KtepcKnuteService.import_groups'
   def self.import_groups
     groups = PolitekService.load_objects('groups', self.timetable_url)
 

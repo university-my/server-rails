@@ -16,7 +16,6 @@ class KneuService
     University.kneu
   end
 
-  # rails runner 'KneuService.import_groups'
   def self.import_groups
     groups = PolitekService.load_objects('groups', self.timetable_url)
 

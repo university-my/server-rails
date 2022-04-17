@@ -19,146 +19,68 @@
 
 # Learn more: http://github.com/javan/whenever
 
-# SumDU
-## Teachers
 every 1.day, at: ['9:00 am', '9:00 pm'] do
-  runner 'SumduService.import_teachers'
-end
-## Groups
-every 1.day, at: ['9:05 am', '9:05 pm'] do
-  runner 'SumduService.import_groups'
-end
-## Auditoriums
-every 1.day, at: ['9:10 am', '9:10 pm'] do
-  runner 'SumduService.import_auditoriums'
+  runner 'SumduJob.perform_later'
 end
 
-# KPI
-## Teachers
 every 1.day, at: ['9:15 am', '9:15 pm'] do
-  runner 'KpiService.import_teachers'
-end
-## Groups
-every 1.day, at: ['9:20 am', '9:20 pm'] do
-  runner 'KpiService.import_groups'
+  runner 'KpiJob.perform_later'
 end
 
-# KHNUE
-## Teachers
 every 1.day, at: ['9:25 am', '9:25 pm'] do
-  runner 'KhnueService.import_teachers'
-end
-## Auditoriums
-every 1.day, at: ['9:30 am', '9:30 pm'] do
-  runner 'KhnueService.import_auditoriums'
-end
-## Groups
-every 1.day, at: ['9:35 am', '9:35 pm'] do
-  runner 'KhnueService.import_groups'
+  runner 'KhnueJob.perform_later'
 end
 
-# NUFT
 every 1.day, at: ['10:00 am', '10:00 pm'] do
-  runner 'NuftService.import_groups'
-end
-every 1.day, at: ['10:01 am', '10:01 pm'] do
-  runner 'NuftService.import_teachers'
+  runner 'NuftJob.perform_later'
 end
 
-# PNU
 every 1.day, at: ['10:02 am', '10:02 pm'] do
-  runner 'PnuService.import_groups'
-end
-every 1.day, at: ['10:03 am', '10:03 pm'] do
-  runner 'PnuService.import_teachers'
+  runner 'PnuJob.perform_later'
 end
 
-# ZNAU
 every 1.day, at: ['10:04 am', '10:04 pm'] do
-  runner 'ZnauService.import_groups'
-end
-every 1.day, at: ['10:05 am', '10:05 pm'] do
-  runner 'ZnauService.import_teachers'
+  runner 'ZnauJob.perform_later'
 end
 
-# SSPU
 every 1.day, at: ['10:06 am', '10:06 pm'] do
-  runner 'SspuService.import_groups'
-end
-every 1.day, at: ['10:07 am', '10:07 pm'] do
-  runner 'SspuService.import_teachers'
+  runner 'SspuJob.perform_later'
 end
 
-# LNU
 every 1.day, at: ['10:08 am', '10:08 pm'] do
-  runner 'LnuService.import_groups'
-end
-every 1.day, at: ['10:09 am', '10:09 pm'] do
-  runner 'LnuService.import_teachers'
+  runner 'LnuJob.perform_later'
 end
 
-# NUWM
 every 1.day, at: ['10:10 am', '10:10 pm'] do
-  runner 'NuwmService.import_groups'
-end
-every 1.day, at: ['10:11 am', '10:11 pm'] do
-  runner 'NuwmService.import_teachers'
+  runner 'NuwmJob.perform_later'
 end
 
-# UBS
 every 1.day, at: ['10:12 am', '10:12 pm'] do
-  runner 'UbsService.import_groups'
-end
-every 1.day, at: ['10:13 am', '10:13 pm'] do
-  runner 'UbsService.import_teachers'
+  runner 'UbsJob.perform_later'
 end
 
-# LDUBGD
 every 1.day, at: ['10:14 am', '10:14 pm'] do
-  runner 'LdubgdService.import_groups'
-end
-every 1.day, at: ['10:15 am', '10:15 pm'] do
-  runner 'LdubgdService.import_teachers'
+  runner 'LdubgdJob.perform_later'
 end
 
-# NUNG
 every 1.day, at: ['10:16 am', '10:16 pm'] do
-  runner 'NungService.import_groups'
-end
-every 1.day, at: ['10:17 am', '10:17 pm'] do
-  runner 'NungService.import_teachers'
+  runner 'NungJob.perform_later'
 end
 
-# NPU
 every 1.day, at: ['10:20 am', '10:20 pm'] do
-  runner 'NpuService.import_groups'
-end
-every 1.day, at: ['10:21 am', '10:21 pm'] do
-  runner 'NpuService.import_teachers'
+  runner 'NpuJob.perform_later'
 end
 
-# KTEPC KNUTE
-every 1.day, at: ['10:22 am', '10:22 pm'] do
-  runner 'KtepcKnuteService.import_groups'
-end
-every 1.day, at: ['10:23 am', '10:23 pm'] do
-  runner 'KtepcKnuteService.import_teachers'
-end
+# every 1.day, at: ['10:22 am', '10:22 pm'] do
+#   runner 'KtepcKnuteJob.perform_later'
+# end
 
-# UGI
 every 1.day, at: ['10:24 am', '10:24 pm'] do
-  runner 'UgiService.import_groups'
-end
-every 1.day, at: ['10:25 am', '10:25 pm'] do
-  runner 'UgiService.import_teachers'
+  runner 'UgiJob.perform_later'
 end
 
-# KNEU
 every 1.day, at: ['10:26 am', '10:26 pm'] do
-  runner 'KneuService.import_groups'
-end
-every 1.day, at: ['10:27 am', '10:27 pm'] do
-  runner 'KneuService.import_teachers'
+  runner 'KneuJob.perform_later'
 end
 
 # Sitemap refresh
