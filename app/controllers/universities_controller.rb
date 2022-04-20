@@ -3,8 +3,6 @@ class UniversitiesController < ApplicationController
   # GET /universities
   # GET /universities.json
   def index
-    @short_names = University.short_names_array.join(',')
-
     per_page = 4
     @query = params["query"]
     if @query.present?
@@ -24,6 +22,15 @@ class UniversitiesController < ApplicationController
   end
 
   def list
-    @universities = University.where(is_hidden: false).order('id').all
+    @query = params["query"]
+    if @query.present?
+      @universities = University.where(is_hidden: false)
+      .where("short_name LIKE ?", "%#{@query}%")
+      .order('id')
+    else
+      @universities = University.where(is_hidden: false).order('id').all
+    end
+
+    @all_universities = University.where(is_hidden: false).order('id').all
   end
 end
