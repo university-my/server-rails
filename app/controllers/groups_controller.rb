@@ -14,6 +14,7 @@ class GroupsController < ApplicationController
       .where(is_hidden: false)
       .paginate(page: params[:page], per_page: 6)
     end
+    @all_groups = @university.groups.where(is_hidden: false)
   end
 
   # GET /groups/1

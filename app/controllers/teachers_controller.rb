@@ -16,6 +16,7 @@ class TeachersController < ApplicationController
         .where(is_hidden: false)
         .paginate(page: params[:page], per_page: per_page)
     end
+    @all_teachers = @university.teachers.where(is_hidden: false)
   end
 
   # GET /teachers/1
