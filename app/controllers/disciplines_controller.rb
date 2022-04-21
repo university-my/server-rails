@@ -13,6 +13,8 @@ class DisciplinesController < ApplicationController
       .order(:visible_name)
       .paginate(page: params[:page], per_page: 5)
     end
+    @all_disciplines = Discipline.where(university: @university)
+      .order(:visible_name)
   end
 
   # GET /universities/:university_url/disciplines/:friendly_id
