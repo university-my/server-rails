@@ -3,8 +3,8 @@
   <%= image_tag("transparent.svg", size: "48x48", alt: "Мій Університет") %>
   <% end %>
   <nav class="my-2 my-md-0 mr-md-3">
-    <%= link_to 'Android', android_url, class: "p-2" %>
-    <%= link_to 'iOS', ios_url, class: "p-2" %>
-    <a class="ml-2" href="/hello" rel="nofollow">Додати університет</a>
+    <a class="alert-link text-info" href="/universities/list" style="width: 205px;">Всі заклади</a>
+    <%= link_to 'Android', android_url, class: "text-muted p-2" %>
+    <%= link_to 'iOS', ios_url, class: "text-muted p-2" %>
   </nav>
 </div>
