@@ -1,6 +1,6 @@
 <% meta_tag :description, "Список навчальних закладів" %>
 <% meta_tag :keywords, "Мій Університет,Розклад,Список Університетів" %>
-<% @title = "Мій Університет - Всі університети" %>
+<% @title = "Мій Університет - Всі заклади" %>
 <%= content_for(:canonical_link, universities_url) %>
 <% no_index %>
 
@@ -8,8 +8,6 @@
 
 <main class="container" role="main">
   <div class="mx-auto col-md-8">
-    <h1 class="mb-4">Університети</h1>
-
     <div class="row">
       <div class="col mb-4 mr-0 ml-0">
         <form method="get" id="previous_date" class="form-inline mt-2 mt-md-0">

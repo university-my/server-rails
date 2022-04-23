@@ -75,4 +75,8 @@ class PagesController < ApplicationController
     render "pages/request-type"
   end
 
+  def stickers
+    render "pages/stickers"
+  end
+
 end

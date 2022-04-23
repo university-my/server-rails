@@ -14,6 +14,7 @@ class AuditoriumsController < ApplicationController
      .where(is_hidden: false)
      .paginate(page: params[:page], per_page: 6)
    end
+   @all_auditoriums = @university.auditorium.where(is_hidden: false)
   end
 
   # GET /auditoriums/1
