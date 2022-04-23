@@ -25,18 +25,26 @@
 
 		<div class="row">
 			<div class="col">
-				<p>Підписуйтеся на <b>Мій Університет</b> в <a target="_blank" href="https://t.me/university_my">Telegram</a></p>
-
 				<% images = [
 					"4 Multitasking.png",
 					"6 Working at desk.png",
 					"1 Working remotely.png",
 					"7 Social Media.png",
 					"8 Work and life balance.png",
-					"13 Walking the dog.png"
+					"dobrogo_vechora.png",
+					"ua.png",
+					"save.png"
 				]
 				@randomImage = images.sample %>
+				<% if ["dobrogo_vechora.png", "ua.png", "save.png"].include? @randomImage %>
+				<%= link_to '/stickers', class: "", target: "_blank" do %>
 				<%= image_tag(@randomImage, class: "img-fluid", size: "250x250") %>
+				<% end %>
+				<% else %>
+				<%= image_tag(@randomImage, class: "img-fluid", size: "250x250") %>	
+				<% end %>
+
+				<p class="mt-3">Підписуйтеся на <b>Мій Університет</b> в <a target="_blank" href="https://t.me/university_my">Telegram</a></p>
 			</div>
 		</div>
 	</div>

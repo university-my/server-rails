@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get "/video-presentation", to: "pages#video_presentation"
   get "/ads", to: "pages#ads"
   get "/hello", to: "pages#hello"
+  get "/stickers", to: "pages#stickers"
 
   # All universities on single page
   get "universities/list", to: "universities#list"
