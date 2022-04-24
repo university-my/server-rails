@@ -203,6 +203,16 @@ if University.zhim.nil?
     )
 end
 
+if University.kubg.nil?
+  University.create(
+    short_name: "КУБГ",
+    full_name: 'Київський університет імені Бориса Грінченка',
+    url: "kubg",
+    website: 'https://kubg.edu.ua',
+    uid: 22
+    )
+end
+
 sumdu = University.sumdu
 sumdu.picture_white = "sumdu-white.svg"
 sumdu.picture_dark = "sumdu.svg"
@@ -351,8 +361,15 @@ zhim = University.zhim
 zhim.show_classrooms = false
 zhim.show_groups = true
 zhim.show_teachers = true
-zhim.description = "Інформація про викладачів та групи із сайту http://46.219.3.27:8080/cgi-bin/timetable.cgi"
+zhim.description = "Інформація про викладачів та групи із сайту 46.219.3.27:8080/cgi-bin/timetable.cgi"
 zhim.save
+
+kubg = University.kubg
+kubg.show_classrooms = false
+kubg.show_groups = true
+kubg.show_teachers = true
+kubg.description = "Інформація про викладачів та групи із сайту dekanat.kubg.edu.ua/cgi-bin/timetable.cgi"
+kubg.save
 
 # Buildings for SumDU
 sumdu_buildings = [
