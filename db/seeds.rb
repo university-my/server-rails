@@ -233,6 +233,16 @@ if University.vnu.nil?
     )
 end
 
+if University.uku.nil?
+  University.create(
+    short_name: "УКУ",
+    full_name: 'Український католицький університет',
+    url: "uku",
+    website: 'https://ucu.edu.ua',
+    uid: 25
+    )
+end
+
 sumdu = University.sumdu
 sumdu.picture_white = "sumdu-white.svg"
 sumdu.picture_dark = "sumdu.svg"
@@ -404,6 +414,13 @@ vnu.show_groups = true
 vnu.show_teachers = true
 vnu.description = "Інформація про викладачів та групи із сайту 194.44.187.20/cgi-bin/timetable.cgi"
 vnu.save
+
+uku = University.uku
+uku.show_classrooms = false
+uku.show_groups = true
+uku.show_teachers = true
+uku.description = "Інформація про викладачів та групи із сайту http://dekanat.ucu.edu.ua/cgi-bin/timetable.cgi"
+uku.save
 
 # Buildings for SumDU
 sumdu_buildings = [
