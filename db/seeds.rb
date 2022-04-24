@@ -193,6 +193,16 @@ if University.zu.nil?
     )
 end
 
+if University.zhim.nil?
+  University.create(
+    short_name: "ЖМІ",
+    full_name: 'Житомирський медичний інститут',
+    url: "zhim",
+    website: 'https://www.zhim.org.ua',
+    uid: 21
+    )
+end
+
 sumdu = University.sumdu
 sumdu.picture_white = "sumdu-white.svg"
 sumdu.picture_dark = "sumdu.svg"
@@ -336,6 +346,13 @@ zu.show_groups = true
 zu.show_teachers = true
 zu.description = "Інформація про викладачів та групи із сайту dekanat.zu.edu.ua/cgi-bin/timetable.cgi"
 zu.save
+
+zhim = University.zhim
+zhim.show_classrooms = false
+zhim.show_groups = true
+zhim.show_teachers = true
+zhim.description = "Інформація про викладачів та групи із сайту http://46.219.3.27:8080/cgi-bin/timetable.cgi"
+zhim.save
 
 # Buildings for SumDU
 sumdu_buildings = [

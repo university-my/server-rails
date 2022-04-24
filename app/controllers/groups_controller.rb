@@ -59,7 +59,6 @@ class GroupsController < ApplicationController
       return
     end
 
-
     # Select one more time
     @lessons = LessonsHelper.fetch(@university, @group, pair_date)
 
