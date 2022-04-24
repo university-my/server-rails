@@ -213,6 +213,16 @@ if University.kubg.nil?
     )
 end
 
+if University.kmk.nil?
+  University.create(
+    short_name: "KMK",
+    full_name: 'Криворізький фаховий медичний коледж',
+    url: "kmk",
+    website: 'http://kmk.in.ua',
+    uid: 23
+    )
+end
+
 sumdu = University.sumdu
 sumdu.picture_white = "sumdu-white.svg"
 sumdu.picture_dark = "sumdu.svg"
@@ -370,6 +380,13 @@ kubg.show_groups = true
 kubg.show_teachers = true
 kubg.description = "Інформація про викладачів та групи із сайту dekanat.kubg.edu.ua/cgi-bin/timetable.cgi"
 kubg.save
+
+kmk = University.kmk
+kmk.show_classrooms = false
+kmk.show_groups = true
+kmk.show_teachers = true
+kmk.description = "Інформація про викладачів та групи із сайту 80.91.179.229:81/cgi-bin/timetable.cgi"
+kmk.save
 
 # Buildings for SumDU
 sumdu_buildings = [
