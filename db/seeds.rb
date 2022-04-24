@@ -223,6 +223,16 @@ if University.kmk.nil?
     )
 end
 
+if University.vnu.nil?
+  University.create(
+    short_name: "ВНУ",
+    full_name: 'Волинський національний університет імені Лесі Українки',
+    url: "vnu",
+    website: 'https://vnu.edu.ua/uk',
+    uid: 24
+    )
+end
+
 sumdu = University.sumdu
 sumdu.picture_white = "sumdu-white.svg"
 sumdu.picture_dark = "sumdu.svg"
@@ -387,6 +397,13 @@ kmk.show_groups = true
 kmk.show_teachers = true
 kmk.description = "Інформація про викладачів та групи із сайту 80.91.179.229:81/cgi-bin/timetable.cgi"
 kmk.save
+
+vnu = University.vnu
+vnu.show_classrooms = false
+vnu.show_groups = true
+vnu.show_teachers = true
+vnu.description = "Інформація про викладачів та групи із сайту 194.44.187.20/cgi-bin/timetable.cgi"
+vnu.save
 
 # Buildings for SumDU
 sumdu_buildings = [
