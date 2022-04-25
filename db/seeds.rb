@@ -193,6 +193,146 @@ if University.zu.nil?
     )
 end
 
+if University.zhim.nil?
+  University.create(
+    short_name: "ЖМІ",
+    full_name: 'Житомирський медичний інститут',
+    url: "zhim",
+    website: 'https://www.zhim.org.ua',
+    uid: 21
+    )
+end
+
+if University.kubg.nil?
+  University.create(
+    short_name: "КУБГ",
+    full_name: 'Київський університет імені Бориса Грінченка',
+    url: "kubg",
+    website: 'https://kubg.edu.ua',
+    uid: 22
+    )
+end
+
+if University.kmk.nil?
+  University.create(
+    short_name: "KMK",
+    full_name: 'Криворізький фаховий медичний коледж',
+    url: "kmk",
+    website: 'http://kmk.in.ua',
+    uid: 23
+    )
+end
+
+if University.vnu.nil?
+  University.create(
+    short_name: "ВНУ",
+    full_name: 'Волинський національний університет імені Лесі Українки',
+    url: "vnu",
+    website: 'https://vnu.edu.ua/uk',
+    uid: 24
+    )
+end
+
+if University.uku.nil?
+  University.create(
+    short_name: "УКУ",
+    full_name: 'Український католицький університет',
+    url: "uku",
+    website: 'https://ucu.edu.ua',
+    uid: 25
+    )
+end
+
+if University.chdtu.nil?
+  University.create(
+    short_name: "ЧДТУ",
+    full_name: 'Черкаський державний технологічний університет',
+    url: "chdtu",
+    website: 'https://chdtu.edu.ua',
+    uid: 26
+    )
+end
+
+if University.karazin.nil?
+  University.create(
+    short_name: "КАРАЗІН",
+    full_name: 'Харківський національний університет ім. В.Н. Каразіна',
+    url: "karazin",
+    website: 'https://karazin.ua',
+    uid: 27
+    )
+end
+
+if University.kemk.nil?
+  University.create(
+    short_name: "КЕМК",
+    full_name: 'Київський електромеханічний фаховий коледж',
+    url: "kemk",
+    website: 'http://kemk.kiev.ua',
+    uid: 28
+    )
+end
+
+if University.ktgg.nil?
+  University.create(
+    short_name: "КТГГ",
+    full_name: 'Київський фаховий коледж туризму та готельного господарства',
+    url: "ktgg",
+    website: 'https://www.ktgg.kiev.ua/uk',
+    uid: 29
+    )
+end
+
+if University.kcas.nil?
+  University.create(
+    short_name: "КФКПН",
+    full_name: 'Київський фаховий коледж прикладних наук',
+    url: "kcas",
+    website: 'http://kcas.kiev.ua',
+    uid: 30
+    )
+end
+
+if University.onma.nil?
+  University.create(
+    short_name: "ОМА",
+    full_name: 'Національний університет `Одеська морська академія`',
+    url: "onma",
+    website: 'http://www.onma.edu.ua',
+    uid: 31
+    )
+end
+
+if University.kmkkovel.nil?
+  University.create(
+    short_name: "КМК",
+    full_name: 'Ковельський фаховий медичний коледж',
+    url: "kmkkovel",
+    website: 'http://www.kmk-kovel.in.ua',
+    uid: 32
+    )
+end
+
+if University.kmkk.nil?
+  University.create(
+    short_name: "КМКК",
+    full_name: 'ЗФПО "Київський міський медичний фаховий коледж"',
+    url: "kmkk",
+    website: 'https://kmmk.net.ua',
+    uid: 33
+    )
+end
+
+if University.itstep.nil?
+  University.create(
+    short_name: "ІТ СТЕП",
+    full_name: 'Приватний заклад вищої освіти `ІТ СТЕП Університет`',
+    url: "itstep",
+    website: 'https://itstep.edu.ua',
+    uid: 34
+    )
+end
+
 sumdu = University.sumdu
 sumdu.picture_white = "sumdu-white.svg"
 sumdu.picture_dark = "sumdu.svg"
@@ -212,8 +352,8 @@ kpi.description = "Інформація про викладачів та гру�
 kpi.save
 
 khnue = University.khnue
-khnue.picture_white = "KNEU_white.svg"
-khnue.picture_dark = "KNEU_black.svg"
+khnue.picture_white = "khnue-white.svg"
+khnue.picture_dark = "khnue.svg"
 khnue.show_groups = true
 khnue.show_teachers = true
 khnue.description = "Інформація про аудиторії, викладачів, групи, кафедри, факультети та спеціальності із сайту hneu.edu.ua"
@@ -335,7 +475,121 @@ zu = University.zu
 zu.show_groups = true
 zu.show_teachers = true
 zu.description = "Інформація про викладачів та групи із сайту dekanat.zu.edu.ua/cgi-bin/timetable.cgi"
+zu.is_beta = true
 zu.save
+
+zhim = University.zhim
+zhim.show_classrooms = false
+zhim.show_groups = true
+zhim.show_teachers = true
+zhim.description = "Інформація про викладачів та групи із сайту 46.219.3.27:8080/cgi-bin/timetable.cgi"
+zhim.is_beta = true
+zhim.save
+
+kubg = University.kubg
+kubg.show_classrooms = false
+kubg.show_groups = true
+kubg.show_teachers = true
+kubg.description = "Інформація про викладачів та групи із сайту dekanat.kubg.edu.ua/cgi-bin/timetable.cgi"
+kubg.is_beta = true
+kubg.save
+
+kmk = University.kmk
+kmk.show_classrooms = false
+kmk.show_groups = true
+kmk.show_teachers = true
+kmk.description = "Інформація про викладачів та групи із сайту 80.91.179.229:81/cgi-bin/timetable.cgi"
+kmk.is_beta = true
+kmk.save
+
+vnu = University.vnu
+vnu.show_classrooms = false
+vnu.show_groups = true
+vnu.show_teachers = true
+vnu.description = "Інформація про викладачів та групи із сайту 194.44.187.20/cgi-bin/timetable.cgi"
+vnu.is_beta = true
+vnu.save
+
+uku = University.uku
+uku.show_classrooms = false
+uku.show_groups = true
+uku.show_teachers = true
+uku.description = "Інформація про викладачів та групи із сайту dekanat.ucu.edu.ua/cgi-bin/timetable.cgi"
+uku.is_beta = true
+uku.save
+
+chdtu = University.chdtu
+chdtu.show_classrooms = false
+chdtu.show_groups = true
+chdtu.show_teachers = true
+chdtu.description = "Інформація про викладачів та групи із сайту 195.95.232.162:8082/cgi-bin/timetable.cgi"
+chdtu.is_beta = true
+chdtu.save
+
+karazin = University.karazin
+karazin.show_classrooms = false
+karazin.show_groups = true
+karazin.show_teachers = true
+karazin.description = "Інформація про викладачів та групи із сайту online.karazin.ua:1443/cgi-bin/timetable.cgi"
+karazin.is_beta = true
+karazin.save
+
+kemk = University.kemk
+kemk.show_classrooms = false
+kemk.show_groups = true
+kemk.show_teachers = true
+kemk.description = "Інформація про викладачів та групи із сайту test.kemt.kiev.ua/cgi-bin/timetable.cgi"
+kemk.is_beta = true
+kemk.save
+
+ktgg = University.ktgg
+ktgg.show_classrooms = false
+ktgg.show_groups = true
+ktgg.show_teachers = true
+ktgg.description = "Інформація про викладачів та групи із сайту 217.76.201.218/cgi-bin/timetable.cgi"
+ktgg.is_beta = true
+ktgg.save
+
+kcas = University.kcas
+kcas.show_classrooms = false
+kcas.show_groups = true
+kcas.show_teachers = true
+kcas.description = "Інформація про викладачів та групи із сайту 94.131.204.108/cgi-bin/timetable.cgi"
+kcas.is_beta = true
+kcas.save
+
+onma = University.onma
+onma.show_classrooms = false
+onma.show_groups = true
+onma.show_teachers = true
+onma.description = "Інформація про викладачів та групи із сайту 212.111.205.2/cgi-bin/timetable.cgi"
+onma.is_beta = true
+onma.save
+
+kmkkovel = University.kmkkovel
+kmkkovel.show_classrooms = false
+kmkkovel.show_groups = true
+kmkkovel.show_teachers = true
+kmkkovel.description = "Інформація про викладачів та групи із сайту 93.183.214.222/cgi-bin/timetable.cgi"
+kmkkovel.is_beta = true
+kmkkovel.is_hidden = true
+kmkkovel.save
+
+kmkk = University.kmkk
+kmkk.show_classrooms = false
+kmkk.show_groups = true
+kmkk.show_teachers = true
+kmkk.description = "Інформація про викладачів та групи із сайту 178.150.254.27/cgi-bin/timetable.cgi"
+kmkk.is_beta = true
+kmkk.save
+
+itstep = University.itstep
+itstep.show_classrooms = false
+itstep.show_groups = true
+itstep.show_teachers = true
+itstep.description = "Інформація про викладачів та групи із сайту stud.high.itstep.org/cgi-bin/timetable.cgi"
+itstep.is_beta = true
+itstep.save
 
 # Buildings for SumDU
 sumdu_buildings = [

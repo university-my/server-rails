@@ -8,10 +8,17 @@
 
 <main class="container" role="main">
   <div class="mx-auto col-md-8">
+    <h1 class="mb-4">Всі заклади</h1>
+
     <div class="row">
       <div class="col mb-4 mr-0 ml-0">
         <form method="get" id="previous_date" class="form-inline mt-2 mt-md-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Абревіатура уніветситету" aria-label="Пошук" name="query" value="<%= @query %>">
+          <input class="form-control mr-sm-2" type="search" placeholder="Назва" aria-label="Пошук" name="query" value="<%= @query %>" list="short-name">
+          <datalist id="short-name">
+            <% @all_universities.each do |university| %>
+            <option value="<%= university.short_name %>"><%= university.full_name %></option>
+            <% end %>
+          </datalist>
           <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Шукати</button>
         </form>
       </div>
@@ -23,14 +30,14 @@
 
     <% @universities.each do |university| %>
     <div class="row mb-3">
-      <div class="col">
+      <div class="col col-md-10">
         <div class="card">
           <div class="card-header">
             <div class="media">
               <%= render "universities/university_picture", university: university %>
               <div class="media-body">
                 <h1 class="mt-0"><%= university.short_name %><% if university.is_beta %><span class="text-warning"> (бета-версія)</span><% end %></h1>
-                <h6 class="card-subtitle mb-2 Text-light font-weight-light"><%= university.full_name %></h6>
+                <h6 class="card-subtitle mb-2 font-weight-light"><%= university.full_name %></h6>
               </div>
             </div>
           </div>

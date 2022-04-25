@@ -23,11 +23,11 @@ every 1.day, at: ['9:00 am', '9:00 pm'] do
   runner 'SumduJob.perform_later'
 end
 
-every 1.day, at: ['9:15 am', '9:15 pm'] do
+every 1.day, at: ['9:02 am', '9:02 pm'] do
   runner 'KpiJob.perform_later'
 end
 
-every 1.day, at: ['9:25 am', '9:25 pm'] do
+every 1.day, at: ['9:04 am', '9:04 pm'] do
   runner 'KhnueJob.perform_later'
 end
 
@@ -81,6 +81,62 @@ end
 
 every 1.day, at: ['10:26 am', '10:26 pm'] do
   runner 'KneuJob.perform_later'
+end
+
+every 1.day, at: ['10:28 am', '10:28 pm'] do
+  runner 'ZhimJob.perform_later'
+end
+
+every 1.day, at: ['10:30 am', '10:30 pm'] do
+  runner 'KubgJob.perform_later'
+end
+
+every 1.day, at: ['10:32 am', '10:32 pm'] do
+  runner 'KmkJob.perform_later'
+end
+
+every 1.day, at: ['10:34 am', '10:34 pm'] do
+  runner 'VnuJob.perform_later'
+end
+
+every 1.day, at: ['10:36 am', '10:36 pm'] do
+  runner 'UkuJob.perform_later'
+end
+
+every 1.day, at: ['10:38 am', '10:38 pm'] do
+  runner 'ChdtuJob.perform_later'
+end
+
+every 1.day, at: ['10:40 am', '10:40 pm'] do
+  runner 'KarazinJob.perform_later'
+end
+
+every 1.day, at: ['10:42 am', '10:42 pm'] do
+  runner 'KemkJob.perform_later'
+end
+
+every 1.day, at: ['10:44 am', '10:44 pm'] do
+  runner 'KtggJob.perform_later'
+end
+
+every 1.day, at: ['10:46 am', '10:46 pm'] do
+  runner 'KcasJob.perform_later'
+end
+
+every 1.day, at: ['10:48 am', '10:48 pm'] do
+  runner 'OnmaJob.perform_later'
+end
+
+# every 1.day, at: ['10:50 am', '10:50 pm'] do
+#   runner 'KmkkovelJob.perform_later'
+# end
+
+every 1.day, at: ['10:52 am', '10:52 pm'] do
+  runner 'KmkkJob.perform_later'
+end
+
+every 1.day, at: ['10:54 am', '10:54 pm'] do
+  runner 'ItstepJob.perform_later'
 end
 
 # Sitemap refresh

@@ -30,7 +30,21 @@ class University < ApplicationRecord
     { uid: 17, service: 'KtepcKnuteService'},
     { uid: 18, service: 'UgiService'},
     { uid: 19, service: 'KneuService'},
-    { uid: 20, service: 'ZuService'}
+    { uid: 20, service: 'ZuService'},
+    { uid: 21, service: 'ZhimService'},
+    { uid: 22, service: 'KubgService'},
+    { uid: 23, service: 'KmkService'},
+    { uid: 24, service: 'VnuService'},
+    { uid: 25, service: 'UkuService'},
+    { uid: 26, service: 'ChdtuService'},
+    { uid: 27, service: 'KarazinService'},
+    { uid: 28, service: 'KemkService'},
+    { uid: 29, service: 'KtggService'},
+    { uid: 30, service: 'KcasService'},
+    { uid: 31, service: 'OnmaService'},
+    { uid: 32, service: 'KmkkovelService'},
+    { uid: 33, service: 'KmkkService'},
+    { uid: 34, service: 'ItstepService'}
   ]
 end
 
@@ -120,6 +134,62 @@ end
 
   def self.zu
     University.find_by(uid: 20)
+  end
+
+  def self.zhim
+    University.find_by(uid: 21)
+  end
+
+  def self.kubg
+    University.find_by(uid: 22)
+  end
+
+  def self.kmk
+    University.find_by(uid: 23)
+  end
+
+  def self.vnu
+    University.find_by(uid: 24)
+  end
+
+  def self.uku
+    University.find_by(uid: 25)
+  end
+
+  def self.chdtu
+    University.find_by(uid: 26)
+  end
+
+  def self.karazin
+    University.find_by(uid: 27)
+  end
+
+  def self.kemk
+    University.find_by(uid: 28)
+  end
+
+  def self.ktgg
+    University.find_by(uid: 29)
+  end
+
+  def self.kcas
+    University.find_by(uid: 30)
+  end
+
+  def self.onma
+    University.find_by(uid: 31)
+  end
+
+  def self.kmkkovel
+    University.find_by(uid: 32)
+  end
+
+  def self.kmkk
+    University.find_by(uid: 33)
+  end
+
+  def self.itstep
+    University.find_by(uid: 34)
   end
 
 end
