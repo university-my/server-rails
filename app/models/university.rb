@@ -41,7 +41,8 @@ class University < ApplicationRecord
     { uid: 28, service: 'KemkService'},
     { uid: 29, service: 'KtggService'},
     { uid: 30, service: 'KcasService'},
-    { uid: 31, service: 'OnmaService'}
+    { uid: 31, service: 'OnmaService'},
+    { uid: 32, service: 'KmkkovelService'}
   ]
 end
 
@@ -175,6 +176,10 @@ end
 
   def self.onma
     University.find_by(uid: 31)
+  end
+
+  def self.kmkkovel
+    University.find_by(uid: 32)
   end
 
 end

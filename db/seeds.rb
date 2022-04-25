@@ -303,6 +303,16 @@ if University.onma.nil?
     )
 end
 
+if University.kmkkovel.nil?
+  University.create(
+    short_name: "КМК",
+    full_name: 'Ковельський фаховий медичний коледж',
+    url: "kmkkovel",
+    website: 'http://www.kmk-kovel.in.ua',
+    uid: 32
+    )
+end
+
 sumdu = University.sumdu
 sumdu.picture_white = "sumdu-white.svg"
 sumdu.picture_dark = "sumdu.svg"
@@ -535,6 +545,14 @@ onma.show_teachers = true
 onma.description = "Інформація про викладачів та групи із сайту 212.111.205.2/cgi-bin/timetable.cgi"
 onma.is_beta = true
 onma.save
+
+kmkkovel = University.kmkkovel
+kmkkovel.show_classrooms = false
+kmkkovel.show_groups = true
+kmkkovel.show_teachers = true
+kmkkovel.description = "Інформація про викладачів та групи із сайту 93.183.214.222/cgi-bin/timetable.cgi"
+kmkkovel.is_beta = true
+kmkkovel.save
 
 # Buildings for SumDU
 sumdu_buildings = [
