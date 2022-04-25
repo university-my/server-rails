@@ -253,6 +253,16 @@ if University.chdtu.nil?
     )
 end
 
+if University.karazin.nil?
+  University.create(
+    short_name: "КАРАЗІН",
+    full_name: 'Харківський національний університет ім. В.Н. Каразіна',
+    url: "karazin",
+    website: 'https://karazin.ua',
+    uid: 27
+    )
+end
+
 sumdu = University.sumdu
 sumdu.picture_white = "sumdu-white.svg"
 sumdu.picture_dark = "sumdu.svg"
@@ -445,6 +455,14 @@ chdtu.show_teachers = true
 chdtu.description = "Інформація про викладачів та групи із сайту 195.95.232.162:8082/cgi-bin/timetable.cgi"
 chdtu.is_beta = true
 chdtu.save
+
+karazin = University.karazin
+karazin.show_classrooms = false
+karazin.show_groups = true
+karazin.show_teachers = true
+karazin.description = "Інформація про викладачів та групи із сайту online.karazin.ua:1443/cgi-bin/timetable.cgi"
+karazin.is_beta = true
+karazin.save
 
 # Buildings for SumDU
 sumdu_buildings = [
