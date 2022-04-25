@@ -263,6 +263,16 @@ if University.karazin.nil?
     )
 end
 
+if University.kemk.nil?
+  University.create(
+    short_name: "КЕМК",
+    full_name: 'Київський електромеханічний фаховий коледж',
+    url: "kemk",
+    website: 'http://kemk.kiev.ua',
+    uid: 28
+    )
+end
+
 sumdu = University.sumdu
 sumdu.picture_white = "sumdu-white.svg"
 sumdu.picture_dark = "sumdu.svg"
@@ -463,6 +473,14 @@ karazin.show_teachers = true
 karazin.description = "Інформація про викладачів та групи із сайту online.karazin.ua:1443/cgi-bin/timetable.cgi"
 karazin.is_beta = true
 karazin.save
+
+kemk = University.kemk
+kemk.show_classrooms = false
+kemk.show_groups = true
+kemk.show_teachers = true
+kemk.description = "Інформація про викладачів та групи із сайту test.kemt.kiev.ua/cgi-bin/timetable.cgi"
+kemk.is_beta = true
+kemk.save
 
 # Buildings for SumDU
 sumdu_buildings = [
