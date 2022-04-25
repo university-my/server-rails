@@ -243,6 +243,16 @@ if University.uku.nil?
     )
 end
 
+if University.chdtu.nil?
+  University.create(
+    short_name: "ЧДТУ",
+    full_name: 'Черкаський державний технологічний університет',
+    url: "chdtu",
+    website: 'https://chdtu.edu.ua',
+    uid: 26
+    )
+end
+
 sumdu = University.sumdu
 sumdu.picture_white = "sumdu-white.svg"
 sumdu.picture_dark = "sumdu.svg"
@@ -385,6 +395,7 @@ zu = University.zu
 zu.show_groups = true
 zu.show_teachers = true
 zu.description = "Інформація про викладачів та групи із сайту dekanat.zu.edu.ua/cgi-bin/timetable.cgi"
+zu.is_beta = true
 zu.save
 
 zhim = University.zhim
@@ -392,6 +403,7 @@ zhim.show_classrooms = false
 zhim.show_groups = true
 zhim.show_teachers = true
 zhim.description = "Інформація про викладачів та групи із сайту 46.219.3.27:8080/cgi-bin/timetable.cgi"
+zhim.is_beta = true
 zhim.save
 
 kubg = University.kubg
@@ -399,6 +411,7 @@ kubg.show_classrooms = false
 kubg.show_groups = true
 kubg.show_teachers = true
 kubg.description = "Інформація про викладачів та групи із сайту dekanat.kubg.edu.ua/cgi-bin/timetable.cgi"
+kubg.is_beta = true
 kubg.save
 
 kmk = University.kmk
@@ -406,6 +419,7 @@ kmk.show_classrooms = false
 kmk.show_groups = true
 kmk.show_teachers = true
 kmk.description = "Інформація про викладачів та групи із сайту 80.91.179.229:81/cgi-bin/timetable.cgi"
+kmk.is_beta = true
 kmk.save
 
 vnu = University.vnu
@@ -413,14 +427,24 @@ vnu.show_classrooms = false
 vnu.show_groups = true
 vnu.show_teachers = true
 vnu.description = "Інформація про викладачів та групи із сайту 194.44.187.20/cgi-bin/timetable.cgi"
+vnu.is_beta = true
 vnu.save
 
 uku = University.uku
 uku.show_classrooms = false
 uku.show_groups = true
 uku.show_teachers = true
-uku.description = "Інформація про викладачів та групи із сайту http://dekanat.ucu.edu.ua/cgi-bin/timetable.cgi"
+uku.description = "Інформація про викладачів та групи із сайту dekanat.ucu.edu.ua/cgi-bin/timetable.cgi"
+uku.is_beta = true
 uku.save
+
+chdtu = University.chdtu
+chdtu.show_classrooms = false
+chdtu.show_groups = true
+chdtu.show_teachers = true
+chdtu.description = "Інформація про викладачів та групи із сайту 195.95.232.162:8082/cgi-bin/timetable.cgi"
+chdtu.is_beta = true
+chdtu.save
 
 # Buildings for SumDU
 sumdu_buildings = [
