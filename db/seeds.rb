@@ -273,6 +273,16 @@ if University.kemk.nil?
     )
 end
 
+if University.ktgg.nil?
+  University.create(
+    short_name: "КТГГ",
+    full_name: 'Київський фаховий коледж туризму та готельного господарства',
+    url: "ktgg",
+    website: 'https://www.ktgg.kiev.ua/uk',
+    uid: 29
+    )
+end
+
 sumdu = University.sumdu
 sumdu.picture_white = "sumdu-white.svg"
 sumdu.picture_dark = "sumdu.svg"
@@ -481,6 +491,14 @@ kemk.show_teachers = true
 kemk.description = "Інформація про викладачів та групи із сайту test.kemt.kiev.ua/cgi-bin/timetable.cgi"
 kemk.is_beta = true
 kemk.save
+
+ktgg = University.ktgg
+ktgg.show_classrooms = false
+ktgg.show_groups = true
+ktgg.show_teachers = true
+ktgg.description = "Інформація про викладачів та групи із сайту 217.76.201.218/cgi-bin/timetable.cgi"
+ktgg.is_beta = true
+ktgg.save
 
 # Buildings for SumDU
 sumdu_buildings = [
