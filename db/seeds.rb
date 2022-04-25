@@ -283,6 +283,16 @@ if University.ktgg.nil?
     )
 end
 
+if University.kcas.nil?
+  University.create(
+    short_name: "КФКПН",
+    full_name: 'Київський фаховий коледж прикладних наук',
+    url: "kcas",
+    website: 'http://kcas.kiev.ua',
+    uid: 30
+    )
+end
+
 sumdu = University.sumdu
 sumdu.picture_white = "sumdu-white.svg"
 sumdu.picture_dark = "sumdu.svg"
@@ -499,6 +509,14 @@ ktgg.show_teachers = true
 ktgg.description = "Інформація про викладачів та групи із сайту 217.76.201.218/cgi-bin/timetable.cgi"
 ktgg.is_beta = true
 ktgg.save
+
+kcas = University.kcas
+kcas.show_classrooms = false
+kcas.show_groups = true
+kcas.show_teachers = true
+kcas.description = "Інформація про викладачів та групи із сайту 94.131.204.108/cgi-bin/timetable.cgi"
+kcas.is_beta = true
+kcas.save
 
 # Buildings for SumDU
 sumdu_buildings = [
