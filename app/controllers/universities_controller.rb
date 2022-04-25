@@ -7,12 +7,16 @@ class UniversitiesController < ApplicationController
     @query = params["query"]
     if @query.present?
       @universities = University.where(is_hidden: false)
-        .where("short_name LIKE ?", "%#{@query}%")
-        .paginate(page: params[:page], per_page: per_page)
+      .where("short_name LIKE ?", "%#{@query}%")
+      .order('id')
+      .paginate(page: params[:page], per_page: per_page)
     else
       @universities = University.where(is_hidden: false)
-        .paginate(page: params[:page], per_page: per_page)
+      .order('id')
+      .paginate(page: params[:page], per_page: per_page)
     end
+
+    @all_universities = University.where(is_hidden: false).order('id').all
   end
 
   # GET /universities/1
