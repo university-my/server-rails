@@ -323,6 +323,16 @@ if University.kmkk.nil?
     )
 end
 
+if University.itstep.nil?
+  University.create(
+    short_name: "ІТ СТЕП",
+    full_name: 'Приватний заклад вищої освіти `ІТ СТЕП Університет`',
+    url: "itstep",
+    website: 'https://itstep.edu.ua',
+    uid: 34
+    )
+end
+
 sumdu = University.sumdu
 sumdu.picture_white = "sumdu-white.svg"
 sumdu.picture_dark = "sumdu.svg"
@@ -571,6 +581,14 @@ kmkk.show_teachers = true
 kmkk.description = "Інформація про викладачів та групи із сайту 178.150.254.27/cgi-bin/timetable.cgi"
 kmkk.is_beta = true
 kmkk.save
+
+itstep = University.itstep
+itstep.show_classrooms = false
+itstep.show_groups = true
+itstep.show_teachers = true
+itstep.description = "Інформація про викладачів та групи із сайту stud.high.itstep.org/cgi-bin/timetable.cgi"
+itstep.is_beta = true
+itstep.save
 
 # Buildings for SumDU
 sumdu_buildings = [
