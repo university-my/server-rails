@@ -352,8 +352,8 @@ kpi.description = "Інформація про викладачів та гру�
 kpi.save
 
 khnue = University.khnue
-khnue.picture_white = "KNEU_white.svg"
-khnue.picture_dark = "KNEU_black.svg"
+khnue.picture_white = "khnue-white.svg"
+khnue.picture_dark = "khnue.svg"
 khnue.show_groups = true
 khnue.show_teachers = true
 khnue.description = "Інформація про аудиторії, викладачів, групи, кафедри, факультети та спеціальності із сайту hneu.edu.ua"
@@ -572,6 +572,7 @@ kmkkovel.show_groups = true
 kmkkovel.show_teachers = true
 kmkkovel.description = "Інформація про викладачів та групи із сайту 93.183.214.222/cgi-bin/timetable.cgi"
 kmkkovel.is_beta = true
+kmkkovel.is_hidden = true
 kmkkovel.save
 
 kmkk = University.kmkk
