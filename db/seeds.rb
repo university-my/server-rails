@@ -313,6 +313,16 @@ if University.kmkkovel.nil?
     )
 end
 
+if University.kmkk.nil?
+  University.create(
+    short_name: "КМКК",
+    full_name: 'ЗФПО "Київський міський медичний фаховий коледж"',
+    url: "kmkk",
+    website: 'https://kmmk.net.ua',
+    uid: 33
+    )
+end
+
 sumdu = University.sumdu
 sumdu.picture_white = "sumdu-white.svg"
 sumdu.picture_dark = "sumdu.svg"
@@ -553,6 +563,14 @@ kmkkovel.show_teachers = true
 kmkkovel.description = "Інформація про викладачів та групи із сайту 93.183.214.222/cgi-bin/timetable.cgi"
 kmkkovel.is_beta = true
 kmkkovel.save
+
+kmkk = University.kmkk
+kmkk.show_classrooms = false
+kmkk.show_groups = true
+kmkk.show_teachers = true
+kmkk.description = "Інформація про викладачів та групи із сайту 178.150.254.27/cgi-bin/timetable.cgi"
+kmkk.is_beta = true
+kmkk.save
 
 # Buildings for SumDU
 sumdu_buildings = [
