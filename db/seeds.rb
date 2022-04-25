@@ -293,6 +293,16 @@ if University.kcas.nil?
     )
 end
 
+if University.onma.nil?
+  University.create(
+    short_name: "ОМА",
+    full_name: 'Національний університет `Одеська морська академія`',
+    url: "onma",
+    website: 'http://www.onma.edu.ua',
+    uid: 31
+    )
+end
+
 sumdu = University.sumdu
 sumdu.picture_white = "sumdu-white.svg"
 sumdu.picture_dark = "sumdu.svg"
@@ -517,6 +527,14 @@ kcas.show_teachers = true
 kcas.description = "Інформація про викладачів та групи із сайту 94.131.204.108/cgi-bin/timetable.cgi"
 kcas.is_beta = true
 kcas.save
+
+onma = University.onma
+onma.show_classrooms = false
+onma.show_groups = true
+onma.show_teachers = true
+onma.description = "Інформація про викладачів та групи із сайту 212.111.205.2/cgi-bin/timetable.cgi"
+onma.is_beta = true
+onma.save
 
 # Buildings for SumDU
 sumdu_buildings = [
