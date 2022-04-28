@@ -25,6 +25,9 @@ data_sources:
       # zone_id: "SELECT id, name FROM zones ORDER BY name ASC"
       # period: ["day", "week", "month"]
       # status: {0: "Active", 1: "Archived"}
+      university: "SELECT id, short_name FROM universities ORDER BY short_name ASC"
+      device_type: ["Desktop", "Mobile"]
+      os: ["Windows", "iOS", "Android", "Mac", "GNU/Linux"]
 
     linked_columns:
       # user_id: "/admin/users/{value}"
