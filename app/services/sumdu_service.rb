@@ -211,7 +211,6 @@ class SumduService
   #
   # Import auditoriums from SumDU API
   #
-  # # bin/rails runner 'SumduService.import_auditoriums'
   def self.import_auditoriums
     # Perform network request and parse JSON
     url = "#{self.sumdu_api_url}?method=getAuditoriums"
