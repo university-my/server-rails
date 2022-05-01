@@ -52,13 +52,14 @@ class TeachersController < ApplicationController
     .order(:pair_start_date)
     .order(:pair_name)
 
-    if @lessons.blank?
-      @teacher.import_records(pair_date)
-
-    elsif @teacher.need_to_update_records
-
-      # Update
-      @teacher.import_records(pair_date)
+    begin
+      if @lessons.blank?
+        @teacher.import_records(pair_date)
+      elsif @teacher.need_to_update_records
+        @teacher.import_records(pair_date)
+      end
+    rescue StandardError => e
+      ahoy.track "Records Error", message: e.message
     end
 
     # Select one more time

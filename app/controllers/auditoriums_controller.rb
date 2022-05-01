@@ -36,15 +36,19 @@ class AuditoriumsController < ApplicationController
     # Date
     pair_date = pair_date_from(params)
     @lessons = Lesson.where(university: @university)
-                     .where(auditorium: @auditorium)
-                     .where(pair_start_date: pair_date.all_day)
-                     .order(:pair_start_date)
-                     .order(:pair_name)
+    .where(auditorium: @auditorium)
+    .where(pair_start_date: pair_date.all_day)
+    .order(:pair_start_date)
+    .order(:pair_name)
 
-    if @lessons.blank?
-      @auditorium.import_records(pair_date)
-    elsif @auditorium.need_to_update_records
-      @auditorium.import_records(pair_date)
+    begin
+      if @lessons.blank?
+        @auditorium.import_records(pair_date)
+      elsif @auditorium.need_to_update_records
+        @auditorium.import_records(pair_date)
+      end
+    rescue StandardError => e
+      ahoy.track "Records Error", message: e.message
     end
 
     # Select one more time

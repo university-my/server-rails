@@ -17,4 +17,10 @@ class ApplicationController < ActionController::Base
       flash[:alert] = 'You are not authorized to perform this action'
       redirect_back(fallback_location: admin_root_path)
     end
+
+    after_action :track_action
+
+    def track_action
+      ahoy.track "Ran action", request.path_parameters
+    end
 end

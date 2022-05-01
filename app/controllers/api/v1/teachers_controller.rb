@@ -20,13 +20,21 @@ class Api::V1::TeachersController < ApplicationController
     .order(:pair_start_date)
     .order(:pair_name)
 
-    if @records.blank?
-      @teacher.import_records(pair_date)
-
-    elsif @teacher.need_to_update_records
-
-      # Update
-      @teacher.import_records(pair_date)
+    begin
+      if @records.blank?
+        @teacher.import_records(pair_date)
+      elsif @teacher.need_to_update_records
+        @teacher.import_records(pair_date)
+      end
+    rescue PolitekService::DataNotFoundError => e
+      ahoy.track "Failed to parse a schedule"
+      render status: 500, json: {
+        error: "Failed to parse a schedule",
+        code: "1001"
+      }
+      return
+    rescue StandardError => e
+      ahoy.track "API Records Error", message: e.message
     end
 
     # Select one more time

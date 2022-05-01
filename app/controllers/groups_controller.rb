@@ -57,6 +57,9 @@ class GroupsController < ApplicationController
         timetable_url: timetable_url
       }
       return
+
+    rescue StandardError => e
+      ahoy.track "Records Error", message: e.message
     end
 
     # Select one more time
