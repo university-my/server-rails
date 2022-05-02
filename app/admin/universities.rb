@@ -22,6 +22,7 @@ ActiveAdmin.register University do
   index do
     column :short_name
     column :full_name
+    column :is_hidden
     column :website
     column :uid
     actions
