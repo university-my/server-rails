@@ -19,124 +19,140 @@
 
 # Learn more: http://github.com/javan/whenever
 
+# Blazer checks
+
+every 5.minutes do
+  rake blazer:run_checks SCHEDULE="5 minutes"
+end
+
+every 1.hour do
+  rake blazer:run_checks SCHEDULE="1 hour"
+end
+
+every 1.day, at: ['9:00 am'] do
+  rake blazer:run_checks SCHEDULE="1 day"
+end
+
+# Universities
+
 every 1.day, at: ['9:00 am', '9:00 pm'] do
-  runner 'SumduJob.perform_later'
+  runner 'SumduJob.perform_now'
 end
 
 every 1.day, at: ['9:02 am', '9:02 pm'] do
-  runner 'KpiJob.perform_later'
+  runner 'KpiJob.perform_now'
 end
 
 every 1.day, at: ['9:04 am', '9:04 pm'] do
-  runner 'KhnueJob.perform_later'
+  runner 'KhnueJob.perform_now'
 end
 
 every 1.day, at: ['10:00 am', '10:00 pm'] do
-  runner 'NuftJob.perform_later'
+  runner 'NuftJob.perform_now'
 end
 
 every 1.day, at: ['10:02 am', '10:02 pm'] do
-  runner 'PnuJob.perform_later'
+  runner 'PnuJob.perform_now'
 end
 
 every 1.day, at: ['10:04 am', '10:04 pm'] do
-  runner 'ZnauJob.perform_later'
+  runner 'ZnauJob.perform_now'
 end
 
 every 1.day, at: ['10:06 am', '10:06 pm'] do
-  runner 'SspuJob.perform_later'
+  runner 'SspuJob.perform_now'
 end
 
 every 1.day, at: ['10:08 am', '10:08 pm'] do
-  runner 'LnuJob.perform_later'
+  runner 'LnuJob.perform_now'
 end
 
 every 1.day, at: ['10:10 am', '10:10 pm'] do
-  runner 'NuwmJob.perform_later'
+  runner 'NuwmJob.perform_now'
 end
 
 every 1.day, at: ['10:12 am', '10:12 pm'] do
-  runner 'UbsJob.perform_later'
+  runner 'UbsJob.perform_now'
 end
 
 every 1.day, at: ['10:14 am', '10:14 pm'] do
-  runner 'LdubgdJob.perform_later'
+  runner 'LdubgdJob.perform_now'
 end
 
 every 1.day, at: ['10:16 am', '10:16 pm'] do
-  runner 'NungJob.perform_later'
+  runner 'NungJob.perform_now'
 end
 
 every 1.day, at: ['10:20 am', '10:20 pm'] do
-  runner 'NpuJob.perform_later'
+  runner 'NpuJob.perform_now'
 end
 
 # every 1.day, at: ['10:22 am', '10:22 pm'] do
-#   runner 'KtepcKnuteJob.perform_later'
+#   runner 'KtepcKnuteJob.perform_now'
 # end
 
 every 1.day, at: ['10:24 am', '10:24 pm'] do
-  runner 'UgiJob.perform_later'
+  runner 'UgiJob.perform_now'
 end
 
 every 1.day, at: ['10:26 am', '10:26 pm'] do
-  runner 'KneuJob.perform_later'
+  runner 'KneuJob.perform_now'
 end
 
 every 1.day, at: ['10:28 am', '10:28 pm'] do
-  runner 'ZhimJob.perform_later'
+  runner 'ZhimJob.perform_now'
 end
 
 every 1.day, at: ['10:30 am', '10:30 pm'] do
-  runner 'KubgJob.perform_later'
+  runner 'KubgJob.perform_now'
 end
 
 every 1.day, at: ['10:32 am', '10:32 pm'] do
-  runner 'KmkJob.perform_later'
+  runner 'KmkJob.perform_now'
 end
 
 every 1.day, at: ['10:34 am', '10:34 pm'] do
-  runner 'VnuJob.perform_later'
+  runner 'VnuJob.perform_now'
 end
 
 every 1.day, at: ['10:36 am', '10:36 pm'] do
-  runner 'UkuJob.perform_later'
+  runner 'UkuJob.perform_now'
 end
 
 every 1.day, at: ['10:38 am', '10:38 pm'] do
-  runner 'ChdtuJob.perform_later'
+  runner 'ChdtuJob.perform_now'
 end
 
 every 1.day, at: ['10:40 am', '10:40 pm'] do
-  runner 'KarazinJob.perform_later'
+  runner 'KarazinJob.perform_now'
 end
 
 every 1.day, at: ['10:42 am', '10:42 pm'] do
-  runner 'KemkJob.perform_later'
+  runner 'KemkJob.perform_now'
 end
 
 every 1.day, at: ['10:44 am', '10:44 pm'] do
-  runner 'KtggJob.perform_later'
+  runner 'KtggJob.perform_now'
 end
 
 every 1.day, at: ['10:46 am', '10:46 pm'] do
-  runner 'KcasJob.perform_later'
+  runner 'KcasJob.perform_now'
 end
 
 every 1.day, at: ['10:48 am', '10:48 pm'] do
-  runner 'OnmaJob.perform_later'
+  runner 'OnmaJob.perform_now'
 end
 
 # every 1.day, at: ['10:50 am', '10:50 pm'] do
-#   runner 'KmkkovelJob.perform_later'
+#   runner 'KmkkovelJob.perform_now'
 # end
 
 every 1.day, at: ['10:52 am', '10:52 pm'] do
-  runner 'KmkkJob.perform_later'
+  runner 'KmkkJob.perform_now'
 end
 
 every 1.day, at: ['10:54 am', '10:54 pm'] do
-  runner 'ItstepJob.perform_later'
+  runner 'ItstepJob.perform_now'
 end
 
 # Sitemap refresh
