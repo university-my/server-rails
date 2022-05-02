@@ -48,7 +48,11 @@ class AuditoriumsController < ApplicationController
         @auditorium.import_records(pair_date)
       end
     rescue StandardError => e
-      ahoy.track "Records Error", message: e.message
+      ahoy.track "Records Error", message: e.message,
+      university: @university.short_name,
+      type: 'classroom',
+      name: @auditorium.name
+
     end
 
     # Select one more time
