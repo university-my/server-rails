@@ -59,7 +59,10 @@ class TeachersController < ApplicationController
         @teacher.import_records(pair_date)
       end
     rescue StandardError => e
-      ahoy.track "Records Error", message: e.message
+      ahoy.track "Records Error", message: e.message,
+      university: @university.short_name,
+      type: 'teacher',
+      name: @teacher.name
     end
 
     # Select one more time

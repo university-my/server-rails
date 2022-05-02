@@ -59,7 +59,10 @@ class GroupsController < ApplicationController
       return
 
     rescue StandardError => e
-      ahoy.track "Records Error", message: e.message
+      ahoy.track "Records Error", message: e.message,
+      university: @university.short_name,
+      type: 'group',
+      name: @group.name
     end
 
     # Select one more time
