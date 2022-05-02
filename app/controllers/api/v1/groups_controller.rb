@@ -24,14 +24,21 @@ class Api::V1::GroupsController < ApplicationController
         @group.import_records(pair_date)
       end
     rescue PolitekService::DataNotFoundError => e
-      ahoy.track "Failed to parse a schedule"
+      ahoy.track "Failed to parse a schedule",
+      university: university.short_name,
+      type: 'group',
+      name: @group.name
+      
       render status: 500, json: {
         error: "Failed to parse a schedule",
         code: "1001"
       }
       return
     rescue StandardError => e
-      ahoy.track "API Records Error", message: e.message
+      ahoy.track "API Records Error", message: e.message,
+      university: university.short_name,
+      type: 'group',
+      name: @group.name
     end
     
     # Select one more time
