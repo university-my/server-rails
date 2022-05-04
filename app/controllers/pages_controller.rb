@@ -48,6 +48,8 @@ class PagesController < ApplicationController
   end
 
   def telegram_channels
+    @names = University.where(is_hidden: false).pluck(:short_name).join(',')
+    @keywords = "Telegram," + @names
     render "pages/telegram-channels"
   end
 

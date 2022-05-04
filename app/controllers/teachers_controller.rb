@@ -41,36 +41,24 @@ class TeachersController < ApplicationController
     @university = University.find_by!(url: params[:university_url])
     @teacher = Teacher.find_by!(university_id: @university.id, id: params[:id])
 
-    # Date
     pair_date = pair_date_from(params)
 
-    # TODO: Maybe use count
-
-    @lessons = Lesson.where(university: @university)
-    .where(teacher_id: @teacher.id)
-    .where(pair_start_date: pair_date.all_day)
-    .order(:pair_start_date)
-    .order(:pair_name)
+    @lessons = Lesson.fetch(@university, @teacher.id, pair_date)
 
     begin
-      if @lessons.blank?
-        @teacher.import_records(pair_date)
-      elsif @teacher.need_to_update_records
+      if @lessons.blank? || @teacher.need_to_update_records
         @teacher.import_records(pair_date)
       end
     rescue StandardError => e
       ahoy.track "Records Error", message: e.message,
       university: @university.short_name,
       type: 'teacher',
-      name: @teacher.name
+      name: @teacher.name,
+      pair_date: pair_date
     end
 
     # Select one more time
-    @lessons = Lesson.where(university: @university)
-    .where(teacher_id: @teacher.id)
-    .where(pair_start_date: pair_date.all_day)
-    .order(:pair_start_date)
-    .order(:pair_name)
+    @lessons = Lesson.fetch(@university, @teacher.id, pair_date)
 
     if @lessons.blank?
 

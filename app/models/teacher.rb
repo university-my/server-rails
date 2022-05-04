@@ -39,7 +39,6 @@ class Teacher < ApplicationRecord
 
   # Import for teacher
   def import_records(date)
-    # Find a class
     service = University.service_for(university.uid)
     return if service.nil?
 

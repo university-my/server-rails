@@ -72,7 +72,6 @@ class PolitekService
   def self.save_groups(groups, university, id)
     groups.each do |object|
 
-
       server_id = id
       group_name = object
 
@@ -111,9 +110,9 @@ class PolitekService
     
   end
 
+
   def self.save_teachers(teachers, university, id)
     teachers.each do |object|
-
 
       server_id = id
       teacher_name = object
@@ -152,6 +151,7 @@ class PolitekService
     }
     
   end
+
 
   def self.save_records_for_teacher(data, teacher, university)
     data.each do |object|
