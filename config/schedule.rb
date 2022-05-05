@@ -21,138 +21,160 @@
 
 # Blazer checks
 
-every 5.minutes do
-  rake blazer:run_checks SCHEDULE="5 minutes"
-end
-
 every 1.hour do
-  rake blazer:run_checks SCHEDULE="1 hour"
-end
-
-every 1.day, at: ['9:00 am'] do
-  rake blazer:run_checks SCHEDULE="1 day"
+  rake blazer:run_checks
 end
 
 # Universities
 
 every 1.day, at: ['9:00 am', '9:00 pm'] do
-  runner 'SumduJob.perform_now'
+  runner 'SumduService.import_teachers'
+  runner 'SumduService.import_groups'
+  runner 'SumduService.import_auditoriums'
 end
 
 every 1.day, at: ['9:02 am', '9:02 pm'] do
-  runner 'KpiJob.perform_now'
+  runner 'KpiService.import_groups'
+  runner 'KpiService.import_teachers'
 end
 
 every 1.day, at: ['9:04 am', '9:04 pm'] do
-  runner 'KhnueJob.perform_now'
+  runner 'KhnueService.import_teachers'
+  runner 'KhnueService.import_groups'
+  runner 'KhnueService.import_auditoriums'
 end
 
 every 1.day, at: ['10:00 am', '10:00 pm'] do
-  runner 'NuftJob.perform_now'
+  runner 'NuftService.import_groups'
+  runner 'NuftService.import_teachers'
 end
 
 every 1.day, at: ['10:02 am', '10:02 pm'] do
-  runner 'PnuJob.perform_now'
+  runner 'PnuService.import_groups'
+  runner 'PnuService.import_teachers'
 end
 
 every 1.day, at: ['10:04 am', '10:04 pm'] do
-  runner 'ZnauJob.perform_now'
+  runner 'ZnauService.import_groups'
+  runner 'ZnauService.import_teachers'
 end
 
 every 1.day, at: ['10:06 am', '10:06 pm'] do
-  runner 'SspuJob.perform_now'
+  runner 'SspuService.import_groups'
+  runner 'SspuService.import_teachers'
 end
 
 every 1.day, at: ['10:08 am', '10:08 pm'] do
-  runner 'LnuJob.perform_now'
+  runner 'LnuService.import_groups'
+  runner 'LnuService.import_teachers'
 end
 
 every 1.day, at: ['10:10 am', '10:10 pm'] do
-  runner 'NuwmJob.perform_now'
+  runner 'NuwmService.import_groups'
+  runner 'NuwmService.import_teachers'
 end
 
 every 1.day, at: ['10:12 am', '10:12 pm'] do
-  runner 'UbsJob.perform_now'
+  runner 'UbsService.import_groups'
+  runner 'UbsService.import_teachers'
 end
 
 every 1.day, at: ['10:14 am', '10:14 pm'] do
-  runner 'LdubgdJob.perform_now'
+  runner 'LdubgdService.import_groups'
+  runner 'LdubgdService.import_teachers'
 end
 
 every 1.day, at: ['10:16 am', '10:16 pm'] do
-  runner 'NungJob.perform_now'
+  runner 'NungService.import_groups'
+  runner 'NungService.import_teachers'
 end
 
 every 1.day, at: ['10:20 am', '10:20 pm'] do
-  runner 'NpuJob.perform_now'
+  runner 'NpuService.import_groups'
+  runner 'NpuService.import_teachers'
 end
 
 # every 1.day, at: ['10:22 am', '10:22 pm'] do
-#   runner 'KtepcKnuteJob.perform_now'
+#   runner 'KtepcKnuteService.perform_now'
 # end
 
 every 1.day, at: ['10:24 am', '10:24 pm'] do
-  runner 'UgiJob.perform_now'
+  runner 'UgiService.import_groups'
+  runner 'UgiService.import_teachers'
 end
 
 every 1.day, at: ['10:26 am', '10:26 pm'] do
-  runner 'KneuJob.perform_now'
+  runner 'KneuService.import_groups'
+  runner 'KneuService.import_teachers'
 end
 
 every 1.day, at: ['10:28 am', '10:28 pm'] do
-  runner 'ZhimJob.perform_now'
+  runner 'ZhimService.import_groups'
+  runner 'ZhimService.import_teachers'
 end
 
 every 1.day, at: ['10:30 am', '10:30 pm'] do
-  runner 'KubgJob.perform_now'
+  runner 'KubgService.import_groups'
+  runner 'KubgService.import_teachers'
 end
 
 every 1.day, at: ['10:32 am', '10:32 pm'] do
-  runner 'KmkJob.perform_now'
+  runner 'KmkService.import_groups'
+  runner 'KmkService.import_teachers'
 end
 
 every 1.day, at: ['10:34 am', '10:34 pm'] do
-  runner 'VnuJob.perform_now'
+  runner 'VnuService.import_groups'
+  runner 'VnuService.import_teachers'
 end
 
 every 1.day, at: ['10:36 am', '10:36 pm'] do
-  runner 'UkuJob.perform_now'
+  runner 'UkuService.import_groups'
+  runner 'UkuService.import_teachers'
 end
 
 every 1.day, at: ['10:38 am', '10:38 pm'] do
-  runner 'ChdtuJob.perform_now'
+  runner 'ChdtuService.import_groups'
+  runner 'ChdtuService.import_teachers'
 end
 
 every 1.day, at: ['10:40 am', '10:40 pm'] do
-  runner 'KarazinJob.perform_now'
+  runner 'KarazinService.import_groups'
+  runner 'KarazinService.import_teachers'
 end
 
 every 1.day, at: ['10:42 am', '10:42 pm'] do
-  runner 'KemkJob.perform_now'
+  runner 'KemkService.import_groups'
+  runner 'KemkService.import_teachers'
 end
 
 every 1.day, at: ['10:44 am', '10:44 pm'] do
-  runner 'KtggJob.perform_now'
+  runner 'KtggService.import_groups'
+  runner 'KtggService.import_teachers'
 end
 
 every 1.day, at: ['10:46 am', '10:46 pm'] do
-  runner 'KcasJob.perform_now'
+  runner 'KcasService.import_groups'
+  runner 'KcasService.import_teachers'
 end
 
 every 1.day, at: ['10:48 am', '10:48 pm'] do
-  runner 'OnmaJob.perform_now'
+  runner 'OnmaService.import_groups'
+  runner 'OnmaService.import_teachers'
 end
 
 # every 1.day, at: ['10:50 am', '10:50 pm'] do
-#   runner 'KmkkovelJob.perform_now'
+#   runner 'KmkkovelService.perform_now'
 # end
 
 every 1.day, at: ['10:52 am', '10:52 pm'] do
-  runner 'KmkkJob.perform_now'
+  runner 'KmkkService.import_groups'
+  runner 'KmkkService.import_teachers'
 end
 
 every 1.day, at: ['10:54 am', '10:54 pm'] do
-  runner 'ItstepJob.perform_now'
+  runner 'ItstepService.import_groups'
+  runner 'ItstepService.import_teachers'
 end
 
 # Sitemap refresh
