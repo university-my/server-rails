@@ -22,7 +22,7 @@
 # Blazer checks
 
 every 1.hour do
-  rake blazer:run_checks
+  rake "blazer:run_checks"
 end
 
 # Universities
