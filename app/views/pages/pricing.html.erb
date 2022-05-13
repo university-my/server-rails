@@ -8,8 +8,10 @@
 <main class="container" role="main">
 
   <div class="row">
-    <div class="alert alert-secondary mx-3" role="alert">
-      <a href="/My University.pdf" class="alert-link" rel="nofollow" target="_blank">Презентація у форматі PDF</a> 📄
+    <div class="col-md-4">
+      <div class="alert alert-primary mx-3" role="alert">
+        <a href="/My University.pdf" class="alert-link" rel="nofollow" target="_blank">Презентація у форматі PDF</a> 📄
+      </div>
     </div>
   </div>
 
@@ -19,50 +21,58 @@
   </div>
 
   <div class="container">
-    <div class="card-deck mb-3 text-center">
-      <div class="card mb-4 shadow-sm">
-        <div class="card-header">
-          <h4 class="my-0 font-weight-normal">Сайт</h4>
-        </div>
-        <div class="card-body">
-          <h1 class="card-title pricing-card-title">₴24,000 <small class="text-muted">/ рік</small></h1>
-          <ul class="list-unstyled mt-3 mb-4">
-            <li>Адаптивний дизайн сайту</li>
-            <li><%= link_to 'Панель адміністратора', admin_panel_url, target: "_blank" %></li>
-            <li>Підтримка в <b>Telegram</b></li>
-          </ul>
-          <a class="btn btn-lg btn-block btn-outline-primary" href="https://forms.gle/us91jctsQPoPBBTe7" target="_blank" rel="nofollow">Заповнити форму</a>
-        </div>
-      </div>
-      <div class="card mb-4 shadow-sm">
-        <div class="card-header">
-          <h4 class="my-0 font-weight-normal">Сайт + Додаток</h4>
-        </div>
-        <div class="card-body">
-          <h1 class="card-title pricing-card-title">₴36,000 <small class="text-muted">/ рік</small></h1>
-          <ul class="list-unstyled mt-3 mb-4">
-            <li><%= link_to 'iOS', ios_url %> Додаток</li>
-            <li><%= link_to 'Android', android_url %> Додаток</li>
-            <li><u>Пріорітетна</u> підтримка в <b>Telegram</b></li>
-          </ul>
-          <a class="btn btn-lg btn-block btn-primary" href="https://forms.gle/us91jctsQPoPBBTe7" target="_blank" rel="nofollow">Почати</a>
+
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+      <div class="col">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Сайт</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">₴24,000 <small class="text-muted">/ рік</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Адаптивний дизайн сайту</li>
+              <li><%= link_to 'Панель адміністратора', admin_panel_url, target: "_blank" %></li>
+              <li>Підтримка в <b>Telegram</b></li>
+            </ul>
+            <a class="btn btn-lg btn-block btn-outline-primary" href="https://forms.gle/us91jctsQPoPBBTe7" target="_blank" rel="nofollow">Заповнити форму</a>
+          </div>
         </div>
       </div>
-      <div class="card mb-4 shadow-sm">
-        <div class="card-header">
-          <h4 class="my-0 font-weight-normal">Про</h4>
+      <div class="col">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Сайт + Додаток</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">₴36,000 <small class="text-muted">/ рік</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li><%= link_to 'iOS', ios_url %> Додаток</li>
+              <li><%= link_to 'Android', android_url %> Додаток</li>
+              <li><u>Пріорітетна</u> підтримка в <b>Telegram</b></li>
+            </ul>
+            <a class="btn btn-lg btn-block btn-primary" href="https://forms.gle/us91jctsQPoPBBTe7" target="_blank" rel="nofollow">Почати</a>
+          </div>
         </div>
-        <div class="card-body">
-          <h1 class="card-title pricing-card-title">₴60,000 <small class="text-muted">/ рік</small></h1>
-          <ul class="list-unstyled mt-3 mb-4">
-            <li>Публікація новин та оголошень</li>
-            <li>Підтримка по <b>телефону</b></li>
-            <li>Запити <u>нових функцій</u></li>
-          </ul>
-          <%= link_to "Зв'яжіться з нами", contacts_url, class: "btn btn-lg btn-block btn-primary" %>
+      </div>
+      <div class="col">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Про</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">₴60,000 <small class="text-muted">/ рік</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Публікація новин та оголошень</li>
+              <li>Підтримка по <b>телефону</b></li>
+              <li>Запити <u>нових функцій</u></li>
+            </ul>
+            <%= link_to "Зв'яжіться з нами", contacts_url, class: "btn btn-lg btn-block btn-primary" %>
+          </div>
         </div>
       </div>
     </div>
+
     <div>
       <table class="table table-hover">
         <caption>
