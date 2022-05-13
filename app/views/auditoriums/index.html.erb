@@ -12,19 +12,19 @@
 	<div class="mx-auto col-md-8">
 		<h1 class="mb-4">Аудиторії</h1>
 
-		<div class="row">
-			<div class="col mb-4 mr-0 ml-0">
-				<form method="get" id="search" class="form-inline mt-2 mt-md-0">
-					<input class="form-control mr-sm-2" type="search" placeholder="Назва аудиторії" aria-label="Пошук" name="query" value="<%= @query %>" list="name">
-					<datalist id="name">
-						<% @all_auditoriums.each do |auditorium| %>
-						<option value="<%= auditorium.name %>"><%= auditorium.name %></option>
-						<% end %>
-					</datalist>
-					<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Шукати</button>
-				</form>
+		<form method="get" id="search" class="row row-cols-lg-auto g-3 align-items-center my-3">
+			<div class="col-auto">
+				<input class="form-control mr-sm-2" type="search" placeholder="Назва аудиторії" aria-label="Пошук" name="query" value="<%= @query %>" list="name">
+				<datalist id="name">
+					<% @all_auditoriums.each do |auditorium| %>
+					<option value="<%= auditorium.name %>"><%= auditorium.name %></option>
+					<% end %>
+				</datalist>
 			</div>
-		</div>
+			<div class="col-auto">
+				<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Шукати</button>
+			</div>
+		</form>
 
 		<div class="row">
 			<div class="col mb-4 mr-0 ml-0">
@@ -37,15 +37,15 @@
 						<% @auditoriums.each do |auditorium| %>
 						<li class="list-group-item">
 							<div class="d-flex w-100 justify-content-between">
-								<span><%= link_to auditorium.name, university_auditorium_url(@university.url, auditorium.friendly_id) %></span>
+								<span><%= link_to auditorium.name, university_auditorium_url(@university.url, auditorium.friendly_id), class: "text-decoration-none" %></span>
 								<% if auditorium.building.present? %>
 								<% if auditorium.building.description.present? %>
 								<span data-toggle="tooltip" title="Корпус: <%= auditorium.building.description %>">
-									<small><%= link_to auditorium.building.name, university_building_url(@university.url, auditorium.building.friendly_id), class: "Text-light" %></small>
+									<small><%= link_to auditorium.building.name, university_building_url(@university.url, auditorium.building.friendly_id), class: "text-decoration-none" %></small>
 								</span>
 								<% else %>
 								<span data-toggle="tooltip" title="Корпус">
-									<small><%= link_to auditorium.building.name, university_building_url(@university.url, auditorium.building.friendly_id), class: "Text-light" %></small>
+									<small><%= link_to auditorium.building.name, university_building_url(@university.url, auditorium.building.friendly_id), class: "text-decoration-none" %></small>
 								</span>
 								<% end %>
 								<% end %>
