@@ -1,0 +1,26 @@
+<div class="card mb-3">
+
+  <div class="card-header">
+    <div class="row g-0">
+      <div class="col-md-2 text-center">
+        <%= render "universities/university_picture", university: university %>
+      </div>
+      <div class="col-md-10">
+        <div class="card-body">
+          <h1 class="card-title"><%= university.short_name %><% if university.is_beta %><span class="text-warning"> (бета-версія)</span><% end %></h1>
+          <h6 class="card-subtitle mb-2 font-weight-light text-muted"><%= university.full_name %></h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <div class="card-text">
+      <%= render "universities/university_list", university: university %>
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <p class="text-muted font-weight-lighter"><small><%= university.description %></small></p>
+  </div>
+</div>
