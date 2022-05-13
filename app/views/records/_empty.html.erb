@@ -14,7 +14,7 @@
 					<span class="font-weight-bold"><%= l next_lessons.first.pair_start_date, format: "%A, %e %b %Y" %></span></p>
 					<div class="btn-group mr-3 mb-2" role="group">
 						<form action="" method="get">
-							<input type="hidden" id="start" name="pair_date" value="<%= next_lessons.first.pair_start_date %>">
+							<input type="hidden" id="start" name="pair_date" value="<%= next_lessons.first.pair_start_date.strftime('%Y-%m-%e') %>">
 							<input type="submit" class="btn btn-primary" value="Дивитися">
 						</form>
 					</div>
