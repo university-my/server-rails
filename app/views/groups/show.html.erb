@@ -21,11 +21,13 @@
       <tbody>
         <tr>
           <td class="align-baseline"><h1><%= @group.name %></h1></td>
+          <% if @group.university.show_info %>
           <td class="align-top">
             <%= link_to info_university_group_url(@university.url, @group), rel: 'nofollow' do %>
             <i class="fas fa-info-circle align-middle"></i>
             <% end %>
           </td>
+          <% end %>
         </tr>
       </tbody>
     </table>
