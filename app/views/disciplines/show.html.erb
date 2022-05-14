@@ -10,7 +10,7 @@
   <div class="mx-auto col-md-8">
     <div class="my-4">
       <h1><%= @discipline.visible_name %></h1>
-      <p><small><%= link_to "(Редагувати)", new_university_discipline_name_suggestion_url(@university.url, @discipline), "class" => "text-primary" %></small></p>
+      <p><small><%= link_to "(Редагувати)", new_university_discipline_name_suggestion_url(@university.url, @discipline), class: "text-decoration-none text-muted" %></small></p>
     </div>
 
     <% if @discipline.teachers && @discipline.teachers.count > 0 %>
@@ -25,7 +25,7 @@
           <ul class="list-group list-group-flush">
             <% @discipline.teachers.each do |teacher| %>
             <li class="list-group-item">
-              <%= link_to teacher.name, university_teacher_url(@university.url, teacher.friendly_id) %>
+              <%= link_to teacher.name, university_teacher_url(@university.url, teacher.friendly_id), class: "text-decoration-none" %>
             </li>
             <% end %>
           </ul>
@@ -46,7 +46,7 @@
           <ul class="list-group list-group-flush">
             <% @discipline.groups.each do |group| %>
             <li class="list-group-item">
-              <%= link_to group.name, university_group_url(@university.url, group.friendly_id) %>
+              <%= link_to group.name, university_group_url(@university.url, group.friendly_id), class: "text-decoration-none" %>
             </li>
             <% end %>
           </ul>
@@ -67,7 +67,7 @@
           <ul class="list-group list-group-flush">
             <% @discipline.auditoriums.each do |auditorium| %>
             <li class="list-group-item">
-              <%= link_to auditorium.name, university_auditorium_url(@university.url, auditorium.friendly_id) %>
+              <%= link_to auditorium.name, university_auditorium_url(@university.url, auditorium.friendly_id), class: "text-decoration-none" %>
             </li>
             <% end %>
           </ul>

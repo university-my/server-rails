@@ -23,7 +23,7 @@
           <ul class="list-group list-group-flush">
             <% @auditorium.disciplines.each do |discipline| %>
             <li class="list-group-item">
-              <%= link_to discipline.visible_name, university_discipline_url(@university.url, discipline.friendly_id) %>
+              <%= link_to discipline.visible_name, university_discipline_url(@university.url, discipline.friendly_id), class: "text-decoration-none" %>
             </li>
             <% end %>
           </ul>
