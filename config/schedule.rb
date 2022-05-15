@@ -19,55 +19,55 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 1.day, at: ['9:00 am', '9:00 pm'] do
+every 1.day, at: '1:00 am' do
   runner 'SumduJob.perform_now'
 end
 
-every 1.day, at: ['9:02 am', '9:02 pm'] do
+every 1.day, at: '1:01 am' do
   runner 'KpiJob.perform_now'
 end
 
-every 1.day, at: ['9:04 am', '9:04 pm'] do
+every 1.day, at: '1:02 am' do
   runner 'KhnueJob.perform_now'
 end
 
-every 1.day, at: ['10:00 am', '10:00 pm'] do
+every 1.day, at: '1:03 am' do
   runner 'NuftJob.perform_now'
 end
 
-every 1.day, at: ['10:02 am', '10:02 pm'] do
+every 1.day, at: '1:04 am' do
   runner 'PnuJob.perform_now'
 end
 
-every 1.day, at: ['10:04 am', '10:04 pm'] do
+every 1.day, at: '1:05 am' do
   runner 'ZnauJob.perform_now'
 end
 
-every 1.day, at: ['10:06 am', '10:06 pm'] do
+every 1.day, at: '1:06 am' do
   runner 'SspuJob.perform_now'
 end
 
-every 1.day, at: ['10:08 am', '10:08 pm'] do
+every 1.day, at: '1:07 am' do
   runner 'LnuJob.perform_now'
 end
 
-every 1.day, at: ['10:10 am', '10:10 pm'] do
+every 1.day, at: '1:08 am' do
   runner 'NuwmJob.perform_now'
 end
 
-every 1.day, at: ['10:12 am', '10:12 pm'] do
+every 1.day, at: '1:09 am' do
   runner 'UbsJob.perform_now'
 end
 
-every 1.day, at: ['10:14 am', '10:14 pm'] do
+every 1.day, at: '1:10 am' do
   runner 'LdubgdJob.perform_now'
 end
 
-every 1.day, at: ['10:16 am', '10:16 pm'] do
+every 1.day, at: '1:11 am' do
   runner 'NungJob.perform_now'
 end
 
-every 1.day, at: ['10:20 am', '10:20 pm'] do
+every 1.day, at: '1:12 am' do
   runner 'NpuJob.perform_now'
 end
 
@@ -75,55 +75,55 @@ end
 #   runner 'KtepcKnuteService.perform_now'
 # end
 
-every 1.day, at: ['10:24 am', '10:24 pm'] do
+every 1.day, at: '1:13 am' do
   runner 'UgiJob.perform_now'
 end
 
-every 1.day, at: ['10:26 am', '10:26 pm'] do
+every 1.day, at: '1:14 am' do
   runner 'KneuJob.perform_now'
 end
 
-every 1.day, at: ['10:28 am', '10:28 pm'] do
+every 1.day, at: '1:15 am' do
   runner 'ZhimJob.perform_now'
 end
 
-every 1.day, at: ['10:30 am', '10:30 pm'] do
+every 1.day, at: '1:16 am' do
   runner 'KubgJob.perform_now'
 end
 
-every 1.day, at: ['10:32 am', '10:32 pm'] do
+every 1.day, at: '1:17 am' do
   runner 'KmkJob.perform_now'
 end
 
-every 1.day, at: ['10:34 am', '10:34 pm'] do
+every 1.day, at: '1:18 am' do
   runner 'VnuJob.perform_now'
 end
 
-every 1.day, at: ['10:36 am', '10:36 pm'] do
+every 1.day, at: '1:19 am' do
   runner 'UkuJob.perform_now'
 end
 
-every 1.day, at: ['10:38 am', '10:38 pm'] do
+every 1.day, at: '1:20 am' do
   runner 'ChdtuJob.perform_now'
 end
 
-every 1.day, at: ['10:40 am', '10:40 pm'] do
+every 1.day, at: '1:21 am' do
   runner 'KarazinJob.perform_now'
 end
 
-every 1.day, at: ['10:42 am', '10:42 pm'] do
+every 1.day, at: '1:22 am' do
   runner 'KemkJob.perform_now'
 end
 
-every 1.day, at: ['10:44 am', '10:44 pm'] do
+every 1.day, at: '1:23 am' do
   runner 'KtggJob.perform_now'
 end
 
-every 1.day, at: ['10:46 am', '10:46 pm'] do
+every 1.day, at: '1:24 am' do
   runner 'KcasJob.perform_now'
 end
 
-every 1.day, at: ['10:48 am', '10:48 pm'] do
+every 1.day, at: '1:25 am' do
   runner 'OnmaJob.perform_now'
 end
 
@@ -131,11 +131,11 @@ end
 #   runner 'KmkkovelService.perform_now'
 # end
 
-every 1.day, at: ['10:52 am', '10:52 pm'] do
+every 1.day, at: '1:26 am' do
   runner 'KmkkJob.perform_now'
 end
 
-every 1.day, at: ['10:54 am', '10:54 pm'] do
+every 1.day, at: '1:27 am' do
   runner 'ItstepJob.perform_now'
 end
 
