@@ -35,7 +35,7 @@
         <div class="card">
           <ul class="list-group list-group-flush">
             <% @groups.each do |group| %>
-            <li class="list-group-item"><%= link_to group.name, university_group_url(@university.url, group.friendly_id), class: "text-decoration-none" %></li>
+            <li class="list-group-item"><%= link_to group.name, university_group_url(@university.url, group.friendly_id), class: "text-decoration-none", rel: "nofollow" %></li>
             <% end %>
           </ul>
         </div>

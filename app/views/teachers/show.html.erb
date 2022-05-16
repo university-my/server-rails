@@ -5,9 +5,10 @@
 
 <%= javascript_include_tag 'records' %>
 
-<% meta_tag :keywords, "Розклад, #{@university.short_name}, Викладач, #{@teacher.name}" %>
-<% meta_tag :description, "Розклад занять #{@university.short_name}, Викладач - " + @teacher.name %>
-<% @title = "#{@university.short_name} - #{@teacher.name}" %>
+<% meta_tag :description, "Інформація про викладача - " + @teacher.name %>
+<% @title = @teacher.name %>
+<% no_index %>
+
 <%= content_for(:canonical_link, university_teacher_url(@university.url, @teacher)) %>
 
 <%= render "layouts/navbar", university: @university %>

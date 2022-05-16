@@ -41,11 +41,11 @@
 								<% if auditorium.building.present? %>
 								<% if auditorium.building.description.present? %>
 								<span data-toggle="tooltip" title="Корпус: <%= auditorium.building.description %>">
-									<small><%= link_to auditorium.building.name, university_building_url(@university.url, auditorium.building.friendly_id), class: "text-decoration-none" %></small>
+									<small><%= link_to auditorium.building.name, university_building_url(@university.url, auditorium.building.friendly_id), class: "text-decoration-none", rel: "nofollow" %></small>
 								</span>
 								<% else %>
 								<span data-toggle="tooltip" title="Корпус">
-									<small><%= link_to auditorium.building.name, university_building_url(@university.url, auditorium.building.friendly_id), class: "text-decoration-none" %></small>
+									<small><%= link_to auditorium.building.name, university_building_url(@university.url, auditorium.building.friendly_id), class: "text-decoration-none", rel: "nofollow" %></small>
 								</span>
 								<% end %>
 								<% end %>
