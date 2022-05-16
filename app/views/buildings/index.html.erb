@@ -12,14 +12,14 @@
   <div class="mx-auto col-md-8">
     <h1 class="mb-4">Корпуси</h1>
 
-    <div class="row">
-      <div class="col mb-4 mr-0 ml-0">
-        <form method="get" id="search" class="form-inline mt-2 mt-md-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Назва корпусу" aria-label="Пошук" name="query" value="<%= @query %>">
-          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Шукати</button>
-        </form>
+    <form method="get" id="search" class="row row-cols-lg-auto g-3 align-items-center my-3">
+      <div class="col-auto">
+        <input class="form-control mr-sm-2" type="text" placeholder="Назва корпусу" aria-label="Пошук" name="query" value="<%= @query %>">
       </div>
-    </div>
+      <div class="col-auto">
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Шукати</button>
+      </div>
+    </form>
 
     <div class="row">
       <div class="col mb-4 mr-0 ml-0">
@@ -27,7 +27,7 @@
           <ul class="list-group list-group-flush">
             <% @buildings.each do |building| %>
             <li class="list-group-item">
-              <span><%= link_to building.name, university_building_url(@university.url, building.friendly_id) %></span>
+              <span><%= link_to building.name, university_building_url(@university.url, building.friendly_id), class: "text-decoration-none" %></span>
               <p><small><%= building.description %></small></p>
             </li>
             <% end %>

@@ -77,7 +77,10 @@ class TeachersController < ApplicationController
       render partial: "records/show", locals: {
         lessons: @lessons,
         university: @university,
-        pair_date: pair_date
+        pair_date: pair_date,
+        show_classroom: true,
+        show_groups: true,
+        show_teacher: false
       }
     end
   end

@@ -1,14 +1,23 @@
-<% meta_tag :description, "Інформація про групу - " + @group.name %>
-<% @title = "Інформація - #{@group.name}" %>
-<% no_index %>
+<% meta_tag :keywords, "Розклад, #{@university.short_name}, Група, #{@group.name}" %>
+<% meta_tag :description, "Розклад занять #{@university.short_name}, Група " + @group.name %>
+<% @title = "#{@university.short_name} - #{@group.name}" %>
 
 <%= render "layouts/navbar", university: @university %>
 
 <main class="container" role="main">
   <div class="mx-auto col-md-8">
-    <div class="my-4">
-      <h1><%= @group.name %></h1>
-      <span class="text-muted">(група)</span>
+
+    <div class="row">
+      <div class="mt-4">
+        <h1><%= @group.name %></h1>
+        <span class="text-muted">(група)</span>
+      </div>
+    </div>
+
+    <div class="row my-4">
+      <div class="col-4">
+        <%= link_to "Дивитися розклад", university_group_url(@university.url, @group.friendly_id), class: "btn btn-primary btn-lg", rel: "nofollow" %>
+      </div>
     </div>
 
     <% if @group.disciplines && @group.disciplines.count > 0 %>
@@ -23,7 +32,7 @@
           <ul class="list-group list-group-flush">
             <% @group.disciplines.each do |discipline| %>
             <li class="list-group-item">
-              <%= link_to discipline.visible_name, university_discipline_url(@university.url, discipline.friendly_id) %>
+              <%= link_to discipline.visible_name, university_discipline_url(@university.url, discipline.friendly_id), class: "text-decoration-none" %>
             </li>
             <% end %>
           </ul>

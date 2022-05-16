@@ -341,6 +341,7 @@ sumdu.show_groups = true
 sumdu.show_teachers = true
 sumdu.show_disciplines = true
 sumdu.description = "Інформація про аудиторії, викладачів та групи із сайту schedule.sumdu.edu.ua"
+sumdu.show_info = true
 sumdu.save
 
 kpi = University.kpi
@@ -349,6 +350,7 @@ kpi.picture_dark = "kpi.svg"
 kpi.show_groups = true
 kpi.show_teachers = true
 kpi.description = "Інформація про викладачів та групи із сайту rozklad.org.ua"
+kpi.show_info = true
 kpi.save
 
 khnue = University.khnue
@@ -357,6 +359,7 @@ khnue.picture_dark = "khnue.svg"
 khnue.show_groups = true
 khnue.show_teachers = true
 khnue.description = "Інформація про аудиторії, викладачів, групи, кафедри, факультети та спеціальності із сайту hneu.edu.ua"
+khnue.show_info = true
 khnue.save
 
 pnu = University.pnu

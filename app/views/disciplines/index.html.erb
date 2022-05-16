@@ -9,19 +9,20 @@
 <main class="container" role="main">
   <div class="mx-auto col-md-8">
     <h1 class="mt-4">Дисципліни</h1>
-    <div class="row">
-      <div class="col mb-4 mr-0 ml-0">
-        <form method="get" id="search" class="form-inline mt-2 mt-md-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Назва" aria-label="Пошук" name="query" value="<%= @query %>" list="name">
-          <datalist id="name">
-            <% @all_disciplines.each do |discipline| %>
-            <option value="<%= discipline.visible_name %>"><%= discipline.visible_name %></option>
-            <% end %>
-          </datalist>
-          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Шукати</button>
-        </form>
+
+    <form method="get" id="search" class="row row-cols-lg-auto g-3 align-items-center my-3">
+      <div class="col-auto">
+        <input class="form-control mr-sm-2" type="search" placeholder="Назва" aria-label="Пошук" name="query" value="<%= @query %>" list="name">
+        <datalist id="name">
+          <% @all_disciplines.each do |discipline| %>
+          <option value="<%= discipline.visible_name %>"><%= discipline.visible_name %></option>
+          <% end %>
+        </datalist>
       </div>
-    </div>
+      <div class="col-auto">
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Шукати</button>
+      </div>
+    </form>
 
     <div class="row">
       <div class="col mb-4 mr-0 ml-0">
@@ -29,9 +30,9 @@
           <ul class="list-group list-group-flush">
             <% @disciplines.each do |discipline| %>
             <li class="list-group-item">
-              <span><%= link_to discipline.visible_name, university_discipline_url(@university.url, discipline.friendly_id) %></span>
+              <span><%= link_to discipline.visible_name, university_discipline_url(@university.url, discipline.friendly_id), class: "text-decoration-none" %></span>
               <p><small><%= discipline.description %></small></p>
-              <p><small><%= link_to "(Редагувати)", new_university_discipline_name_suggestion_url(@university.url, discipline), "class" => "text-primary" %></small></p>
+              <p><small><%= link_to "(Редагувати)", new_university_discipline_name_suggestion_url(@university.url, discipline), class: "text-decoration-none link-secondary fw-light" %></small></p>
             </li>
             <% end %>
           </ul>

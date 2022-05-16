@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_17_103446) do
+ActiveRecord::Schema.define(version: 2022_05_14_101519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -350,6 +350,7 @@ ActiveRecord::Schema.define(version: 2022_04_17_103446) do
     t.boolean "show_groups", default: true
     t.boolean "show_teachers", default: true
     t.boolean "show_disciplines", default: false
+    t.boolean "show_info", default: false
   end
 
   create_table "users", force: :cascade do |t|
