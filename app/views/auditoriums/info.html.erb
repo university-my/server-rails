@@ -1,16 +1,25 @@
-<% meta_tag :description, "Інформація про аудиторію - " + @auditorium.name %>
-<% @title = "Інформація - #{@auditorium.name}" %>
-<% no_index %>
+<% meta_tag :keywords, "Розклад, #{@university.short_name}, Аудиторія, #{@auditorium.name}" %>
+<% meta_tag :description, "Розклад занять #{@university.short_name}, Аудиторія " + @auditorium.name %>
+<% @title = "#{@university.short_name} - #{@auditorium.name}" %>
 
 <%= render "layouts/navbar", university: @university %>
 
 <main class="container" role="main">
   <div class="mx-auto col-md-8">
-    <div class="my-4">
-      <h1><%= @auditorium.name %></h1>
-      <span class="text-muted">(аудиторія)</span>
+
+    <div class="row">
+      <div class="mt-4">
+        <h1><%= @auditorium.name %></h1>
+        <span class="text-muted">(аудиторія)</span>
+      </div> 
     </div>
 
+    <div class="row my-4">
+      <div class="col-4">
+        <%= link_to "Дивитися розклад", university_auditorium_url(@university.url, @auditorium.friendly_id), class: "btn btn-primary btn-lg", rel: "nofollow" %>
+      </div>
+    </div>
+    
     <% if @auditorium.disciplines && @auditorium.disciplines.count > 0 %>
     <div class="row">
       <div class="col mb-4 mr-0 ml-0">

@@ -15,28 +15,7 @@ SitemapGenerator::Sitemap.create do
 
   # Universities
   University.where(is_hidden: false).find_each do |university|
-    add university_path(university.url), :lastmod => university.updated_at
-  end
-
-  # Auditoriums
-  University.where(is_hidden: false).find_each do |university|
-    Auditorium.where(university: university).where(is_hidden: false).find_each do |auditorium|
-      add university_auditorium_path(university.url, auditorium.friendly_id), :lastmod => auditorium.updated_at
-    end
-  end
-
-  # Groups
-  University.where(is_hidden: false).find_each do |university|
-    Group.where(university: university).where(is_hidden: false).find_each do |group|
-      add university_group_path(university.url, group.friendly_id), :lastmod => group.updated_at
-    end
-  end
-
-  # Teachers
-  University.where(is_hidden: false).find_each do |university|
-    Teacher.where(university: university).where(is_hidden: false).find_each do |teacher|
-      add university_teacher_path(university.url, teacher.friendly_id), :lastmod => teacher.updated_at
-    end
+    add university_path(university.url), :changefreq => 'monthly'
   end
 
 end

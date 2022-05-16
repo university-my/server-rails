@@ -5,9 +5,9 @@
 
 <%= javascript_include_tag 'records' %>
 
-<% meta_tag :keywords, "Розклад, #{@university.short_name}, Аудиторія, #{@auditorium.name}" %>
-<% meta_tag :description, "Розклад занять #{@university.short_name}, Аудиторія " + @auditorium.name %>
-<% @title = "#{@university.short_name} - #{@auditorium.name}" %>
+<% meta_tag :description, @auditorium.name %>
+<% @title = @auditorium.name %>
+<% no_index %>
 <%= content_for(:canonical_link, university_auditorium_url(@university.url, @auditorium)) %>
 
 <%= render "layouts/navbar", university: @university %>
