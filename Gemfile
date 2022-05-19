@@ -48,7 +48,7 @@ gem 'sitemap_generator'
 gem 'rails-i18n'
 
 #  Creates pretty URLs
-gem 'friendly_id', '~> 5.2.4'
+gem 'friendly_id', '~> 5.4.0'
 
 # Flexible authentication solution for Rails
 gem 'devise'

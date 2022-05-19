@@ -59,6 +59,7 @@ class GroupsController < ApplicationController
       return
 
     rescue StandardError => e
+      Rails.logger.error(e)
       ahoy.track "Records Error", message: e.message,
       university: @university.short_name,
       type: 'group',
