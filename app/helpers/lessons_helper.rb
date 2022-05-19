@@ -39,11 +39,11 @@ module LessonsHelper
   end
 
   def self.min_date
-    (DateTime.now - 1.year).strftime('%Y-%m-%e')
+    (DateTime.now - 1.year).strftime('%Y-%m-%d')
   end
 
   def self.max_date
-    (DateTime.now + 1.year).strftime('%Y-%m-%e')
+    (DateTime.now + 1.year).strftime('%Y-%m-%d')
   end
 
 end
