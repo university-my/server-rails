@@ -11,7 +11,7 @@ class ApplicationRecord < ActiveRecord::Base
       http.use_ssl = true
     end
     
-    http.open_timeout = 1
+    http.open_timeout = 5
     http.read_timeout = 3
     http.write_timeout = 5
     http.start
