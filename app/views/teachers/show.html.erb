@@ -31,7 +31,9 @@
 		</table>
 	</div>
 	
+	<% if @university != University.khnue %>
 	<%= render "layouts/datepicker", pair_date: @pair_date %>
+	<% end %>
 
 	<div id="spinner" class="d-flex justify-content-center min-vh-100">
 		<div class="spinner-border text-primary" role="status">

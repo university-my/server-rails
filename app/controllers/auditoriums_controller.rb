@@ -35,6 +35,12 @@ class AuditoriumsController < ApplicationController
     @auditorium = Auditorium.find_by!(university_id: @university.id, id: params[:id])
     # Date
     pair_date = pair_date_from(params)
+
+    if @university == University.khnue
+      render partial: "records/khnue"
+      return
+    end
+
     @lessons = Lesson.where(university: @university)
     .where(auditorium: @auditorium)
     .where(pair_start_date: pair_date.all_day)

@@ -37,6 +37,11 @@ class GroupsController < ApplicationController
     # Date
     pair_date = pair_date_from(params)
 
+    if @university == University.khnue
+      render partial: "records/khnue"
+      return
+    end
+
     @lessons = LessonsHelper.fetch(@university, @group, pair_date)
 
     begin

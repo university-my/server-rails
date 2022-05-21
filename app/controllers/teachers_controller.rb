@@ -43,6 +43,11 @@ class TeachersController < ApplicationController
 
     pair_date = pair_date_from(params)
 
+    if @university == University.khnue
+      render partial: "records/khnue"
+      return
+    end
+
     @lessons = Lesson.fetch(@university, @teacher.id, pair_date)
 
     begin
