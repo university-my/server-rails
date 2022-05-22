@@ -11,16 +11,20 @@ class Api::V1::GroupsController < ApplicationController
     university = University.find_by!(url: params[:university_url])
     @group = Group.find_by!(university: university, id: params[:id])
 
-    # Date
+    if University.unavailable(university)
+      render status: 500, json: {
+        error: "Failed to parse a schedule",
+        code: "1001"
+      }
+      return
+    end
+
     pair_date = pair_date_from(params)
 
     @records = fetch_records(university, @group, pair_date)
 
     begin
-      if @records.blank?
-        @group.import_records(pair_date)
-
-      elsif @group.need_to_update_records
+      if @records.blank? || @group.need_to_update_records
         @group.import_records(pair_date)
       end
     rescue PolitekService::DataNotFoundError => e

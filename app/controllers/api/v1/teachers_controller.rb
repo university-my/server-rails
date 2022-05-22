@@ -11,19 +11,20 @@ class Api::V1::TeachersController < ApplicationController
     university = University.find_by!(url: params[:university_url])
     @teacher = Teacher.find_by!(university: university, id: params[:id])
 
-    # Date
+    if University.unavailable(university)
+      render status: 500, json: {
+        error: "Failed to parse a schedule",
+        code: "1001"
+      }
+      return
+    end
+
     pair_date = pair_date_from(params)
 
-    @records = Lesson.where(university: university)
-    .where(teacher_id: @teacher.id)
-    .where(pair_start_date: pair_date.all_day)
-    .order(:pair_start_date)
-    .order(:pair_name)
+    @records = fetch_lessons(university, @teacher, pair_date)
 
     begin
-      if @records.blank?
-        @teacher.import_records(pair_date)
-      elsif @teacher.need_to_update_records
+      if @records.blank? || @teacher.need_to_update_records
         @teacher.import_records(pair_date)
       end
     rescue PolitekService::DataNotFoundError => e
@@ -45,7 +46,11 @@ class Api::V1::TeachersController < ApplicationController
     end
 
     # Select one more time
-    @records = Lesson.where(university: university)
+    @records = fetch_lessons(university, @teacher, pair_date)
+  end
+
+  def fetch_lessons(university, teacher, pair_date)
+    Lesson.where(university: university)
     .where(teacher_id: @teacher.id)
     .where(pair_start_date: pair_date.all_day)
     .order(:pair_start_date)
