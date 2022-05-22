@@ -37,6 +37,13 @@ class GroupsController < ApplicationController
     # Date
     pair_date = pair_date_from(params)
 
+    if University.unavailable(@university)
+      render partial: "records/unavailable", locals: {
+        schedule_url: University.schedule_url_for(@university)
+      }
+      return
+    end
+
     @lessons = LessonsHelper.fetch(@university, @group, pair_date)
 
     begin

@@ -12,29 +12,27 @@ module KhnueService
   end
 
   def self.perform_request(url)
-    # Init URI
     uri = URI(url)
+    return if uri.nil?
 
-    if uri.nil?
-      # Add error
-      error_message = 'Invalid URI'
-      # Log invalid URI
-      Rails.logger.error(error_message)
-      return
-    end
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.open_timeout = 5
+    http.read_timeout = 3
+    http.write_timeout = 5
+    http.start
 
-    # Perform request
-    response = Net::HTTP.get_response(uri)
+    request = Net::HTTP::Get.new(uri.request_uri)
+    response = http.request(request)
+
     if response.code != '200'
-      # Add error
       error_message = "Server responded with code #{response.code} for GET #{uri}"
-      # Log invalid URI
+      ahoy.track "Error", message: error_message
       Rails.logger.error(error_message)
       return
     end
 
     doc = Nokogiri::XML(response.body)
-    doc
+    return doc
   end
 
   def self.calculate_week(date)
@@ -42,7 +40,7 @@ module KhnueService
     # 01-09-2020 - first week
     # Date.current.cweek - ('01-09-2020'.to_date.cweek)
 
-    first_week_date = '01-09-2021'.to_date
+    first_week_date = '01-09-2022'.to_date
     week = (date.cweek - first_week_date.cweek) + 1
 
     return week
@@ -128,10 +126,6 @@ module KhnueService
 
     url = 'http://services.ksue.edu.ua:8081/schedule/xml'
     query = "?group=#{group.server_id}&week=#{week_number}&#{auth_key}"
-
-    p '*****'
-    p url + query
-    p '*****'
 
     doc = perform_request(url + query)
     parse_and_save_records(doc)

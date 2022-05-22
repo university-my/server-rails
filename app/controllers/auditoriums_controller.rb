@@ -35,6 +35,14 @@ class AuditoriumsController < ApplicationController
     @auditorium = Auditorium.find_by!(university_id: @university.id, id: params[:id])
     # Date
     pair_date = pair_date_from(params)
+
+    if University.unavailable(@university)
+      render partial: "records/unavailable", locals: {
+        schedule_url: University.schedule_url_for(@university)
+      }
+      return
+    end
+
     @lessons = Lesson.where(university: @university)
     .where(auditorium: @auditorium)
     .where(pair_start_date: pair_date.all_day)

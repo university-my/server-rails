@@ -10,10 +10,13 @@ class PolitekService
   end
 
   def self.load_objects(object_type, url)
-    # URI
     uri = URI.parse("#{self.api_url}/v1/#{object_type}")
+    
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
+    http.open_timeout = 15
+    http.read_timeout = 10
+    http.write_timeout = 5
 
     # Headers
     request = Net::HTTP::Get.new(uri.request_uri)
@@ -36,10 +39,13 @@ class PolitekService
     start_date = date.strftime('%d.%m.%Y')
     end_date = (date + 7.day).strftime('%d.%m.%Y')
 
-    # URI
     uri = URI.parse("#{self.api_url}/v1/schedule/#{record_type}")
+
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
+    http.open_timeout = 15
+    http.read_timeout = 10
+    http.write_timeout = 5
 
     # Params
     params = {
