@@ -367,7 +367,6 @@ pnu.picture_white = "PNU_white.svg"
 pnu.picture_dark = "PNU_Black.svg"
 pnu.show_groups = true
 pnu.show_teachers = true
-pnu.is_hidden = true
 pnu.description = "Інформація про викладачів та групи із сайту asu.pnu.edu.ua/cgi-bin/timetable.cgi"
 pnu.save
 
