@@ -30,7 +30,7 @@
 		</table>
 	</div>
 	
-	<% if @university != University.khnue %>
+	<% if !University.unavailable(@university) %>
 	<%= render "layouts/datepicker", pair_date: @pair_date %>
 	<% end %>
 
