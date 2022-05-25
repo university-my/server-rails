@@ -1,4 +1,4 @@
-class AllUniversitiesService < ApplicationJob
+class AllUniversitiesJob < ApplicationJob
   queue_as :default
   
   def perform(*args)

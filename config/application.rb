@@ -9,7 +9,7 @@ Bundler.require(*Rails.groups)
 module MyUniversityServer
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.2
+    config.load_defaults 6.0
 
     config.i18n.default_locale = :uk
     I18n.available_locales = [:en, :uk]

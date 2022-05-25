@@ -46,3 +46,10 @@ exported_disciplines.json
 # Sublime Text
 *.sublime-workspace
 *.sublime-project
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
