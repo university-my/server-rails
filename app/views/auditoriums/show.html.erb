@@ -3,7 +3,7 @@
 <div data-id="<%= @auditorium.id %>"></div>
 <div data-pair-date="<%= @pair_date %>"></div>
 
-<%= javascript_include_tag 'records' %>
+<%= javascript_pack_tag 'records' %>
 
 <% meta_tag :description, @auditorium.name %>
 <% @title = @auditorium.name %>
