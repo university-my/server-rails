@@ -31,6 +31,9 @@ require("../stylesheets/application.scss")
     })
 })
 
+window.jQuery = $;
+window.$ = $;
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
