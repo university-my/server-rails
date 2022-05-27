@@ -1,4 +1,4 @@
-class LessonsController < InheritedResources::Base
+class LessonsController < ApplicationController
 
   private
 
