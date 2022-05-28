@@ -1,12 +1,3 @@
-<div data-university-url="<%= @university.url %>"></div>
-<div data-type="teachers"></div>
-<div data-id="<%= @teacher.id %>"></div>
-<div data-pair-date="<%= @pair_date %>"></div>
-
-<% content_for :head do %>
-<%= javascript_import_module_tag "records" %>
-<% end %>
-
 <% meta_tag :description, "Інформація про викладача - " + @teacher.name %>
 <% @title = @teacher.name %>
 <% no_index %>
@@ -18,31 +9,23 @@
 
 <main class="container" role="main">
 
-	<div class="mx-auto col-md-8 mt-4">
-		<table>
-			<tbody>
-				<tr>
-					<td class="align-baseline"><h1><%= @teacher.name %></h1></td>
-					<td class="align-top">
-						<%= link_to info_university_teacher_url(@university.url, @teacher), rel: 'nofollow' do %>
-						<i class="bi bi-info-circle-fill"></i>
-						<% end %>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+	<%= render "layouts/info",
+	name: @teacher.name,
+	url: info_university_teacher_url(@university.url, @teacher),
+	show_info: @university.show_info %>
 	
 	<% if !University.unavailable(@university) %>
 	<%= render "layouts/datepicker", pair_date: @pair_date %>
 	<% end %>
 
-	<div id="spinner" class="d-flex justify-content-center min-vh-100">
-		<div class="spinner-border text-primary" role="status"></div>
-		<div style="height:300px;"></div>
-	</div>
+	<turbo-frame id="records" src="<%= university_teacher_url(@university.url, @teacher.id) %>/records?pair_date=<%= @pair_date %>">
+		<div class="d-flex justify-content-center" style="height:300px;">
+			<div class="spinner-grow text-primary" role="status">
+				<span class="visually-hidden">Завантаження...</span>
+			</div>
+		</div>
+	</turbo-frame>
 
-	<div id="records" class="mt-4"></div>
 	<%= render "layouts/source_site" %>
 </main>
 <%= render "layouts/footer" %>

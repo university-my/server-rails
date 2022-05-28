@@ -1,48 +1,30 @@
-<%= content_for(:canonical_link, university_group_url(@university.url, @group)) %>
-
-<div data-university-url="<%= @university.url %>"></div>
-<div data-type="groups"></div>
-<div data-id="<%= @group.id %>"></div>
-<div data-pair-date="<%= @pair_date %>"></div>
-
-<% content_for :head do %>
-<%= javascript_import_module_tag "records" %>
-<% end %>
-
 <% meta_tag :description, "Інформація про групу - " + @group.name %>
 <% @title = @group.name %>
 <% no_index %>
+
+<%= content_for(:canonical_link, university_group_url(@university.url, @group)) %>
 
 <%= render "layouts/navbar", university: @university %>
 <p id="notice"><%= notice %></p>
 
 <main class="container" role="main">
 
-  <div class="mx-auto col-md-8 mt-4">
-    <table>
-      <tbody>
-        <tr>
-          <td class="align-baseline"><h1><%= @group.name %></h1></td>
-          <% if @group.university.show_info %>
-          <td class="align-top">
-            <%= link_to info_university_group_url(@university.url, @group), rel: 'nofollow' do %>
-            <i class="bi bi-info-circle-fill"></i>
-            <% end %>
-          </td>
-          <% end %>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <%= render "layouts/info",
+  name: @group.name,
+  url: info_university_group_url(@university.url, @group),
+  show_info: @university.show_info %>
 
   <% if !University.unavailable(@university) %>
   <%= render "layouts/datepicker", pair_date: @pair_date %>
   <% end %>
   
-	<div id="spinner" class="d-flex justify-content-center min-vh-100">
-		<div class="spinner-border text-primary" role="status"></div>
-	</div>
-	<div id="records"></div>
-	<%= render "layouts/source_site" %>
+  <turbo-frame id="records" src="<%= university_group_url(@university.url, @group.id) %>/records?pair_date=<%= @pair_date %>">
+    <div class="d-flex justify-content-center" style="height:300px;">
+      <div class="spinner-grow text-primary" role="status">
+        <span class="visually-hidden">Завантаження...</span>
+      </div>
+    </div>
+  </turbo-frame>
+  
 </main>
 <%= render "layouts/footer" %>
