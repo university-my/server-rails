@@ -3,7 +3,9 @@
 <div data-id="<%= @teacher.id %>"></div>
 <div data-pair-date="<%= @pair_date %>"></div>
 
-<%= javascript_pack_tag 'records' %>
+<% content_for :head do %>
+<%= javascript_import_module_tag "records" %>
+<% end %>
 
 <% meta_tag :description, "Інформація про викладача - " + @teacher.name %>
 <% @title = @teacher.name %>
