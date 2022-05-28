@@ -26,7 +26,7 @@
           <% if @group.university.show_info %>
           <td class="align-top">
             <%= link_to info_university_group_url(@university.url, @group), rel: 'nofollow' do %>
-            <i class="fas fa-info-circle align-middle"></i>
+            <span>і</span>
             <% end %>
           </td>
           <% end %>
@@ -40,9 +40,7 @@
   <% end %>
   
 	<div id="spinner" class="d-flex justify-content-center min-vh-100">
-		<div class="spinner-border text-primary" role="status">
-			<span class="sr-only">Loading...</span>
-		</div>
+		<div class="spinner-border text-primary" role="status"></div>
 	</div>
 	<div id="records"></div>
 	<%= render "layouts/source_site" %>
