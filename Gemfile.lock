@@ -344,7 +344,6 @@ DEPENDENCIES
   friendly_id (~> 5.4.0)
   importmap-rails
   jbuilder
-  jquery-rails
   pg (~> 1.1)
   puma (~> 5.0)
   pundit
