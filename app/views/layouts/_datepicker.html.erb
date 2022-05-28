@@ -13,19 +13,19 @@
 				<form action="" method="get" id="previous_date">
 					<input type="date" id="start" name="pair_date"
 					value="<%= @previous_date %>" hidden>
-					<a onclick="$('#previous_date').submit();" class="btn btn-primary" style="color: white;"><span><</span></a>
+					<a onclick="$('#previous_date').submit();" class="btn btn-primary" style="color: white;"><i class="bi bi-arrow-left"></i></a>
 				</form>
 			</div>
 
 			<div class="col-auto">
-				<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCalendar" aria-expanded="false" aria-controls="collapseCalendar"></button>
+				<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCalendar" aria-expanded="false" aria-controls="collapseCalendar"><i class="bi bi-calendar-event"></i></button>
 			</div>
 			
 			<div class="col-auto">
 				<form action="" method="get" id="next_date">
 					<input type="date" id="start" name="pair_date"
 					value="<%= @next_date %>" hidden>
-					<a onclick="$('#next_date').submit();" class="btn btn-primary" style="color: white;"><span>></span></a>
+					<a onclick="$('#next_date').submit();" class="btn btn-primary" style="color: white;"><i class="bi bi-arrow-right"></i></a>
 				</form>
 			</div>
 		</div>
