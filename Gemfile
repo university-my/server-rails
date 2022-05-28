@@ -80,7 +80,6 @@ gem 'ahoy_matey'
 
 gem 'blazer'
 
-gem 'bootstrap', '~> 5.1.3'
 gem 'jquery-rails'
 
 group :development, :test do

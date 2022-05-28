@@ -1,7 +1,5 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 
-import jquery from 'jquery'
-window.$ = jquery
+import * as jq from 'jquery';
 
-import * as bootstrap from 'bootstrap'
-window.bootstrap = bootstrap
+import * as bootstrap from "bootstrap"
