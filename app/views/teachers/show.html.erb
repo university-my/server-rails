@@ -9,23 +9,19 @@
 
 <main class="container" role="main">
 
-	<%= render "layouts/info",
-	name: @teacher.name,
-	url: info_university_teacher_url(@university.url, @teacher),
-	show_info: @university.show_info %>
-	
-	<% if !University.unavailable(@university) %>
-	<%= render "layouts/datepicker", pair_date: @pair_date %>
-	<% end %>
+    <%= render "layouts/info",
+    name: @teacher.name,
+    url: info_university_teacher_url(@university.url, @teacher),
+    show_info: @university.show_info %>
 
-	<turbo-frame id="records" src="<%= university_teacher_url(@university.url, @teacher.id) %>/records?pair_date=<%= @pair_date %>">
-		<div class="d-flex justify-content-center" style="height:300px;">
-			<div class="spinner-grow text-primary" role="status">
-				<span class="visually-hidden">Завантаження...</span>
-			</div>
-		</div>
-	</turbo-frame>
+    <%= turbo_frame_tag "records_turbo_frame", src: @records_url do %>
+    <div class="d-flex justify-content-center" style="height:300px;">
+        <div class="spinner-grow text-primary" role="status">
+            <span class="visually-hidden">Завантаження...</span>
+        </div>
+    </div>
+    <% end %>
 
-	<%= render "layouts/source_site" %>
+    <%= render "layouts/source_site" %>
 </main>
 <%= render "layouts/footer" %>

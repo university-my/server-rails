@@ -1,8 +1,10 @@
 class AuditoriumsController < ApplicationController
+  before_action :set_university
+  before_action :set_auditorium, only: [:show, :info]
+  before_action :set_auditorium_by_id, only: [:records]
 
-  # GET /auditoriums
+  # GET /universities/:university_url/auditoriums
   def index
-    @university = University.find_by!(url: params[:university_url])
     @query = params['query']
     @auditoriums = if @query.present?
      @university.auditorium
@@ -17,25 +19,13 @@ class AuditoriumsController < ApplicationController
    @all_auditoriums = @university.auditorium.where(is_hidden: false)
   end
 
-  # GET /auditoriums/1
+  # GET /universities/:university_url/auditoriums/:friendly_id
   def show
-    @university = University.find_by!(url: params[:university_url])
-    @auditorium = @university.auditorium.friendly.find(params[:id])
-
-    # Date
-    @pair_date = pair_date_string_from(params)
-    @date = @pair_date.to_date
-    @next_date = @date + 1.day
-    @previous_date = @date - 1.day
+    @records_url = records_university_auditorium_url(@university.url, @auditorium.id, :date => date_string_from(params))
   end
 
-  # GET /auditoriums/1/records
+  # GET /universities/:university_url/auditoriums/:id/records
   def records
-    @university = University.find_by!(url: params[:university_url])
-    @auditorium = Auditorium.find_by!(university_id: @university.id, id: params[:id])
-    # Date
-    pair_date = pair_date_from(params)
-
     if University.unavailable(@university)
       render partial: "records/unavailable", locals: {
         schedule_url: University.schedule_url_for(@university)
@@ -43,51 +33,41 @@ class AuditoriumsController < ApplicationController
       return
     end
 
-    @lessons = Lesson.where(university: @university)
-    .where(auditorium: @auditorium)
-    .where(pair_start_date: pair_date.all_day)
-    .order(:pair_start_date)
-    .order(:pair_name)
+    @date = date_from(params)
+    @next_day_url = url_for(@date + 1.day)
+    @previous_day_url = url_for(@date - 1.day)
+
+    lessons = Lesson.fetch_for_auditorium(@auditorium, @date)
 
     begin
-      if @lessons.blank?
-        @auditorium.import_records(pair_date)
-      elsif @auditorium.need_to_update_records
-        @auditorium.import_records(pair_date)
+      if lessons.blank? || @auditorium.need_to_update_records
+        @auditorium.import_records(@date)
       end
     rescue StandardError => e
       ahoy.track "Records Error", message: e.message,
       university: @university.short_name,
       type: 'classroom',
-      name: @auditorium.name
-
+      name: @auditorium.name,
+      date: @date
     end
 
     # Select one more time
-    @lessons = Lesson.where(university: @university)
-                     .where(auditorium: @auditorium)
-                     .where(pair_start_date: pair_date.all_day)
-                     .order(:pair_start_date)
-                     .order(:pair_name)
+    lessons = Lesson.fetch_for_auditorium(@auditorium, @date)
 
-    if @lessons.blank?
+    if lessons.blank?
 
       # Try to find for the next days
-      next_lessons = Lesson.where(university: @university)
-      .where(auditorium: @auditorium)
-      .where("pair_start_date >= :date", date: pair_date.tomorrow.beginning_of_day)
-      .order(:pair_start_date)
-      .order(:pair_name)
-      .limit(1)
-      
+      next_date = Lesson.next_date_for_auditorium(@auditorium, @date)
+      next_date_url = next_date ? url_for(next_date) : nil
+
       render partial: 'records/empty', locals: {
-        next_lessons: next_lessons
+        next_date: next_date,
+        next_date_url: next_date_url
       }
+
     else
       render partial: 'records/show', locals: {
-        lessons: @lessons,
-        university: @university,
-        pair_date: pair_date,
+        lessons: lessons,
         show_classroom: false,
         show_groups: true,
         show_teacher: true
@@ -97,8 +77,24 @@ class AuditoriumsController < ApplicationController
 
   # GET /universities/:university_url/auditoriums/:friendly_id/info
   def info
+  end
+
+  private
+
+  def set_university
     @university = University.find_by!(url: params[:university_url])
+  end
+
+  def set_auditorium
     @auditorium = @university.auditorium.friendly.find(params[:id])
+  end
+
+  def set_auditorium_by_id
+    @auditorium = Auditorium.find_by!(university_id: @university.id, id: params[:id])
+  end
+
+  def url_for(date)
+    university_auditorium_url(@university.url, @auditorium.friendly_id, :date => date.strftime('%Y-%m-%d'))
   end
 
 end

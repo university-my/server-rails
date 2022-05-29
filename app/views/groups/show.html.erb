@@ -13,18 +13,15 @@
   name: @group.name,
   url: info_university_group_url(@university.url, @group),
   show_info: @university.show_info %>
-
-  <% if !University.unavailable(@university) %>
-  <%= render "layouts/datepicker", pair_date: @pair_date %>
-  <% end %>
   
-  <turbo-frame id="records" src="<%= university_group_url(@university.url, @group.id) %>/records?pair_date=<%= @pair_date %>">
-    <div class="d-flex justify-content-center" style="height:300px;">
-      <div class="spinner-grow text-primary" role="status">
-        <span class="visually-hidden">Завантаження...</span>
-      </div>
+  <%= turbo_frame_tag "records_turbo_frame", src: @records_url do %>
+  <div class="d-flex justify-content-center" style="height:300px;">
+    <div class="spinner-grow text-primary" role="status">
+      <span class="visually-hidden">Завантаження...</span>
     </div>
-  </turbo-frame>
-  
+  </div>
+  <% end %>
+
+  <%= render "layouts/source_site" %>
 </main>
 <%= render "layouts/footer" %>

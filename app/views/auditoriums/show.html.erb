@@ -1,4 +1,4 @@
-<% meta_tag :description, @auditorium.name %>
+<% meta_tag :description, "Інформація про аудиторію - " + @auditorium.name %>
 <% @title = @auditorium.name %>
 <% no_index %>
 <%= content_for(:canonical_link, university_auditorium_url(@university.url, @auditorium)) %>
@@ -7,22 +7,19 @@
 <p id="notice"><%= notice %></p>
 
 <main class="container" role="main">
+	
 	<%= render "layouts/info",
 	name: @auditorium.name,
 	url: info_university_auditorium_url(@university.url, @auditorium),
 	show_info: @university.show_info %>
 	
-	<% if !University.unavailable(@university) %>
-	<%= render "layouts/datepicker", pair_date: @pair_date %>
-	<% end %>
-
-	<turbo-frame id="records" src="<%= university_auditorium_url(@university.url, @auditorium.id) %>/records?pair_date=<%= @pair_date %>">
-		<div class="d-flex justify-content-center" style="height:300px;">
-			<div class="spinner-grow text-primary" role="status">
-				<span class="visually-hidden">Завантаження...</span>
-			</div>
+	<%= turbo_frame_tag "records_turbo_frame", src: @records_url do %>
+	<div class="d-flex justify-content-center" style="height:300px;">
+		<div class="spinner-grow text-primary" role="status">
+			<span class="visually-hidden">Завантаження...</span>
 		</div>
-	</turbo-frame>
+	</div>
+	<% end %>
 	
 	<%= render "layouts/source_site" %>
 </main>

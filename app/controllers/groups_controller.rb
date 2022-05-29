@@ -1,8 +1,10 @@
 class GroupsController < ApplicationController
+  before_action :set_university
+  before_action :set_group, only: [:show, :info]
+  before_action :set_group_by_id, only: [:records]
 
-  # GET /groups
+  # GET /universities/:university_url/groups
   def index
-    @university = University.find_by!(url: params[:university_url])
     @query = params['query']
     @groups = if @query.present?
       @university.groups
@@ -17,26 +19,13 @@ class GroupsController < ApplicationController
     @all_groups = @university.groups.where(is_hidden: false)
   end
 
-  # GET /groups/1
+  # GET /universities/:university_url/groups/:friendly_id
   def show
-    @university = University.find_by!(url: params[:university_url])
-    @group = @university.groups.friendly.find(params[:id])
-
-    # Date
-    @pair_date = pair_date_string_from(params)
-    @date = @pair_date.to_date
-    @next_date = @date + 1.day
-    @previous_date = @date - 1.day
+    @records_url = records_university_group_url(@university.url, @group.id, :date => date_string_from(params))
   end
 
   # GET /groups/1/records
   def records
-    @university = University.find_by!(url: params[:university_url])
-    @group = Group.find_by!(university_id: @university.id, id: params[:id])
-
-    # Date
-    pair_date = pair_date_from(params)
-
     if University.unavailable(@university)
       render partial: "records/unavailable", locals: {
         schedule_url: University.schedule_url_for(@university)
@@ -44,23 +33,24 @@ class GroupsController < ApplicationController
       return
     end
 
-    @lessons = LessonsHelper.fetch(@university, @group, pair_date)
+    @date = date_from(params)
+    @next_day_url = url_for(@date + 1.day)
+    @previous_day_url = url_for(@date - 1.day)
+
+    lessons = Lesson.fetch_for_group(@group, @date)
 
     begin
-      if @lessons.blank?
-        @group.import_records(pair_date)
-
-      elsif @group.need_to_update_records
-        @group.import_records(pair_date)
+      if lessons.blank? || @group.need_to_update_records
+        @group.import_records(@date)
       end
-      
+
     rescue PolitekService::DataNotFoundError => e
       service = University.service_for(@university.uid)
       timetable_url = service.constantize.send("timetable_url") # Call static method on class
 
       render partial: 'records/parsing_error', locals: {
         university: @university,
-        pair_date: pair_date,
+        pair_date: @date,
         timetable_url: timetable_url
       }
       return
@@ -70,23 +60,27 @@ class GroupsController < ApplicationController
       ahoy.track "Records Error", message: e.message,
       university: @university.short_name,
       type: 'group',
-      name: @group.name
+      name: @group.name,
+      date: @date
     end
 
     # Select one more time
-    @lessons = LessonsHelper.fetch(@university, @group, pair_date)
+    lessons = Lesson.fetch_for_group(@group, @date)
 
-    if @lessons.blank?
+    if lessons.blank?
+
       # Try to find for the next days
-      next_lessons = LessonsHelper.next(@university, @group, pair_date)
+      next_date = Lesson.next_date_for_group(@group, @date)
+      next_date_url = next_date ? url_for(next_date) : nil
+
       render partial: 'records/empty', locals: {
-        next_lessons: next_lessons
+        next_date: next_date,
+        next_date_url: next_date_url
       }
+
     else
       render partial: 'records/show', locals: {
-        lessons: @lessons,
-        university: @university,
-        pair_date: pair_date,
+        lessons: lessons,
         show_classroom: true,
         show_groups: false,
         show_teacher: true
@@ -96,8 +90,24 @@ class GroupsController < ApplicationController
 
   # GET /universities/:university_url/groups/:friendly_id/info
   def info
+  end
+
+  private
+
+  def set_university
     @university = University.find_by!(url: params[:university_url])
+  end
+
+  def set_group
     @group = @university.groups.friendly.find(params[:id])
+  end
+
+  def set_group_by_id
+    @group = Group.find_by!(university_id: @university.id, id: params[:id])
+  end
+
+  def url_for(date)
+    university_group_url(@university.url, @group.friendly_id, :date => date.strftime('%Y-%m-%d'))
   end
 
 end

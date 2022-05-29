@@ -1,20 +1,21 @@
 class TeachersController < ApplicationController
+  before_action :set_university
+  before_action :set_teacher, only: [:show, :info]
+  before_action :set_teacher_by_id, only: [:records]
 
   # GET /teachers
   # GET /teachers.json
   def index
-    @university = University.find_by!(url: params[:university_url])
-    per_page = 6
     @query = params["query"]
-    if @query.present?
-      @teachers = @university.teachers
-        .where(is_hidden: false)
-        .where("lowercase_name LIKE ?", "%#{@query.downcase}%")
-        .paginate(page: params[:page], per_page: per_page)
+    @teachers = if @query.present?
+      @university.teachers
+      .where(is_hidden: false)
+      .where("lowercase_name LIKE ?", "%#{@query.downcase}%")
+      .paginate(page: params[:page], per_page: 6)
     else
-      @teachers = @university.teachers
-        .where(is_hidden: false)
-        .paginate(page: params[:page], per_page: per_page)
+      @university.teachers
+      .where(is_hidden: false)
+      .paginate(page: params[:page], per_page: 6)
     end
     @all_teachers = @university.teachers.where(is_hidden: false)
   end
@@ -22,27 +23,12 @@ class TeachersController < ApplicationController
   # GET /teachers/1
   # GET /teachers/1.json
   def show
-    @university = University.find_by!(url: params[:university_url])
-    @teacher = @university.teachers
-    .where(is_hidden: false)
-    .friendly
-    .find(params[:id])
-
-    # Date
-    @pair_date = pair_date_string_from(params)
-    @date = @pair_date.to_date
-    @next_date = @date + 1.day
-    @previous_date = @date - 1.day
+    @records_url = records_university_teacher_url(@university.url, @teacher.id, :date => date_string_from(params))
   end
 
   # GET /teachers/1/records
   # GET /teachers/1/records.json
   def records
-    @university = University.find_by!(url: params[:university_url])
-    @teacher = Teacher.find_by!(university_id: @university.id, id: params[:id])
-
-    pair_date = pair_date_from(params)
-
     if University.unavailable(@university)
       render partial: "records/unavailable", locals: {
         schedule_url: University.schedule_url_for(@university)
@@ -50,41 +36,41 @@ class TeachersController < ApplicationController
       return
     end
 
-    @lessons = Lesson.fetch(@university, @teacher.id, pair_date)
+    @date = date_from(params)
+    @next_day_url = url_for(@date + 1.day)
+    @previous_day_url = url_for(@date - 1.day)
+
+    lessons = Lesson.fetch(@university, @teacher.id, @date)
 
     begin
-      if @lessons.blank? || @teacher.need_to_update_records
-        @teacher.import_records(pair_date)
+      if lessons.blank? || @teacher.need_to_update_records
+        @teacher.import_records(@date)
       end
     rescue StandardError => e
       ahoy.track "Records Error", message: e.message,
       university: @university.short_name,
       type: 'teacher',
       name: @teacher.name,
-      pair_date: pair_date
+      date: @date
     end
 
     # Select one more time
-    @lessons = Lesson.fetch(@university, @teacher.id, pair_date)
+    lessons = Lesson.fetch(@university, @teacher.id, @date)
 
-    if @lessons.blank?
+    if lessons.blank?
 
       # Try to find for the next days
-      next_lessons = Lesson.where(university: @university)
-      .where(teacher_id: @teacher.id)
-      .where("pair_start_date >= :date", date: pair_date.tomorrow.beginning_of_day)
-      .order(:pair_start_date)
-      .order(:pair_name)
-      .limit(1)
+      next_date = Lesson.next_date_for_teacher(@teacher, @date)
+      next_date_url = next_date ? url_for(next_date) : nil
 
-      render partial: "records/empty", locals: {
-        next_lessons: next_lessons
+      render partial: 'records/empty', locals: {
+        next_date: next_date,
+        next_date_url: next_date_url
       }
+
     else
       render partial: "records/show", locals: {
-        lessons: @lessons,
-        university: @university,
-        pair_date: pair_date,
+        lessons: lessons,
         show_classroom: true,
         show_groups: true,
         show_teacher: false
@@ -94,11 +80,24 @@ class TeachersController < ApplicationController
 
   # GET /universities/:university_url/teachers/:friendly_id/info
   def info
+  end
+
+  private
+
+  def set_university
     @university = University.find_by!(url: params[:university_url])
-    @teacher = @university.teachers
-    .where(is_hidden: false)
-    .friendly
-    .find(params[:id])
+  end
+
+  def set_teacher
+    @teacher = @university.teachers.where(is_hidden: false).friendly.find(params[:id])
+  end
+
+  def set_teacher_by_id
+    @teacher = Teacher.find_by!(university_id: @university.id, id: params[:id])
+  end
+
+  def url_for(date)
+    university_teacher_url(@university.url, @teacher.friendly_id, :date => date.strftime('%Y-%m-%d'))
   end
 
 end
