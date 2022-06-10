@@ -3,7 +3,9 @@
   <div class="card-header">
     <div class="row g-0">
       <div class="col-md-2 text-center">
-        <%= render "universities/university_picture", university: university %>
+        <%= link_to university_url(url: university.url) do %>
+        <%= image_tag(university.picture_dark, size: "64x64", class: "align-self-center mx-2 my-2") %>
+        <% end %>
       </div>
       <div class="col-md-10">
         <div class="card-body">
