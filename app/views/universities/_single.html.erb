@@ -2,12 +2,12 @@
 
   <div class="card-header">
     <div class="row g-0">
-      <div class="col-md-2 text-center">
+      <div class="col-md-auto">
         <%= link_to university_url(url: university.url) do %>
         <%= image_tag(university.picture_dark, size: "64x64", class: "align-self-center mx-2 my-2") %>
         <% end %>
       </div>
-      <div class="col-md-10">
+      <div class="col">
         <div class="card-body">
           <h1 class="card-title"><%= university.short_name %><% if university.is_beta %><span class="text-warning"> (бета-версія)</span><% end %></h1>
           <h6 class="card-subtitle mb-2 font-weight-light text-muted"><%= university.full_name %></h6>
