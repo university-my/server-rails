@@ -36,6 +36,7 @@ class GroupsController < ApplicationController
     @date = date_from(params)
     @next_day_url = url_for(@date + 1.day)
     @previous_day_url = url_for(@date - 1.day)
+    @form_url = university_group_url(@university.url, @group.friendly_id)
 
     lessons = Lesson.fetch_for_group(@group, @date)
 

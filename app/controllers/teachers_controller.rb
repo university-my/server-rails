@@ -39,6 +39,7 @@ class TeachersController < ApplicationController
     @date = date_from(params)
     @next_day_url = url_for(@date + 1.day)
     @previous_day_url = url_for(@date - 1.day)
+    @form_url = university_teacher_url(@university.url, @teacher.friendly_id)
 
     lessons = Lesson.fetch(@university, @teacher.id, @date)
 

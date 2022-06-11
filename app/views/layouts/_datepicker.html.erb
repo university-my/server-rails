@@ -17,12 +17,12 @@
 </div>
 
 <div class="row collapse" id="collapseCalendar">
-	<div class="col-auto mb-4">
-		<form action="" method="get">
-			<div class="input-group" id="inputDate">
-				<input type="date" id="start" name="date" value="<%= @date %>" min="<%= LessonsHelper.min_date %>" max="<%= LessonsHelper.max_date %>" class="form-control">
-				<input type="submit" class="btn btn-primary" value="Дивитися">
-			</div>
-		</form>
+	<div class="col-auto mb-4", data-turbo="false">
+		<%= form_with url: @form_url, method: :get do |form| %>
+		<div class="input-group">
+			<%= form.date_field :date, value: @date, min: LessonsHelper.min_date, max: LessonsHelper.max_date, class: "form-control" %>
+			<%= form.submit "Дивитися", name: nil, class: "btn btn-primary" %>
+		</div>
+		<% end %>
 	</div>
 </div>

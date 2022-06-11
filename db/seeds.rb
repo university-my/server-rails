@@ -362,6 +362,10 @@ khnue.description = "Інформація про аудиторії, викла�
 khnue.show_info = true
 khnue.save
 
+nau = University.nau
+nau.is_hidden = true
+nau.save
+
 pnu = University.pnu
 pnu.picture_white = "PNU_white.svg"
 pnu.picture_dark = "PNU_Black.svg"

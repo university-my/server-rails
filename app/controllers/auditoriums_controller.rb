@@ -36,6 +36,7 @@ class AuditoriumsController < ApplicationController
     @date = date_from(params)
     @next_day_url = url_for(@date + 1.day)
     @previous_day_url = url_for(@date - 1.day)
+    @form_url = university_auditorium_url(@university.url, @auditorium.friendly_id)
 
     lessons = Lesson.fetch_for_auditorium(@auditorium, @date)
 
