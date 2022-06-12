@@ -23,6 +23,8 @@ module KpiService
         auditorium.university = university
         auditorium.building = nil
 
+        UniversitiesHelper.generate_uuid(auditorium)
+
         unless auditorium.save
           # Go to the next iteration if auditorium can't be saved
           Rails.logger.error(record.errors.full_messages)
@@ -319,12 +321,6 @@ module KpiService
     end
 
   end
-
-  # Iterate all to generate UUID (if empty)
-  University.kpi.groups.all? { |object|
-    UniversitiesHelper.generate_uuid(object)
-    object.save
-  }
 end
 
   # Make request to API for get total count of all groups
@@ -345,10 +341,6 @@ end
   def self.get_groups(offset)
     # Perform network request and parse JSON
     url = "https://api.rozklad.org.ua/v2/groups/?filter={%27limit%27:100,%27offset%27:#{offset}}"
-
-    p '###'
-    p url
-    p '###'
 
     json = ApplicationRecord.perform_request(url)
     json
@@ -386,6 +378,8 @@ end
         group.server_id = server_id
         group.name = group_name
         group.university = university
+
+        UniversitiesHelper.generate_uuid(group)
 
         unless group.save
           # Go to the next iteration if can't be saved
@@ -453,12 +447,6 @@ end
 
       offset += 100
     end
-
-    # Iterate all to generate UUID (if empty)
-    University.kpi.teachers.all? { |object|
-      UniversitiesHelper.generate_uuid(object)
-      object.save
-    }
   end
 
   # Make request to API for get total count of all teachers
@@ -512,6 +500,8 @@ end
         teacher.server_id = server_id
         teacher.name = teacher_name
         teacher.university = university
+
+        UniversitiesHelper.generate_uuid(teacher)
 
         unless teacher.save
           # Go to the next iteration if can't be saved
