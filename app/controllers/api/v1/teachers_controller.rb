@@ -1,17 +1,16 @@
 class Api::V1::TeachersController < ApplicationController
 
+  before_action :set_university
+  before_action :set_teacher_by_id, only: [:records]
+
   # GET /api/v1/universities/:university_url/teachers
   def index
-    university = University.find_by!(url: params[:university_url])
-    @teachers = university.teachers.where(is_hidden: false)
+    @teachers = @university.teachers.where(is_hidden: false)
   end
 
   # GET /api/v1/universities/:university_url/teachers/:id/records
   def records
-    university = University.find_by!(url: params[:university_url])
-    @teacher = Teacher.find_by!(university: university, id: params[:id])
-
-    if University.unavailable(university)
+    if University.unavailable(@university)
       render status: 500, json: {
         error: "Failed to parse a schedule",
         code: "1001"
@@ -19,19 +18,19 @@ class Api::V1::TeachersController < ApplicationController
       return
     end
 
-    pair_date = pair_date_from(params)
-
-    @records = fetch_lessons(university, @teacher, pair_date)
+    @date = date_from(params)
+    @records = Lesson.fetch_for_teacher(@teacher, @date)
 
     begin
       if @records.blank? || @teacher.need_to_update_records
-        @teacher.import_records(pair_date)
+        @teacher.import_records(@date)
       end
     rescue PolitekService::DataNotFoundError => e
       ahoy.track "Failed to parse a schedule",
-      university: university.short_name,
+      university: @university.short_name,
       type: 'teacher',
-      name: @teacher.name
+      name: @teacher.name,
+      date: @date
       
       render status: 500, json: {
         error: "Failed to parse a schedule",
@@ -40,21 +39,24 @@ class Api::V1::TeachersController < ApplicationController
       return
     rescue StandardError => e
       ahoy.track "API Records Error", message: e.message,
-      university: university.short_name,
+      university: @university.short_name,
       type: 'teacher',
-      name: @teacher.name
+      name: @teacher.name,
+      date: @date
     end
 
     # Select one more time
-    @records = fetch_lessons(university, @teacher, pair_date)
+    @records = Lesson.fetch_for_teacher(@teacher, @date)
   end
 
-  def fetch_lessons(university, teacher, pair_date)
-    Lesson.where(university: university)
-    .where(teacher_id: @teacher.id)
-    .where(pair_start_date: pair_date.all_day)
-    .order(:pair_start_date)
-    .order(:pair_name)
+  private
+
+  def set_university
+    @university = University.find_by!(url: params[:university_url])
+  end
+
+  def set_teacher_by_id
+    @teacher = Teacher.find_by!(university: university, id: params[:id])
   end
 
 end

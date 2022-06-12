@@ -7,9 +7,9 @@ class Lesson < ApplicationRecord
   belongs_to :university, optional: true
   belongs_to :discipline, optional: true
 
-  def self.fetch(university, teacher_id, date)
-    Lesson.where(university: university)
-    .where(teacher_id: teacher_id)
+  def self.fetch_for_teacher(teacher, date)
+    Lesson.where(university: teacher.university)
+    .where(teacher: teacher)
     .where(pair_start_date: date.all_day)
     .order(:pair_start_date)
     .order(:pair_name)

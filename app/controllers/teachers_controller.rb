@@ -41,7 +41,7 @@ class TeachersController < ApplicationController
     @previous_day_url = url_for(@date - 1.day)
     @form_url = university_teacher_url(@university.url, @teacher.friendly_id)
 
-    lessons = Lesson.fetch(@university, @teacher.id, @date)
+    lessons = Lesson.fetch_for_teacher(@teacher, @date)
 
     begin
       if lessons.blank? || @teacher.need_to_update_records
@@ -56,7 +56,7 @@ class TeachersController < ApplicationController
     end
 
     # Select one more time
-    lessons = Lesson.fetch(@university, @teacher.id, @date)
+    lessons = Lesson.fetch_for_teacher(@teacher, @date)
 
     if lessons.blank?
 
