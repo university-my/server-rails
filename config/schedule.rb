@@ -23,10 +23,6 @@ every 1.day, at: '1:00 am' do
   runner 'SumduJob.perform_now'
 end
 
-every 1.day, at: '1:01 am' do
-  runner 'KpiJob.perform_now'
-end
-
 every 1.day, at: '1:02 am' do
   runner 'KhnueJob.perform_now'
 end
@@ -137,6 +133,10 @@ end
 
 every 1.day, at: '1:27 am' do
   runner 'ItstepJob.perform_now'
+end
+
+every 1.day, at: '2:00 am' do
+  runner 'KpiJob.perform_now'
 end
 
 # Sitemap refresh

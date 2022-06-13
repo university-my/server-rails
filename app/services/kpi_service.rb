@@ -300,22 +300,21 @@ module KpiService
 
     offset = 0
 
-    timeout_in_seconds = 10
-
     while offset < groups_total_count
 
+      sleep(5) # Wait 5 seconds
+
       begin
-        Timeout.timeout(timeout_in_seconds) do
+        Timeout.timeout(10) do
 
-         # Get json with groups from API
          json = KpiService.get_groups(offset)
+         next if json.nil?
 
-        # Save to database
-        KpiService.save_groups_from(json)
+         KpiService.save_groups_from(json)
 
-        offset += 100
+         offset += 100
 
-      end
+       end
     rescue Timeout::Error
       next
     end
@@ -339,18 +338,21 @@ end
 
   # Make request with offset parameter and parse JSON
   def self.get_groups(offset)
-    # Perform network request and parse JSON
     url = "https://api.rozklad.org.ua/v2/groups/?filter={%27limit%27:100,%27offset%27:#{offset}}"
 
-    json = ApplicationRecord.perform_request(url)
-    json
+    begin
+      json = ApplicationRecord.perform_request(url)
+      return json
+      
+    rescue StandardError => e
+    end
   end
 
   # Serialize groups from JSON and save to database
   def self.save_groups_from(json)
     data = json['data']
+    return if data.nil?
 
-    # This groups for SumDU
     university = University.kpi
 
     data.each do |object|
@@ -439,13 +441,24 @@ end
     offset = 0
 
     while offset < teachers_total_count
-      # Get json with teachers from API
-      json = KpiService.get_teachers(offset)
 
-      # Save to database
-      KpiService.save_teachers_from(json)
+      sleep(5) # Wait 5 seconds
 
-      offset += 100
+      begin
+        Timeout.timeout(10) do
+
+          json = KpiService.get_teachers(offset)
+          next if json.nil?
+
+          KpiService.save_teachers_from(json)
+
+          offset += 100
+        end
+        
+      rescue Timeout::Error
+        next
+      end
+      
     end
   end
 
@@ -465,18 +478,21 @@ end
 
   # Make request with offset parameter and parse JSON
   def self.get_teachers(offset)
-    # Perform network request and parse JSON
     url = "https://api.rozklad.org.ua/v2/teachers/?filter={%27limit%27:100,%27offset%27:#{offset}}"
-    json = ApplicationRecord.perform_request(url)
 
-    json
+    begin
+      json = ApplicationRecord.perform_request(url)
+      return json
+      
+    rescue StandardError => e
+    end
   end
 
   # Serialize teachers from JSON and save to database
   def self.save_teachers_from(json)
     data = json['data']
+    return if data.nil?
 
-    # This groups for SumDU
     university = University.kpi
 
     data.each do |object|
