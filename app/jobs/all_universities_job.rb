@@ -46,8 +46,8 @@ class AllUniversitiesJob < ApplicationJob
     UgiService.import_groups
     UgiService.import_teachers
 
-    KneuService.import_groups
-    KneuService.import_teachers
+    # KneuService.import_groups
+    # KneuService.import_teachers
 
     ZhimService.import_groups
     ZhimService.import_teachers

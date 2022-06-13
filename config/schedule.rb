@@ -75,9 +75,9 @@ every 1.day, at: '1:13 am' do
   runner 'UgiJob.perform_now'
 end
 
-every 1.day, at: '1:14 am' do
-  runner 'KneuJob.perform_now'
-end
+# every 1.day, at: '1:14 am' do
+#   runner 'KneuJob.perform_now'
+# end
 
 every 1.day, at: '1:15 am' do
   runner 'ZhimJob.perform_now'
