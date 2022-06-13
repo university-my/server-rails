@@ -56,7 +56,7 @@ class Api::V1::TeachersController < ApplicationController
   end
 
   def set_teacher_by_id
-    @teacher = Teacher.find_by!(university: university, id: params[:id])
+    @teacher = Teacher.find_by!(university: @university, id: params[:id])
   end
 
 end
