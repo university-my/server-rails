@@ -18,7 +18,7 @@ class Api::V1::TeachersController < ApplicationController
       return
     end
 
-    @date = date_from(params)
+    @date = pair_date_from(params)
     @records = Lesson.fetch_for_teacher(@teacher, @date)
 
     begin

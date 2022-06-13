@@ -5,10 +5,19 @@ module LessonsHelper
     params[:date] || Date.today.strftime('%F')
   end
 
-  # Get pair date from params or use today date
+  # Get date from params or use today date
   def date_from(params)
     if params.key?(:date)
       params[:date].to_date
+    else
+      Date.today
+    end
+  end
+
+  # Get pair date from params or use today date
+  def pair_date_from(params)
+    if params.key?(:pair_date)
+      params[:pair_date].to_date
     else
       Date.today
     end
