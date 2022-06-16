@@ -1,74 +1,87 @@
-<%= render "layouts/tooltip" %>
-<div class="mx-auto col-md-8">
+<%= turbo_frame_tag "records_turbo_frame" do %>
 
-	<% for lesson in @lessons %>
-	<div class="row">
-		<div class="col mb-4 mr-0 ml-0">
-			<div class="card">
-				<div class="card-header">
-					<span data-toggle="tooltip" title="<%= l lesson.pair_start_date, format: "%A, %e %b %Y" %>"><%= lesson.pair_name %> (<%= lesson.time %>)</span>
-				</div>
+    <div class="mx-auto col-md-8 mt-2">
+        <div class="mb-2">
+            <h4><span class="font-weight-bold"><%= l @date, format: "%A, %e %b %Y" %></span></h4>
+            <% if @university.url == 'kpi' %>
+            <span>Тиждень <%= KpiService.week_for_selected_date(@date) %></span>
+            <% end %>
+        </div>
 
-				<% if lesson.discipline.present? || lesson.kind.present? %>
-				<div class="card-body">
-					<% if lesson.discipline.present? %>
-					<%= link_to university_discipline_url(university.url, lesson.discipline.friendly_id), class: "text-decoration-none", rel: 'nofollow' do %>
-					<h5><%= lesson.discipline.visible_name %></h5>
-					<% end %>
-					<% end %>
+        <%= render "layouts/datepicker" %>
+    </div>
+    
+    <div class="mx-auto col-md-8">
 
-					<% if lesson.kind.present? %>
-					<h6 class="card-subtitle Text-light font-weight-light">
-						<span data-toggle="tooltip" title="Тип пари"><%= lesson.kind %></span>
-					</h6>
-					<% end %>
-				</div>
-				<% end %>
+        <% for lesson in lessons %>
+        <div class="row">
+            <div class="col mb-4 mr-0 ml-0">
+                <div class="card">
+                    <div class="card-header">
+                        <span data-toggle="tooltip" title="<%= l lesson.pair_start_date, format: "%A, %e %b %Y" %>"><%= lesson.pair_name %> (<%= lesson.time %>)</span>
+                    </div>
 
-				<ul class="list-group list-group-flush">
-					<% if lesson.reason.present? %>
-					<li class="list-group-item">
-						<span class="align-text-bottom"><i class="far fa-comment-alt align-middle"></i></span><span class="mx-2"><%= lesson.reason.gsub(';', '<hr>').html_safe %></span>
-					</li>
-					<% end %>
+                    <% if lesson.discipline.present? || lesson.kind.present? %>
+                    <div class="card-body">
+                        <% if lesson.discipline.present? %>
+                        <%= link_to university_discipline_url(@university.url, lesson.discipline.friendly_id), class: "text-decoration-none", data: { turbo_frame: "_top" }, rel: 'nofollow' do %>
+                        <h5><%= lesson.discipline.visible_name %></h5>
+                        <% end %>
+                        <% end %>
 
-					<% if show_classroom && lesson.auditorium %>
-					<li class="list-group-item">
-						<span class="align-text-bottom" data-toggle="tooltip" title="Аудиторія"><i class="fas fa-door-open align-middle"></i></span>
-						<%= link_to university_auditorium_url(university.url, lesson.auditorium.friendly_id, pair_date: pair_date), class: "text-decoration-none", rel: 'nofollow' do %>
-						<span class="ml-2"><%= lesson.auditorium.name %></span>
-						<% end %>
-					</li>
-					<% end %>
+                        <% if lesson.kind.present? %>
+                        <h6 class="card-subtitle Text-light font-weight-light">
+                            <span data-toggle="tooltip" title="Тип пари"><%= lesson.kind %></span>
+                        </h6>
+                        <% end %>
+                    </div>
+                    <% end %>
 
-					<% if show_teacher && lesson.teacher %>
-					<li class="list-group-item">
-						<span class="align-text-bottom" data-toggle="tooltip" title="Викладач"><i class="fas fa-briefcase align-middle"></i></span>
-						<%= link_to university_teacher_url(university.url, lesson.teacher.friendly_id, pair_date: pair_date), class: "text-decoration-none", rel: 'nofollow' do %>
-						<span class="ml-2"><%= lesson.teacher.name %></span>
-						<% end %>
-					</li>
-					<% end %>
+                    <ul class="list-group list-group-flush">
+                        <% if lesson.reason.present? %>
+                        <li class="list-group-item">
+                            <span class="align-text-bottom"><i class="bi bi-chat-left-text"></i></span><span class="mx-2"><%= lesson.reason.gsub(';', '<hr>').html_safe %></span>
+                        </li>
+                        <% end %>
 
-					<% if show_groups && lesson.groups && lesson.groups.count > 0 %>
+                        <% if show_classroom && lesson.auditorium %>
+                        <li class="list-group-item">
+                            <span class="align-text-bottom"><i class="bi bi-door-closed align-middle"></i></span>
+                            <%= link_to university_auditorium_url(@university.url, lesson.auditorium.friendly_id, date: @date), data: { turbo_frame: "_top" }, class: "text-decoration-none", rel: 'nofollow' do %>
+                            <span class="ml-2"><%= lesson.auditorium.name %></span>
+                            <% end %>
+                        </li>
+                        <% end %>
 
-					<li class="list-group-item">
-						<span class="align-text-bottom mr-2" data-toggle="tooltip" title="Група"><i class="fas fa-users align-middle"></i></span>
-						<% for i in 1..lesson.groups.count do %>
-						<%= link_to university_group_url(university.url, lesson.groups[i-1].friendly_id, pair_date: pair_date), class: "text-decoration-none", rel: 'nofollow' do %>
-						<%= lesson.groups[i-1].name %>
-						<% end %>
-						<% if i != lesson.groups.count %>
-						<%= ',' %>
-						<% end %>
-						<% end %>
-					</li>
+                        <% if show_teacher && lesson.teacher %>
+                        <li class="list-group-item">
+                            <span class="align-text-bottom"><i class="bi bi-briefcase align-middle"></i></span>
+                            <%= link_to university_teacher_url(@university.url, lesson.teacher.friendly_id, date: @date), data: { turbo_frame: "_top" }, class: "text-decoration-none", rel: 'nofollow' do %>
+                            <span class="ml-2"><%= lesson.teacher.name %></span>
+                            <% end %>
+                        </li>
+                        <% end %>
 
-					<% end %>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<% end %>
+                        <% if show_groups && lesson.groups && lesson.groups.count > 0 %>
 
-</div>
+                        <li class="list-group-item">
+                            <span class="align-text-bottom mr-2"><i class="bi bi-people align-middle"></i></span>
+                            <% for i in 1..lesson.groups.count do %>
+                            <%= link_to university_group_url(@university.url, lesson.groups[i-1].friendly_id, date: @date), data: { turbo_frame: "_top" }, class: "text-decoration-none", rel: 'nofollow' do %>
+                            <%= lesson.groups[i-1].name %>
+                            <% end %>
+                            <% if i != lesson.groups.count %>
+                            <%= ',' %>
+                            <% end %>
+                            <% end %>
+                        </li>
+
+                        <% end %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <% end %>
+
+    </div>
+<% end %>

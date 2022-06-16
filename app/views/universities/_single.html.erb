@@ -2,13 +2,18 @@
 
   <div class="card-header">
     <div class="row g-0">
-      <div class="col-md-2 text-center">
-        <%= render "universities/university_picture", university: university %>
+      <% if !university.picture_dark.empty? %>
+      <div class="col-md-auto">
+        <%= link_to university_url(url: university.url) do %>
+        <%= image_tag(university.picture_dark, size: "64x64", class: "align-self-center mx-2 my-2") %>
+        <% end %>
       </div>
-      <div class="col-md-10">
+      <% end %>
+      <div class="col">
         <div class="card-body">
-          <h1 class="card-title"><%= university.short_name %><% if university.is_beta %><span class="text-warning"> (бета-версія)</span><% end %></h1>
+          <h1 class="card-title"><%= university.short_name %></h1>
           <h6 class="card-subtitle mb-2 font-weight-light text-muted"><%= university.full_name %></h6>
+          <% if university.is_beta %><p><span class="text-warning"> (бета-версія)</span></p><% end %>
         </div>
       </div>
     </div>

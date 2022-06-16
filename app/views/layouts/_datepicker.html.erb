@@ -1,44 +1,28 @@
-<div class="mx-auto col-md-8 mt-4">
-	<div class="mb-4">
-		<h4><span class="font-weight-bold"><%= l @date, format: "%A, %e %b %Y" %></span></h4>
-		<% if @university.url == 'kpi' %>
-		<span>Тиждень <%= KpiService.week_for_selected_date(@date) %></span>
+<div class="row row-cols-lg-auto g-3 align-items-center my-3">
+	<div class="col-auto">
+		<%= link_to @previous_day_url, data: { turbo_frame: "_top" }, class: "btn btn-primary", style: "color: white;" do %>
+		<i class="bi bi-arrow-left"></i>
 		<% end %>
 	</div>
 
-	<div class="container mb-3">
+	<div class="col-auto">
+		<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCalendar" aria-expanded="false" aria-controls="collapseCalendar"><i class="bi bi-calendar-event"></i></button>
+	</div>
 
-		<div class="row row-cols-lg-auto g-3 align-items-center my-3">
-			<div class="col-auto">
-				<form action="" method="get" id="previous_date">
-					<input type="date" id="start" name="pair_date"
-					value="<%= @previous_date %>" hidden>
-					<a onclick="$('#previous_date').submit();" class="btn btn-primary" style="color: white;"><i class="fas fa-chevron-left"></i></a>
-				</form>
-			</div>
+	<div class="col-auto">
+		<%= link_to @next_day_url, data: { turbo_frame: "_top" }, class: "btn btn-primary", style: "color: white;" do %>
+		<i class="bi bi-arrow-right"></i>
+		<% end %>
+	</div>	
+</div>
 
-			<div class="col-auto">
-				<button class="btn btn-primary far fa-calendar-alt" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCalendar" aria-expanded="false" aria-controls="collapseCalendar"></button>
-			</div>
-			
-			<div class="col-auto">
-				<form action="" method="get" id="next_date">
-					<input type="date" id="start" name="pair_date"
-					value="<%= @next_date %>" hidden>
-					<a onclick="$('#next_date').submit();" class="btn btn-primary" style="color: white;"><i class="fas fa-chevron-right"></i></a>
-				</form>
-			</div>
+<div class="row collapse" id="collapseCalendar">
+	<div class="col-auto mb-4", data-turbo="false">
+		<%= form_with url: @form_url, method: :get do |form| %>
+		<div class="input-group">
+			<%= form.date_field :date, value: @date, min: LessonsHelper.min_date, max: LessonsHelper.max_date, class: "form-control" %>
+			<%= form.submit "Дивитися", name: nil, class: "btn btn-primary" %>
 		</div>
-
-		<div class="row collapse" id="collapseCalendar">
-			<div class="col-auto">
-				<form action="" method="get">
-					<div class="input-group" id="inputDate">
-						<input type="date" id="start" name="pair_date" value="<%= @pair_date %>" min="<%= LessonsHelper.min_date %>" max="<%= LessonsHelper.max_date %>" class="form-control">
-						<input type="submit" class="btn btn-primary" value="Дивитися">
-					</div>
-				</form>
-			</div>
-		</div>
+		<% end %>
 	</div>
 </div>

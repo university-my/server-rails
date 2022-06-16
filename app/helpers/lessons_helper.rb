@@ -1,8 +1,17 @@
 module LessonsHelper
 
   # Get pair date from params or use today date
-  def pair_date_string_from(params)
-    params[:pair_date] || Date.today.strftime('%F')
+  def date_string_from(params)
+    params[:date] || Date.today.strftime('%F')
+  end
+
+  # Get date from params or use today date
+  def date_from(params)
+    if params.key?(:date)
+      params[:date].to_date
+    else
+      Date.today
+    end
   end
 
   # Get pair date from params or use today date
@@ -14,36 +23,30 @@ module LessonsHelper
     end
   end
 
-  # Localized string from date
-  def localized_string_from(date)
-    l(date, format: '%A, %e %B')
-  end
-
-  def self.fetch(university, group, pair_date)
-    Lesson.joins(:groups)
-    .where(university: university)
-    .where('groups.id': group.id)
-    .where(pair_start_date: pair_date.all_day)
-    .order(:pair_start_date)
-    .order(:pair_name)
-  end
-
-  def self.next(university, group, pair_date)
-    Lesson.joins(:groups)
-    .where(university: university)
-    .where('groups.id': group.id)
-    .where("pair_start_date >= :date", date: pair_date.tomorrow.beginning_of_day)
-    .order(:pair_start_date)
-    .order(:pair_name)
-    .limit(1)
-  end
-
   def self.min_date
     (DateTime.now - 1.year).strftime('%Y-%m-%d')
   end
 
   def self.max_date
     (DateTime.now + 1.year).strftime('%Y-%m-%d')
+  end
+
+  def self.random_image
+    images = [
+      "4 Multitasking.png",
+      "6 Working at desk.png",
+      "1 Working remotely.png",
+      "7 Social Media.png",
+      "8 Work and life balance.png",
+      "dobrogo_vechora.png",
+      "ua.png",
+      "save.png"
+    ]
+    images.sample
+  end
+
+  def self.is_sticker(image)
+    ["dobrogo_vechora.png", "ua.png", "save.png"].include? image
   end
 
 end

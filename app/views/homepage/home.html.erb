@@ -2,7 +2,6 @@
 <% meta_tag :keywords, "Розклад,університети,пари,заняття,викладачі,студенти,аудиторії" %>
 <% @title = "Мій Університет - Зручний розклад" %>
 
-<%= render "layouts/tooltip" %>
 <%= render "layouts/header" %>
 
 <div class="container">
@@ -14,7 +13,9 @@
           <% university_group.each do |university| %>
           <div class="col">
             <div class="p-2">
-              <a href="<%= university_url(url: university.url)%>"><img src="<%= root_url %><%= university.picture_dark %>" height="64" width="64" alt="Логотип університету <%= university.short_name %>" data-toggle="tooltip" data-placement="top" title="<%= university.full_name %>"></a>
+              <%= link_to university_url(url: university.url) do %>
+              <%= image_tag(university.picture_dark, size: "64x64") %>
+              <% end %>
             </div>
           </div>
           <% end %>

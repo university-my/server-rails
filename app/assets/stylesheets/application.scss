@@ -14,19 +14,8 @@
 *= require_self
 */
 
-@import "font-awesome";
-
-/*Custom bootstrap variables must be set or imported *before* bootstrap.*/
-@import "bootstrap";
-
 html, body {
   min-width: 320px;
-}
-
-@media (max-width: 990px) {
-  .universities-cards .card-deck {
-    flex-flow: column wrap;
-  }
 }
 
 /*

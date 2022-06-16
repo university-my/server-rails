@@ -2,24 +2,23 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_14_101519) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_05_27_180206) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "role", default: "reader", null: false
     t.integer "university_id"
     t.index ["email"], name: "index_admin_users_on_email", unique: true
@@ -31,7 +30,7 @@ ActiveRecord::Schema.define(version: 2022_05_14_101519) do
     t.bigint "user_id"
     t.string "name"
     t.jsonb "properties"
-    t.datetime "time"
+    t.datetime "time", precision: nil
     t.index ["name", "time"], name: "index_ahoy_events_on_name_and_time"
     t.index ["properties"], name: "index_ahoy_events_on_properties", opclass: :jsonb_path_ops, using: :gin
     t.index ["user_id"], name: "index_ahoy_events_on_user_id"
@@ -63,7 +62,7 @@ ActiveRecord::Schema.define(version: 2022_05_14_101519) do
     t.string "app_version"
     t.string "os_version"
     t.string "platform"
-    t.datetime "started_at"
+    t.datetime "started_at", precision: nil
     t.index ["user_id"], name: "index_ahoy_visits_on_user_id"
     t.index ["visit_token"], name: "index_ahoy_visits_on_visit_token", unique: true
   end
@@ -72,8 +71,8 @@ ActiveRecord::Schema.define(version: 2022_05_14_101519) do
     t.string "name"
     t.integer "server_id"
     t.bigint "university_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "slug"
     t.string "slug_en"
     t.string "slug_uk"
@@ -101,7 +100,7 @@ ActiveRecord::Schema.define(version: 2022_05_14_101519) do
     t.bigint "query_id"
     t.text "statement"
     t.string "data_source"
-    t.datetime "created_at"
+    t.datetime "created_at", precision: nil
     t.index ["query_id"], name: "index_blazer_audits_on_query_id"
     t.index ["user_id"], name: "index_blazer_audits_on_user_id"
   end
@@ -115,9 +114,9 @@ ActiveRecord::Schema.define(version: 2022_05_14_101519) do
     t.text "slack_channels"
     t.string "check_type"
     t.text "message"
-    t.datetime "last_run_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "last_run_at", precision: nil
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["creator_id"], name: "index_blazer_checks_on_creator_id"
     t.index ["query_id"], name: "index_blazer_checks_on_query_id"
   end
@@ -126,8 +125,8 @@ ActiveRecord::Schema.define(version: 2022_05_14_101519) do
     t.bigint "dashboard_id"
     t.bigint "query_id"
     t.integer "position"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["dashboard_id"], name: "index_blazer_dashboard_queries_on_dashboard_id"
     t.index ["query_id"], name: "index_blazer_dashboard_queries_on_query_id"
   end
@@ -135,8 +134,8 @@ ActiveRecord::Schema.define(version: 2022_05_14_101519) do
   create_table "blazer_dashboards", force: :cascade do |t|
     t.bigint "creator_id"
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["creator_id"], name: "index_blazer_dashboards_on_creator_id"
   end
 
@@ -147,8 +146,8 @@ ActiveRecord::Schema.define(version: 2022_05_14_101519) do
     t.text "statement"
     t.string "data_source"
     t.string "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["creator_id"], name: "index_blazer_queries_on_creator_id"
   end
 
@@ -156,8 +155,8 @@ ActiveRecord::Schema.define(version: 2022_05_14_101519) do
     t.string "name"
     t.string "description"
     t.bigint "university_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "server_id"
     t.string "slug"
     t.string "slug_en"
@@ -173,8 +172,8 @@ ActiveRecord::Schema.define(version: 2022_05_14_101519) do
     t.string "description"
     t.integer "server_id"
     t.bigint "university_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "slug"
     t.string "slug_en"
     t.string "slug_uk"
@@ -187,8 +186,8 @@ ActiveRecord::Schema.define(version: 2022_05_14_101519) do
   create_table "discipline_name_suggestions", force: :cascade do |t|
     t.string "name"
     t.bigint "discipline_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["discipline_id"], name: "index_discipline_name_suggestions_on_discipline_id"
   end
 
@@ -224,8 +223,8 @@ ActiveRecord::Schema.define(version: 2022_05_14_101519) do
     t.string "name"
     t.integer "server_id"
     t.bigint "university_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "slug"
     t.string "slug_en"
     t.string "slug_uk"
@@ -240,7 +239,7 @@ ActiveRecord::Schema.define(version: 2022_05_14_101519) do
     t.integer "sluggable_id", null: false
     t.string "sluggable_type", limit: 50
     t.string "scope"
-    t.datetime "created_at"
+    t.datetime "created_at", precision: nil
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
@@ -250,8 +249,8 @@ ActiveRecord::Schema.define(version: 2022_05_14_101519) do
     t.string "name"
     t.integer "server_id"
     t.bigint "university_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "slug"
     t.string "slug_en"
     t.string "slug_uk"
@@ -279,7 +278,7 @@ ActiveRecord::Schema.define(version: 2022_05_14_101519) do
   end
 
   create_table "lessons", force: :cascade do |t|
-    t.datetime "pair_start_date"
+    t.datetime "pair_start_date", precision: nil
     t.string "name"
     t.string "pair_name"
     t.string "reason"
@@ -288,8 +287,8 @@ ActiveRecord::Schema.define(version: 2022_05_14_101519) do
     t.bigint "auditorium_id"
     t.bigint "teacher_id"
     t.bigint "discipline_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.bigint "university_id"
     t.index ["auditorium_id"], name: "index_lessons_on_auditorium_id"
     t.index ["discipline_id"], name: "index_lessons_on_discipline_id"
@@ -301,8 +300,8 @@ ActiveRecord::Schema.define(version: 2022_05_14_101519) do
     t.string "name"
     t.integer "server_id"
     t.bigint "university_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "slug"
     t.string "slug_en"
     t.string "slug_uk"
@@ -316,8 +315,8 @@ ActiveRecord::Schema.define(version: 2022_05_14_101519) do
     t.string "name"
     t.integer "server_id"
     t.bigint "university_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "slug"
     t.string "slug_en"
     t.string "slug_uk"
@@ -337,8 +336,8 @@ ActiveRecord::Schema.define(version: 2022_05_14_101519) do
     t.string "short_name"
     t.string "full_name"
     t.string "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "is_hidden", default: false
     t.boolean "is_beta", default: false
     t.string "website", default: ""
@@ -357,10 +356,10 @@ ActiveRecord::Schema.define(version: 2022_05_14_101519) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "reset_password_sent_at", precision: nil
+    t.datetime "remember_created_at", precision: nil
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
