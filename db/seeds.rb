@@ -334,8 +334,6 @@ if University.itstep.nil?
 end
 
 University.configure_university(University.sumdu, {
-  picture_white: "sumdu-white.svg",
-  picture_dark: "sumdu.svg",
   show_classrooms: true,
   show_disciplines: true,
   description: "Інформація про аудиторії, викладачів та групи із сайту schedule.sumdu.edu.ua",
@@ -343,15 +341,11 @@ University.configure_university(University.sumdu, {
 })
 
 University.configure_university(University.kpi, {
-  picture_white: "kpi-white.svg",
-  picture_dark: "kpi.svg",
   description: "Інформація про викладачів та групи із сайту rozklad.org.ua",
   show_info: true
 })
 
 University.configure_university(University.khnue, {
-  picture_white: "khnue-white.svg",
-  picture_dark: "khnue.svg",
   description: "Інформація про аудиторії, викладачів, групи, кафедри, факультети та спеціальності із сайту hneu.edu.ua"
 })
 
@@ -417,78 +411,91 @@ University.configure_university(University.kneu, {
 
 University.configure_university(University.zu, {
   picture: false,
+  logo: false,
   is_beta: true,
   description: "Інформація про викладачів та групи із сайту dekanat.kneu.kiev.ua/cgi-bin/timetable.cgi"
 })
 
 University.configure_university(University.zhim, {
   picture: false,
+  logo: false,
   is_beta: true,
   description: "Інформація про викладачів та групи із сайту 46.219.3.27:8080/cgi-bin/timetable.cgi"
 })
 
 University.configure_university(University.kubg, {
   picture: false,
+  logo: false,
   is_beta: true,
   description: "Інформація про викладачів та групи із сайту dekanat.kubg.edu.ua/cgi-bin/timetable.cgi"
 })
 
 University.configure_university(University.kmk, {
   picture: false,
+  logo: false,
   is_beta: true,
   description: "Інформація про викладачів та групи із сайту 80.91.179.229:81/cgi-bin/timetable.cgi"
 })
 
 University.configure_university(University.vnu, {
   picture: false,
+  logo: false,
   is_beta: true,
   description: "Інформація про викладачів та групи із сайту 194.44.187.20/cgi-bin/timetable.cgi"
 })
 
 University.configure_university(University.uku, {
   picture: false,
+  logo: false,
   is_beta: true,
   description: "Інформація про викладачів та групи із сайту dekanat.ucu.edu.ua/cgi-bin/timetable.cgi"
 })
 
 University.configure_university(University.chdtu, {
   picture: false,
+  logo: false,
   is_beta: true,
   description: "Інформація про викладачів та групи із сайту 195.95.232.162:8082/cgi-bin/timetable.cgi"
 })
 
 University.configure_university(University.karazin, {
   picture: false,
+  logo: false,
   is_beta: true,
   description: "Інформація про викладачів та групи із сайту online.karazin.ua:1443/cgi-bin/timetable.cgi"
 })
 
 University.configure_university(University.kemk, {
   picture: false,
+  logo: false,
   is_beta: true,
   description: "Інформація про викладачів та групи із сайту test.kemt.kiev.ua/cgi-bin/timetable.cgi"
 })
 
 University.configure_university(University.ktgg, {
   picture: false,
+  logo: false,
   is_beta: true,
   description: "Інформація про викладачів та групи із сайту 217.76.201.218/cgi-bin/timetable.cgi"
 })
 
 University.configure_university(University.kcas, {
   picture: false,
+  logo: false,
   is_beta: true,
   description: "Інформація про викладачів та групи із сайту 94.131.204.108/cgi-bin/timetable.cgi"
 })
 
 University.configure_university(University.onma, {
   picture: false,
+  logo: false,
   is_beta: true,
   description: "Інформація про викладачів та групи із сайту 212.111.205.2/cgi-bin/timetable.cgi"
 })
 
 University.configure_university(University.kmkkovel, {
   picture: false,
+  logo: false,
   is_hidden: true,
   is_beta: true,
   description: "Інформація про викладачів та групи із сайту 93.183.214.222/cgi-bin/timetable.cgi"
@@ -496,12 +503,14 @@ University.configure_university(University.kmkkovel, {
 
 University.configure_university(University.kmkk, {
   picture: false,
+  logo: false,
   is_beta: true,
   description: "Інформація про викладачів та групи із сайту 178.150.254.27/cgi-bin/timetable.cgi"
 })
 
 University.configure_university(University.itstep, {
   picture: false,
+  logo: false,
   is_beta: true,
   description: "Інформація про викладачів та групи із сайту stud.high.itstep.org/cgi-bin/timetable.cgi"
 })
