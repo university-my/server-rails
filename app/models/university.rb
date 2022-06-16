@@ -204,4 +204,36 @@ end
     end
   end
 
+  def self.configure_university(university, options)
+
+    if options.key?(:picture) && options[:picture] == false
+      university.picture_white = ""
+      university.picture_dark = ""
+    else
+      university.picture_white = "#{university.uid}_light.svg"
+      university.picture_dark = "#{university.uid}_dark.svg"
+    end
+
+    university.show_classrooms = options.key?(:show_classrooms) ? options[:show_classrooms] : false
+    university.show_groups = options.key?(:show_groups) ? options[:show_groups] : true
+    university.show_teachers = options.key?(:show_teachers) ? options[:show_teachers] : true
+    
+    university.show_disciplines = options.key?(:show_disciplines) ? options[:show_disciplines] : false
+    university.show_info = options.key?(:show_info) ? options[:show_info] : false
+    university.is_beta = options.key?(:is_beta) ? options[:is_beta] : false
+    university.is_hidden = options.key?(:is_hidden) ? options[:is_hidden] : false
+
+    university.description = options[:description]
+
+    if options.key?(:logo) && options[:logo] == false
+      university.logo_dark = ""
+      university.logo_light = ""
+    else
+      university.logo_dark = "#{university.uid}_dark.png"
+      university.logo_light = "#{university.uid}_light.png"
+    end
+
+    university.save
+  end
+
 end

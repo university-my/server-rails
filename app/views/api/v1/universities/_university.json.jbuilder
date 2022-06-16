@@ -5,8 +5,8 @@ json.extract! university,
 :url,
 :is_hidden, 
 :is_beta,
-:picture_white,
-:picture_dark,
 :show_classrooms,
 :show_groups,
-:show_teachers
+:show_teachers,
+:logo_dark,
+:logo_light
