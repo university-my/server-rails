@@ -17,12 +17,16 @@ class ApplicationRecord < ActiveRecord::Base
     http.start
 
     request = Net::HTTP::Get.new(uri.request_uri)
-    response = http.request(request)
 
-    json = JSON.parse(response.body)
-
-    http.finish if http.started?
-    return json
+    begin
+      response = http.request(request)
+      json = JSON.parse(response.body)
+      http.finish if http.started?
+      return json
+      
+    rescue StandardError => e
+      p e.message
+    end
   end
 
 end

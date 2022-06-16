@@ -1,11 +1,4 @@
-<div data-university-url="<%= @university.url %>"></div>
-<div data-type="auditoriums"></div>
-<div data-id="<%= @auditorium.id %>"></div>
-<div data-pair-date="<%= @pair_date %>"></div>
-
-<%= javascript_include_tag 'records' %>
-
-<% meta_tag :description, @auditorium.name %>
+<% meta_tag :description, "Інформація про аудиторію - " + @auditorium.name %>
 <% @title = @auditorium.name %>
 <% no_index %>
 <%= content_for(:canonical_link, university_auditorium_url(@university.url, @auditorium)) %>
@@ -14,32 +7,21 @@
 <p id="notice"><%= notice %></p>
 
 <main class="container" role="main">
-
-	<div class="mx-auto col-md-8 mt-4">
-		<table>
-			<tbody>
-				<tr>
-					<td class="align-baseline"><h1><%= @auditorium.name %></h1></td>
-					<td class="align-top">
-						<%= link_to info_university_auditorium_url(@university.url, @auditorium), rel: 'nofollow' do %>
-						<i class="fas fa-info-circle align-middle"></i>
-						<% end %>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
 	
-	<% if !University.unavailable(@university) %>
-	<%= render "layouts/datepicker", pair_date: @pair_date %>
-	<% end %>
-
-	<div id="spinner" class="d-flex justify-content-center min-vh-100">
-		<div class="spinner-border text-primary" role="status">
-			<span class="sr-only">Loading...</span>
+	<%= render "layouts/info",
+	name: @auditorium.name,
+	url: info_university_auditorium_url(@university.url, @auditorium),
+	show_info: @university.show_info %>
+	
+	<%= turbo_frame_tag "records_turbo_frame", src: @records_url do %>
+	<div class="d-flex justify-content-center" style="height:300px;">
+		<div class="spinner-grow text-primary" role="status">
+			<span class="visually-hidden">Завантаження...</span>
 		</div>
 	</div>
-	<div id="records"></div>
+	<% end %>
+	
 	<%= render "layouts/source_site" %>
 </main>
+
 <%= render "layouts/footer" %>

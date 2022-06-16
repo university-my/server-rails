@@ -1,50 +1,51 @@
-<div class="px-3 py-3 mx-auto text-center col-md-6">
+<%= turbo_frame_tag "records_turbo_frame" do %>
 
-	<div class="row mb-4">
-		<div class="col">
-			<h5>Схоже, що на сьогодні <span class="font-weight-bold">пар немає</span></h5>
-		</div>
-	</div>
+    <div class="mx-auto col-md-8 mt-2">
+        <div class="mb-2">
+            <h4><span class="font-weight-bold"><%= l @date, format: "%A, %e %b %Y" %></span></h4>
+            <% if @university.url == 'kpi' %>
+            <span>Тиждень <%= KpiService.week_for_selected_date(@date) %></span>
+            <% end %>
+        </div>
 
-	<% if defined?(next_lessons) && next_lessons.count > 0 %>
-	<div class="row mb-4">
-		<div class="col">
-			<div class="alert alert-secondary" role="alert">
-				<p><span class="font-weight-light">Знайдено розклад на іншу дату:</span>
-					<span class="font-weight-bold"><%= l next_lessons.first.pair_start_date, format: "%A, %e %b %Y" %></span></p>
-					<div class="btn-group mr-3 mb-2" role="group">
-						<form action="" method="get">
-							<input type="hidden" id="start" name="pair_date" value="<%= next_lessons.first.pair_start_date.strftime('%Y-%m-%d') %>">
-							<input type="submit" class="btn btn-primary" value="Дивитися">
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-		<% end %>
+        <%= render "layouts/datepicker", pair_date: @date %>
+    </div>
+    
+    <div class="px-3 py-3 mx-auto text-center col-md-6">
 
-		<div class="row">
-			<div class="col">
-				<% images = [
-					"4 Multitasking.png",
-					"6 Working at desk.png",
-					"1 Working remotely.png",
-					"7 Social Media.png",
-					"8 Work and life balance.png",
-					"dobrogo_vechora.png",
-					"ua.png",
-					"save.png"
-				]
-				@randomImage = images.sample %>
-				<% if ["dobrogo_vechora.png", "ua.png", "save.png"].include? @randomImage %>
-				<%= link_to '/stickers', class: "", target: "_blank" do %>
-				<%= image_tag(@randomImage, class: "img-fluid", size: "250x250") %>
-				<% end %>
-				<% else %>
-				<%= image_tag(@randomImage, class: "img-fluid", size: "250x250") %>	
-				<% end %>
+        <div class="row mb-4">
+            <div class="col">
+                <h5>Схоже, що на цю дату <span class="font-weight-bold">пар немає</span></h5>
+            </div>
+        </div>
 
-				<p class="mt-3">Підписуйтеся на <b>Мій Університет</b> в <a target="_blank" href="https://t.me/university_my">Telegram</a></p>
-			</div>
-		</div>
-	</div>
+        <% if defined?(next_date) && next_date.present? %>
+        <div class="row mb-4">
+            <div class="col">
+                <div class="alert alert-secondary" role="alert">
+                    <p>
+                        <span class="font-weight-light">Знайдено розклад на іншу дату:</span>
+                        <span class="font-weight-bold"><%= l next_date, format: "%A, %e %b %Y" %></span>
+                    </p>
+                    <%= link_to "Дивитися", next_date_url, data: { turbo_frame: "_top" } %>
+                </div>
+            </div>
+        </div>
+        <% end %>
+
+        <div class="row">
+            <div class="col">
+                <% random_image = LessonsHelper.random_image %>
+                <% if LessonsHelper.is_sticker(random_image) %>
+                <%= link_to stickers_url, target: "_blank" do %>
+                <%= image_tag random_image, class: "img-fluid", size: "250x250" %>
+                <% end %>
+                <% else %>
+                <%= image_tag random_image, class: "img-fluid", size: "250x250" %> 
+                <% end %>
+                <p class="mt-3">Підписуйтеся на <b>Мій Університет</b> в <a target="_blank" href="https://t.me/university_my">Telegram</a></p>
+            </div>
+        </div>
+
+    </div>
+<% end %>

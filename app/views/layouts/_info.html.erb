@@ -1,0 +1,16 @@
+<div class="mx-auto col-md-8 mt-4">
+    <table>
+        <tbody>
+            <tr>
+                <td class="align-baseline"><h1><%= name %></h1></td>
+                <% if show_info %>
+                <td class="align-top">
+                    <%= link_to url, rel: 'nofollow' do %>
+                    <i class="bi bi-info-circle-fill"></i>
+                    <% end %>
+                </td>
+                <% end %>
+            </tr>
+        </tbody>
+    </table>
+</div>

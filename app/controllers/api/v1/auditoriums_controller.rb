@@ -1,17 +1,16 @@
 class Api::V1::AuditoriumsController < ApplicationController
 
+  before_action :set_university
+  before_action :set_auditorium_by_id, only: [:records]
+
   # GET /api/v1/universities/:university_url/auditoriums
   def index
-    university = University.find_by!(url: params[:university_url])
-    @auditoriums = university.auditorium.where(is_hidden: false)
+    @auditoriums = @university.auditorium.where(is_hidden: false)
   end
 
   # GET /api/v1/universities/:university_url/auditoriums/:id/records
   def records
-    university = University.find_by!(url: params[:university_url])
-    @auditorium = Auditorium.find_by!(university_id: university.id, id: params[:id])
-
-    if University.unavailable(university)
+    if University.unavailable(@university)
       render status: 500, json: {
         error: "Failed to parse a schedule",
         code: "1001"
@@ -19,31 +18,33 @@ class Api::V1::AuditoriumsController < ApplicationController
       return
     end
 
-    pair_date = pair_date_from(params)
-
-    @records = fetch_lessons(university, @auditorium, pair_date)
+    @date = pair_date_from(params)
+    @records = Lesson.fetch_for_auditorium(@auditorium, @date)
 
     begin
       if @records.blank? || @auditorium.need_to_update_records
-        @auditorium.import_records(pair_date)
+        @auditorium.import_records(@date)
       end
     rescue StandardError => e
       ahoy.track "API Records Error", message: e.message,
-      university: university.short_name,
+      university: @university.short_name,
       type: 'classroom',
-      name: @auditorium.name
+      name: @auditorium.name,
+      date: @date
     end
 
     # Select records one more time
-    @records = fetch_lessons(university, @auditorium, pair_date)
+    @records = Lesson.fetch_for_auditorium(@auditorium, @date)
   end
 
-  def fetch_lessons(university, auditorium, pair_date)
-    Lesson.where(university: university)
-          .where(auditorium: auditorium)
-          .where(pair_start_date: pair_date.all_day)
-          .order(:pair_start_date)
-          .order(:pair_name)
+  private
+
+  def set_university
+    @university = University.find_by!(url: params[:university_url])
+  end
+
+  def set_auditorium_by_id
+    @auditorium = Auditorium.find_by!(university_id: @university.id, id: params[:id])
   end
 
 end
