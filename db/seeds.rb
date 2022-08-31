@@ -333,296 +333,187 @@ if University.itstep.nil?
     )
 end
 
-sumdu = University.sumdu
-sumdu.picture_white = "sumdu-white.svg"
-sumdu.picture_dark = "sumdu.svg"
-sumdu.show_classrooms = true
-sumdu.show_groups = true
-sumdu.show_teachers = true
-sumdu.show_disciplines = true
-sumdu.description = "Інформація про аудиторії, викладачів та групи із сайту schedule.sumdu.edu.ua"
-sumdu.show_info = true
-sumdu.save
+University.configure_university(University.sumdu, {
+  show_classrooms: true,
+  show_disciplines: true,
+  description: "Інформація про аудиторії, викладачів та групи із сайту schedule.sumdu.edu.ua",
+  show_info: true
+})
 
-kpi = University.kpi
-kpi.picture_white = "kpi-white.svg"
-kpi.picture_dark = "kpi.svg"
-kpi.show_groups = true
-kpi.show_teachers = true
-kpi.description = "Інформація про викладачів та групи із сайту rozklad.org.ua"
-kpi.show_info = true
-kpi.save
+University.configure_university(University.kpi, {
+  description: "Інформація про викладачів та групи із сайту rozklad.org.ua",
+  show_info: true
+})
 
-khnue = University.khnue
-khnue.picture_white = "khnue-white.svg"
-khnue.picture_dark = "khnue.svg"
-khnue.show_groups = true
-khnue.show_teachers = true
-khnue.show_classrooms = false
-khnue.description = "Інформація про аудиторії, викладачів, групи, кафедри, факультети та спеціальності із сайту hneu.edu.ua"
-khnue.show_info = true
-khnue.save
+University.configure_university(University.khnue, {
+  description: "Інформація про аудиторії, викладачів, групи, кафедри, факультети та спеціальності із сайту hneu.edu.ua"
+})
 
 nau = University.nau
 nau.is_hidden = true
 nau.save
 
-pnu = University.pnu
-pnu.picture_white = "PNU_white.svg"
-pnu.picture_dark = "PNU_Black.svg"
-pnu.show_groups = true
-pnu.show_teachers = true
-pnu.show_classrooms = false
-pnu.description = "Інформація про викладачів та групи із сайту asu.pnu.edu.ua/cgi-bin/timetable.cgi"
-pnu.save
+University.configure_university(University.pnu, {
+  description: "Інформація про викладачів та групи із сайту asu.pnu.edu.ua/cgi-bin/timetable.cgi"
+})
 
-znau = University.znau
-znau.picture_white = "Polissya_white.svg"
-znau.picture_dark = "Polissya_black.svg"
-znau.show_groups = true
-znau.show_teachers = true
-znau.show_classrooms = false
-znau.description = "Інформація про викладачів та групи із сайту rozklad.znau.edu.ua/cgi-bin/timetable.cgi"
-znau.save
+University.configure_university(University.znau, {
+  description: "Інформація про викладачів та групи із сайту rozklad.znau.edu.ua/cgi-bin/timetable.cgi"
+})
 
-nuft = University.nuft
-nuft.picture_white = "NUHT_white.svg"
-nuft.picture_dark = "NUHT_black.svg"
-nuft.show_groups = true
-nuft.show_teachers = true
-nuft.show_classrooms = false
-nuft.description = "Інформація про викладачів та групи із сайту nmu.nuft.edu.ua/cgi-bin/timetable.cgi"
-nuft.save
+University.configure_university(University.nuft, {
+  description: "Інформація про викладачів та групи із сайту nmu.nuft.edu.ua/cgi-bin/timetable.cgi"
+})
 
-sspu = University.sspu
-sspu.picture_white = "SDPU_White.svg"
-sspu.picture_dark = "SDPU_Black.svg"
-sspu.show_groups = true
-sspu.show_teachers = true
-sspu.show_classrooms = false
-sspu.description = "Інформація про викладачів та групи із сайту rozklad.sspu.edu.ua/cgi-bin/timetable.cgi"
-sspu.save
+University.configure_university(University.sspu, {
+  description: "Інформація про викладачів та групи із сайту rozklad.sspu.edu.ua/cgi-bin/timetable.cgi"
+})
 
-gpnu = University.gpnu
-gpnu.picture_white = "GPNU_white.svg"
-gpnu.picture_dark = "GPNU_black.svg"
-gpnu.show_groups = true
-gpnu.show_teachers = true
-gpnu.description = "Інформація про викладачів та групи із сайту 193.169.125.234/cgi-bin/timetable.cgi"
-gpnu.save
+University.configure_university(University.gpnu, {
+  description: "Інформація про викладачів та групи із сайту 193.169.125.234/cgi-bin/timetable.cgi"
+})
 
-lnu = University.lnu
-lnu.picture_white = "LNU_white.svg"
-lnu.picture_dark = "LNU_black.svg"
-lnu.show_groups = true
-lnu.show_teachers = true
-lnu.show_classrooms = false
-lnu.description = "Інформація про викладачів та групи із сайту dekanat.lnu.edu.ua/cgi-bin/timetable.cgi"
-lnu.save
+University.configure_university(University.lnu, {
+  description: "Інформація про викладачів та групи із сайту dekanat.lnu.edu.ua/cgi-bin/timetable.cgi"
+})
 
-nuwm = University.nuwm
-nuwm.picture_white = "NUWM_white_original.svg"
-nuwm.picture_dark = "NUWM_black_original.svg"
-nuwm.show_groups = true
-nuwm.show_teachers = true
-nuwm.show_classrooms = false
-nuwm.description = "Інформація про викладачів та групи із сайту desk.nuwm.edu.ua/cgi-bin/timetable.cgi"
-nuwm.save
+University.configure_university(University.nuwm, {
+  description: "Інформація про викладачів та групи із сайту desk.nuwm.edu.ua/cgi-bin/timetable.cgi"
+})
 
-ubs = University.ubs
-ubs.picture_white = "UBS_white.svg"
-ubs.picture_dark = "UBS_black.svg"
-ubs.show_groups = true
-ubs.show_teachers = true
-ubs.show_classrooms = false
-ubs.description = "Інформація про викладачів та групи із сайту decanat.cibs.ubs.edu.ua/cgi-bin/timetable.cgi"
-ubs.save
+University.configure_university(University.ubs, {
+  description: "Інформація про викладачів та групи із сайту decanat.cibs.ubs.edu.ua/cgi-bin/timetable.cgi"
+})
 
-ldubgd = University.ldubgd
-ldubgd.picture_white = "LDUBGD_white.svg"
-ldubgd.picture_dark = "LDUBGD_black.svg"
-ldubgd.show_groups = true
-ldubgd.show_teachers = true
-ldubgd.show_classrooms = false
-ldubgd.description = "Інформація про викладачів та групи із сайту rozklad.ldubgd.edu.ua/cgi-bin/timetable.cgi"
-ldubgd.save
+University.configure_university(University.ldubgd, {
+  description: "Інформація про викладачів та групи із сайту rozklad.ldubgd.edu.ua/cgi-bin/timetable.cgi"
+})
 
-nung = University.nung
-nung.picture_white = "NUNG_white.svg"
-nung.picture_dark = "NUNG_black.svg"
-nung.show_groups = true
-nung.show_teachers = true
-nung.show_classrooms = false
-nung.description = "Інформація про викладачів та групи із сайту dekanat.nung.edu.ua/cgi-bin/timetable.cgi"
-nung.save
+University.configure_university(University.nung, {
+  description: "Інформація про викладачів та групи із сайту dekanat.nung.edu.ua/cgi-bin/timetable.cgi"
+})
 
-npu = University.npu
-npu.picture_white = "NPU_white.svg"
-npu.picture_dark = "NPU_black.svg"
-npu.show_groups = true
-npu.show_teachers = true
-npu.show_classrooms = false
-npu.description = "Інформація про викладачів та групи із сайту nmu.npu.edu.ua/cgi-bin/timetable.cgi"
-npu.save
+University.configure_university(University.npu, {
+  description: "Інформація про викладачів та групи із сайту nmu.npu.edu.ua/cgi-bin/timetable.cgi"
+})
 
-ktepc_knute = University.ktepc_knute
-ktepc_knute.picture_white = "KTEPCKNUTE_white.svg"
-ktepc_knute.picture_dark = "KTEPCKNUTE_black.svg"
-ktepc_knute.show_groups = true
-ktepc_knute.show_teachers = true
-ktepc_knute.description = "Інформація про викладачів та групи із сайту 178.151.58.56/cgi-bin/timetable.cgi"
-ktepc_knute.save
+University.configure_university(University.ktepc_knute, {
+  description: "Інформація про викладачів та групи із сайту 178.151.58.56/cgi-bin/timetable.cgi"
+})
 
-ugi = University.ugi
-ugi.picture_white = "UGI_white.svg"
-ugi.picture_dark = "UGI_black.svg"
-ugi.show_groups = true
-ugi.show_teachers = true
-ugi.show_classrooms = false
-ugi.description = "Інформація про викладачів та групи із сайту education.ugi.edu.ua/cgi-bin/timetable.cgi"
-ugi.save
+University.configure_university(University.ugi, {
+  description: "Інформація про викладачів та групи із сайту education.ugi.edu.ua/cgi-bin/timetable.cgi"
+})
 
-kneu = University.kneu
-kneu.picture_white = "KNEU_white.svg"
-kneu.picture_dark = "KNEU_black.svg"
-kneu.show_groups = true
-kneu.show_teachers = true
-kneu.show_classrooms = false
-kneu.description = "Інформація про викладачів та групи із сайту dekanat.kneu.kiev.ua/cgi-bin/timetable.cgi"
-kneu.save
+University.configure_university(University.kneu, {
+  description: "Інформація про викладачів та групи із сайту dekanat.kneu.kiev.ua/cgi-bin/timetable.cgi"
+})
 
-zu = University.zu
-zu.show_groups = true
-zu.show_teachers = true
-zu.description = "Інформація про викладачів та групи із сайту dekanat.zu.edu.ua/cgi-bin/timetable.cgi"
-zu.is_beta = true
-zu.save
+University.configure_university(University.zu, {
+  picture: false,
+  logo: false,
+  is_beta: true,
+  description: "Інформація про викладачів та групи із сайту dekanat.kneu.kiev.ua/cgi-bin/timetable.cgi"
+})
 
-zhim = University.zhim
-zhim.show_classrooms = false
-zhim.show_groups = true
-zhim.show_teachers = true
-zhim.show_classrooms = false
-zhim.description = "Інформація про викладачів та групи із сайту 46.219.3.27:8080/cgi-bin/timetable.cgi"
-zhim.is_beta = true
-zhim.save
+University.configure_university(University.zhim, {
+  picture: false,
+  logo: false,
+  is_beta: true,
+  description: "Інформація про викладачів та групи із сайту 46.219.3.27:8080/cgi-bin/timetable.cgi"
+})
 
-kubg = University.kubg
-kubg.show_classrooms = false
-kubg.show_groups = true
-kubg.show_teachers = true
-kubg.show_classrooms = false
-kubg.description = "Інформація про викладачів та групи із сайту dekanat.kubg.edu.ua/cgi-bin/timetable.cgi"
-kubg.is_beta = true
-kubg.save
+University.configure_university(University.kubg, {
+  picture: false,
+  logo: false,
+  is_beta: true,
+  description: "Інформація про викладачів та групи із сайту dekanat.kubg.edu.ua/cgi-bin/timetable.cgi"
+})
 
-kmk = University.kmk
-kmk.show_classrooms = false
-kmk.show_groups = true
-kmk.show_teachers = true
-kmk.show_classrooms = false
-kmk.description = "Інформація про викладачів та групи із сайту 80.91.179.229:81/cgi-bin/timetable.cgi"
-kmk.is_beta = true
-kmk.save
+University.configure_university(University.kmk, {
+  picture: false,
+  logo: false,
+  is_beta: true,
+  description: "Інформація про викладачів та групи із сайту 80.91.179.229:81/cgi-bin/timetable.cgi"
+})
 
-vnu = University.vnu
-vnu.show_classrooms = false
-vnu.show_groups = true
-vnu.show_teachers = true
-vnu.show_classrooms = false
-vnu.description = "Інформація про викладачів та групи із сайту 194.44.187.20/cgi-bin/timetable.cgi"
-vnu.is_beta = true
-vnu.save
+University.configure_university(University.vnu, {
+  picture: false,
+  logo: false,
+  is_beta: true,
+  description: "Інформація про викладачів та групи із сайту 194.44.187.20/cgi-bin/timetable.cgi"
+})
 
-uku = University.uku
-uku.show_classrooms = false
-uku.show_groups = true
-uku.show_teachers = true
-uku.show_classrooms = false
-uku.description = "Інформація про викладачів та групи із сайту dekanat.ucu.edu.ua/cgi-bin/timetable.cgi"
-uku.is_beta = true
-uku.save
+University.configure_university(University.uku, {
+  picture: false,
+  logo: false,
+  is_beta: true,
+  description: "Інформація про викладачів та групи із сайту dekanat.ucu.edu.ua/cgi-bin/timetable.cgi"
+})
 
-chdtu = University.chdtu
-chdtu.show_classrooms = false
-chdtu.show_groups = true
-chdtu.show_teachers = true
-chdtu.show_classrooms = false
-chdtu.description = "Інформація про викладачів та групи із сайту 195.95.232.162:8082/cgi-bin/timetable.cgi"
-chdtu.is_beta = true
-chdtu.save
+University.configure_university(University.chdtu, {
+  picture: false,
+  logo: false,
+  is_beta: true,
+  description: "Інформація про викладачів та групи із сайту 195.95.232.162:8082/cgi-bin/timetable.cgi"
+})
 
-karazin = University.karazin
-karazin.show_classrooms = false
-karazin.show_groups = true
-karazin.show_teachers = true
-karazin.show_classrooms = false
-karazin.description = "Інформація про викладачів та групи із сайту online.karazin.ua:1443/cgi-bin/timetable.cgi"
-karazin.is_beta = true
-karazin.save
+University.configure_university(University.karazin, {
+  picture: false,
+  logo: false,
+  is_beta: true,
+  description: "Інформація про викладачів та групи із сайту online.karazin.ua:1443/cgi-bin/timetable.cgi"
+})
 
-kemk = University.kemk
-kemk.show_classrooms = false
-kemk.show_groups = true
-kemk.show_teachers = true
-kemk.show_classrooms = false
-kemk.description = "Інформація про викладачів та групи із сайту test.kemt.kiev.ua/cgi-bin/timetable.cgi"
-kemk.is_beta = true
-kemk.save
+University.configure_university(University.kemk, {
+  picture: false,
+  logo: false,
+  is_beta: true,
+  description: "Інформація про викладачів та групи із сайту test.kemt.kiev.ua/cgi-bin/timetable.cgi"
+})
 
-ktgg = University.ktgg
-ktgg.show_classrooms = false
-ktgg.show_groups = true
-ktgg.show_teachers = true
-ktgg.show_classrooms = false
-ktgg.description = "Інформація про викладачів та групи із сайту 217.76.201.218/cgi-bin/timetable.cgi"
-ktgg.is_beta = true
-ktgg.save
+University.configure_university(University.ktgg, {
+  picture: false,
+  logo: false,
+  is_beta: true,
+  description: "Інформація про викладачів та групи із сайту 217.76.201.218/cgi-bin/timetable.cgi"
+})
 
-kcas = University.kcas
-kcas.show_classrooms = false
-kcas.show_groups = true
-kcas.show_teachers = true
-kcas.show_classrooms = false
-kcas.description = "Інформація про викладачів та групи із сайту 94.131.204.108/cgi-bin/timetable.cgi"
-kcas.is_beta = true
-kcas.save
+University.configure_university(University.kcas, {
+  picture: false,
+  logo: false,
+  is_beta: true,
+  description: "Інформація про викладачів та групи із сайту 94.131.204.108/cgi-bin/timetable.cgi"
+})
 
-onma = University.onma
-onma.show_classrooms = false
-onma.show_groups = true
-onma.show_teachers = true
-onma.show_classrooms = false
-onma.description = "Інформація про викладачів та групи із сайту 212.111.205.2/cgi-bin/timetable.cgi"
-onma.is_beta = true
-onma.save
+University.configure_university(University.onma, {
+  picture: false,
+  logo: false,
+  is_beta: true,
+  description: "Інформація про викладачів та групи із сайту 212.111.205.2/cgi-bin/timetable.cgi"
+})
 
-kmkkovel = University.kmkkovel
-kmkkovel.show_classrooms = false
-kmkkovel.show_groups = true
-kmkkovel.show_teachers = true
-kmkkovel.description = "Інформація про викладачів та групи із сайту 93.183.214.222/cgi-bin/timetable.cgi"
-kmkkovel.is_beta = true
-kmkkovel.is_hidden = true
-kmkkovel.save
+University.configure_university(University.kmkkovel, {
+  picture: false,
+  logo: false,
+  is_hidden: true,
+  is_beta: true,
+  description: "Інформація про викладачів та групи із сайту 93.183.214.222/cgi-bin/timetable.cgi"
+})
 
-kmkk = University.kmkk
-kmkk.show_classrooms = false
-kmkk.show_groups = true
-kmkk.show_teachers = true
-kmkk.show_classrooms = false
-kmkk.description = "Інформація про викладачів та групи із сайту 178.150.254.27/cgi-bin/timetable.cgi"
-kmkk.is_beta = true
-kmkk.save
+University.configure_university(University.kmkk, {
+  picture: false,
+  logo: false,
+  is_beta: true,
+  description: "Інформація про викладачів та групи із сайту 178.150.254.27/cgi-bin/timetable.cgi"
+})
 
-itstep = University.itstep
-itstep.show_classrooms = false
-itstep.show_groups = true
-itstep.show_teachers = true
-itstep.show_classrooms = false
-itstep.description = "Інформація про викладачів та групи із сайту stud.high.itstep.org/cgi-bin/timetable.cgi"
-itstep.is_beta = true
-itstep.save
+University.configure_university(University.itstep, {
+  picture: false,
+  logo: false,
+  is_beta: true,
+  description: "Інформація про викладачів та групи із сайту stud.high.itstep.org/cgi-bin/timetable.cgi"
+})
 
 # Buildings for SumDU
 sumdu_buildings = [
