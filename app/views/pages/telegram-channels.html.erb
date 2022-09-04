@@ -1,22 +1,20 @@
-<% meta_tag :description, "Підбірка Telegram-каналів украхнських університетів" %>
+<% meta_tag :description, "Підбірка Telegram-каналів Українських університетів" %>
 <% meta_tag :keywords, @keywords %>
-<% @title = "Мій Університет - Telegram-канали українських університетів" %>
+<% @title = "Мій Університет - Telegram-канали Українських університетів" %>
 
 <%= render "layouts/header" %>
 <main class="container" role="main">
 
   <div class="container mb-4">
-    <div class="row"><h1>Telegram-канали українських університетів</h1></div>
+    <div class="row"><h1>Telegram-канали Українських університетів</h1></div>
     <div class="row mt-4">
 
       <div class="col-md-2 order-md-2 mb-4">
         <div class="list-group">
           <a class="list-group-item list-group-item-action" href="#item-1">Київ</a>
           <a class="list-group-item list-group-item-action" href="#item-2">Львів</a>
-          <a class="list-group-item list-group-item-action" href="#item-3">Тернопіль</a>
           <a class="list-group-item list-group-item-action" href="#item-4">Івано-Франківськ</a>
           <a class="list-group-item list-group-item-action" href="#item-5">Запоріжжя</a>
-          <a class="list-group-item list-group-item-action" href="#item-6">Харків</a>
           <a class="list-group-item list-group-item-action" href="#item-7">Одеса</a>
           <a class="list-group-item list-group-item-action" href="#item-8">Дніпро</a>
           <a class="list-group-item list-group-item-action" href="#item-9">Суми</a>
@@ -33,10 +31,7 @@
           <div class="card-header">
             <div class="row">
               <div class="col-md-2">
-                <picture>
-                  <source srcset="/kpi-white.svg" media="(prefers-color-scheme: dark)">
-                    <img src="/kpi.svg" height="64" width="64" alt="Логотип КПІ">
-                  </picture>
+                <%= image_tag("2_dark.svg", size: "64x64", class: "align-self-center mx-2 my-2") %>
                 </div>
                 <div class="col-md-10">
                   <h5 class="mt-2">Національний технічний університет України «Київський політехнічний інститут ім. І. Сікорського»</h5>
@@ -159,7 +154,6 @@
             <div class="card-body">
               <div class="card-text">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><a href="https://t.me/srNPU" rel="external nofollow" target="_blank">@srNPU</a> – телеграм-спільнота драгоманівців. Важливий інформаційний ресурс НПУ.</li>
                   <li class="list-group-item"><a href="https://t.me/npu_space" rel="external nofollow" target="_blank">@npu_space</a> – студентське медіа педагогічного університету. Студентський простір, де пишуть «про новий НПУ».</li>
                   <li class="list-group-item"><a href="https://t.me/npunka" rel="external nofollow" target="_blank">@npunka</a> – канал мемів про життя студентів</li>
                 </ul>
@@ -191,32 +185,14 @@
             <div class="card-header">
               <div class="row">
                 <div class="col">
-                  <h5 class="mt-2">Таврійський національний університет імені В. І. Вернадського</h5>
+                  <h5 class="mt-2">Національний університет біоресурсів і природокористування України</h5>
                 </div>
               </div>
             </div>
             <div class="card-body">
               <div class="card-text">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><a href="https://t.me/overheartnu" rel="external nofollow" target="_blank">@overheartnu</a> – спілкування, новини, обговорення</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <!--  -->
-          <div class="card mt-4">
-            <div class="card-header">
-              <div class="row">
-                <div class="col">
-                  <h5 class="mt-2">Університет державної фіскальної служби України</h5>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="card-text">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><a href="https://t.me/USFSU_info" rel="external nofollow" target="_blank">@USFSU_info</a> – останні новини університету</li>
+                  <li class="list-group-item"><a href="https://t.me/vstupnubip" rel="external nofollow" target="_blank">Вступ до НУБіП України</a> – Офіційний канал для вступників до НУБіП України</li>
                 </ul>
               </div>
             </div>
@@ -247,24 +223,6 @@
             <div class="card-header">
               <div class="row">
                 <div class="col">
-                  <h5 class="mt-2">Національний університет «Львівська політехніка»</h5>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="card-text">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><a href="https://t.me/nulp_life" rel="external nofollow" target="_blank">@nulp_life</a> – новини з життя університету</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <!--  -->
-          <div class="card mt-4">
-            <div class="card-header">
-              <div class="row">
-                <div class="col">
                   <h5 class="mt-2">Львівський національний університет ветеринарної медицини та біотехнологій</h5>
                 </div>
               </div>
@@ -273,26 +231,6 @@
               <div class="card-text">
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item"><a href="https://t.me/yourlnuvm" rel="external nofollow" target="_blank">@yourlnuvm</a> – Чатик студентів ЛНУВМ та БТ</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <hr class="mt-5">
-          <h2 id="item-3">Тернопіль</h2>
-
-          <div class="card mt-4">
-            <div class="card-header">
-              <div class="row">
-                <div class="col">
-                  <h5 class="mt-2">Тернопільський державний медичний університет</h5>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="card-text">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><a href="https://t.me/sptdmu" rel="external nofollow" target="_blank">@sptdmu</a> – інформаційний ресурс студентського парламенту</li>
                 </ul>
               </div>
             </div>
@@ -342,26 +280,6 @@
           </div>
 
           <hr class="mt-5">
-          <h2 id="item-6">Харків</h2>
-
-          <div class="card mt-4">
-            <div class="card-header">
-              <div class="row">
-                <div class="col">
-                  <h5 class="mt-2">Харківський національний університет радіоелектроніки</h5>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="card-text">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><a href="https://t.me/donure" rel="external nofollow" target="_blank">@donure</a> – усе про стажування, вакансії, проекти й тренінги в університеті</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <hr class="mt-5">
           <h2 id="item-7">Одеса</h2>
 
           <div class="card mt-4">
@@ -376,23 +294,6 @@
               <div class="card-text">
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item"><a href="https://t.me/profcomnuoua" rel="external nofollow" target="_blank">@profcomnuoua</a> – інформаційний канал студентського профкому. Останні новини про життя університету зібрано саме тут.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="card mt-4">
-            <div class="card-header">
-              <div class="row">
-                <div class="col">
-                  <h5 class="mt-2">Півдeнноукраінський національний пeдагогічний унівeрситeт імeні К.Д.Ушинського</h5>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="card-text">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><a href="https://t.me/studentpnpu" rel="external nofollow" target="_blank">@studentpnpu</a> – інформаційний канал Студeнтськоі ради</li>
                 </ul>
               </div>
             </div>
@@ -459,10 +360,7 @@
             <div class="card-header">
               <div class="row">
                 <div class="col-md-2">
-                  <picture>
-                    <source srcset="/sumdu-white.svg" media="(prefers-color-scheme: dark)">
-                      <img src="/sumdu.svg" height="64" width="64" alt="Логотип СумДУ">
-                    </picture>
+                  <%= image_tag("1_dark.svg", size: "64x64", class: "align-self-center mx-2 my-2") %>
                   </div>
                   <div class="col-md-10">
                     <h5 class="mt-2">Сумський державний університет</h5>
@@ -507,15 +405,18 @@
               <div class="card-header">
                 <div class="row">
                   <div class="col">
-                    <h5 class="mt-2">Волинський національний університет імені Лесі Українки</h5>
+                    <h5 class="mt-2">Луцький національний технічний університет</h5>
                   </div>
                 </div>
               </div>
               <div class="card-body">
                 <div class="card-text">
                   <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><a href="https://t.me/vnuuniversity" rel="external nofollow" target="_blank">@VNU university</a></li>
+                    <li class="list-group-item"><a href="https://t.me/VseProVstup_bot" rel="external nofollow" target="_blank">Чат-бот "Все про вступ 2022 by LNTU"</a></li>
+                    <li class="list-group-item"><a href="https://t.me/lntu_lutsk" rel="external nofollow" target="_blank">Канал "ЛНТУ"</a></li>
                   </ul>
+                  <p>В ЛНТУ функціонує телеграм-канал, де можна дізнатися усе про життя університету та отримати актуальну інформацію щодо вступу і переваг навчання.
+Крім того, діє чат-бот «Все про вступ 2022»! Тут можна отримати відповідь на найактуальніші запитання та всю важливу інфу про цьогорічний вступ!</p>
                 </div>
               </div>
             </div>
@@ -523,6 +424,5 @@
           </div>
         </div>
       </div>
-      <p class="text-muted font-weight-lighter"><small>Інформація із сайту studway.com.ua</small></p>
     </main>
     <%= render "layouts/footer" %>
