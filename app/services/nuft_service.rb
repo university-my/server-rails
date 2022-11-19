@@ -5,7 +5,7 @@ require "uri"
 class NuftService < PolitekDefaultService
 
   def self.timetable_url
-    'https://nmu.nuft.edu.ua/cgi-bin/timetable.cgi'
+    'http://nmu.nuft.edu.ua/cgi-bin/timetable.cgi'
   end
 
   def self.server_id
