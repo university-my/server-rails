@@ -193,13 +193,11 @@ end
   end
 
   def self.unavailable(university)
-    university == University.khnue || university == University.kneu
+    university == University.kneu
   end
 
   def self.schedule_url_for(university)
-    if university == University.khnue
-      return "www.hneu.edu.ua"
-    elsif university == University.kneu
+    if university == University.kneu
       return "dekanat.kneu.kiev.ua/cgi-bin/timetable.cgi"
     end
   end

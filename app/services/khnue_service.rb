@@ -4,7 +4,7 @@ require 'nokogiri'
 # Service for import data from KHNUE
 module KhnueService
   def self.base_url
-    'http://services.ksue.edu.ua:8081/schedule/xmlmetadata'
+    'http://rozklad.hneu.edu.ua/schedule/xmlmetadata'
   end
 
   def self.auth_key
@@ -106,7 +106,7 @@ module KhnueService
   def self.import_records_for_auditorium(auditorium, date)
     week_number = calculate_week(date)
 
-    url = 'http://services.ksue.edu.ua:8081/schedule/xml'
+    url = 'http://rozklad.hneu.edu.ua/schedule/xml'
     query = "?room=#{auditorium.server_id}&week=#{week_number}&#{auth_key}"
 
     doc = perform_request(url + query)
@@ -124,7 +124,7 @@ module KhnueService
   def self.import_records_for_group(group, date)
     week_number = calculate_week(date)
 
-    url = 'http://services.ksue.edu.ua:8081/schedule/xml'
+    url = 'http://rozklad.hneu.edu.ua/schedule/xml'
     query = "?group=#{group.server_id}&week=#{week_number}&#{auth_key}"
 
     doc = perform_request(url + query)
@@ -142,7 +142,7 @@ module KhnueService
   def self.import_records_for_teacher(teacher, date)
     week_number = calculate_week(date)
 
-    url = 'http://services.ksue.edu.ua:8081/schedule/xml'
+    url = 'http://rozklad.hneu.edu.ua/schedule/xml'
     query = "?employee=#{teacher.server_id}&week=#{week_number}&#{auth_key}"
 
     doc = perform_request(url + query)
