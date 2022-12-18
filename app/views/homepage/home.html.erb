@@ -5,6 +5,12 @@
 <%= render "layouts/header" %>
 
 <div class="container">
+
+  <div class="alert alert-success" role="alert">
+    🔥 Список <%= link_to "Telegram-каналів", telegram_channels_url, class: "alert-link" %> Українських ВНЗ
+  </div>
+
+
   <div class="row mt-5">
     <div class="col-md-7">
       <div class="mb-4">
@@ -34,7 +40,7 @@
           </div>
         </div>
 
-        <%= link_to "Telegram-канали Українських університетів", telegram_channels_url, class: "btn btn-outline-primary btn-sm mb-4" %>
+        
       </div>
 
     </div>
