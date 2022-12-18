@@ -6,7 +6,7 @@
 
 <div class="container">
   <div class="row mt-5">
-    <div class="col-md-6 col-sm-3">
+    <div class="col-md-7">
       <div class="mb-4">
         <% @universities.each do |university_group| %>
         <div class="row">
@@ -14,7 +14,7 @@
           <div class="col">
             <div class="p-2">
               <%= link_to university_url(url: university.url) do %>
-              <%= image_tag(university.picture_dark, size: "64x64") %>
+              <%= image_tag(university.picture_dark, size: "86x86") %>
               <% end %>
             </div>
           </div>
