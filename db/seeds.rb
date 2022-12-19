@@ -410,36 +410,36 @@ University.configure_university(University.kneu, {
 })
 
 University.configure_university(University.zu, {
-  picture: false,
-  logo: false,
+  picture: true,
+  logo: true,
   is_beta: true,
   description: "Інформація про викладачів та групи із сайту dekanat.kneu.kiev.ua/cgi-bin/timetable.cgi"
 })
 
 University.configure_university(University.zhim, {
-  picture: false,
-  logo: false,
+  picture: true,
+  logo: true,
   is_beta: true,
   description: "Інформація про викладачів та групи із сайту 46.219.3.27:8080/cgi-bin/timetable.cgi"
 })
 
 University.configure_university(University.kubg, {
-  picture: false,
-  logo: false,
+  picture: true,
+  logo: true,
   is_beta: true,
   description: "Інформація про викладачів та групи із сайту dekanat.kubg.edu.ua/cgi-bin/timetable.cgi"
 })
 
 University.configure_university(University.kmk, {
-  picture: false,
-  logo: false,
+  picture: true,
+  logo: true,
   is_beta: true,
   description: "Інформація про викладачів та групи із сайту 80.91.179.229:81/cgi-bin/timetable.cgi"
 })
 
 University.configure_university(University.vnu, {
-  picture: false,
-  logo: false,
+  picture: true,
+  logo: true,
   is_beta: true,
   description: "Інформація про викладачів та групи із сайту 194.44.187.20/cgi-bin/timetable.cgi"
 })
@@ -452,36 +452,36 @@ University.configure_university(University.uku, {
 })
 
 University.configure_university(University.chdtu, {
-  picture: false,
-  logo: false,
+  picture: true,
+  logo: true,
   is_beta: true,
   description: "Інформація про викладачів та групи із сайту 195.95.232.162:8082/cgi-bin/timetable.cgi"
 })
 
 University.configure_university(University.karazin, {
-  picture: false,
-  logo: false,
+  picture: true,
+  logo: true,
   is_beta: true,
   description: "Інформація про викладачів та групи із сайту online.karazin.ua:1443/cgi-bin/timetable.cgi"
 })
 
 University.configure_university(University.kemk, {
-  picture: false,
-  logo: false,
+  picture: true,
+  logo: true,
   is_beta: true,
   description: "Інформація про викладачів та групи із сайту test.kemt.kiev.ua/cgi-bin/timetable.cgi"
 })
 
 University.configure_university(University.ktgg, {
-  picture: false,
-  logo: false,
+  picture: true,
+  logo: true,
   is_beta: true,
   description: "Інформація про викладачів та групи із сайту 217.76.201.218/cgi-bin/timetable.cgi"
 })
 
 University.configure_university(University.kcas, {
-  picture: false,
-  logo: false,
+  picture: true,
+  logo: true,
   is_beta: true,
   description: "Інформація про викладачів та групи із сайту 94.131.204.108/cgi-bin/timetable.cgi"
 })
