@@ -515,6 +515,43 @@ University.configure_university(University.itstep, {
   description: "Інформація про викладачів та групи із сайту stud.high.itstep.org/cgi-bin/timetable.cgi"
 })
 
+hidden_universities = [
+  University.chdtu,
+  University.gpnu,
+  University.itstep,
+  University.karazin,
+  University.kcas,
+  University.kemk,
+  University.kmk,
+  University.kmkk,
+  University.kmkkovel,
+  University.kneu,
+  University.ktepc_knute,
+  University.ktgg,
+  University.kubg,
+  University.ldubgd,
+  University.lnu,
+  University.npu,
+  University.nuft,
+  University.nung,
+  University.nuwm,
+  University.onma,
+  University.pnu,
+  University.sspu,
+  University.ubs,
+  University.ugi,
+  University.uku,
+  University.vnu,
+  University.zhim,
+  University.znau,
+  University.zu
+]
+
+hidden_universities.each { |university|
+  university.is_hidden = true
+  university.save
+}
+
 # Buildings for SumDU
 sumdu_buildings = [
   { name: "АК", description: "" },
