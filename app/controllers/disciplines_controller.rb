@@ -7,11 +7,11 @@ class DisciplinesController < ApplicationController
       @disciplines = Discipline.where(university: @university)
       .where("visible_name LIKE ?", "%#{@query.downcase}%")
       .order(:visible_name)
-      .paginate(page: params[:page], per_page: 5)
+      .paginate(page: params[:page], per_page: 15)
     else
       @disciplines = Discipline.where(university: @university)
       .order(:visible_name)
-      .paginate(page: params[:page], per_page: 5)
+      .paginate(page: params[:page], per_page: 15)
     end
     @all_disciplines = Discipline.where(university: @university)
       .order(:visible_name)

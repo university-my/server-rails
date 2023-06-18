@@ -10,11 +10,11 @@ class AuditoriumsController < ApplicationController
      @university.auditorium
      .where(is_hidden: false)
      .where('lowercase_name LIKE ?', "%#{@query.downcase}%")
-     .paginate(page: params[:page], per_page: 6)
+     .paginate(page: params[:page], per_page: 15)
    else
      @university.auditorium
      .where(is_hidden: false)
-     .paginate(page: params[:page], per_page: 6)
+     .paginate(page: params[:page], per_page: 15)
    end
    @all_auditoriums = @university.auditorium.where(is_hidden: false)
   end

@@ -4,7 +4,7 @@ class BuildingsController < ApplicationController
   # GET /buildings.json
   def index
     @university = University.find_by!(url: params[:university_url])
-    per_page = 5
+    per_page = 15
     @query = params["query"]
     if @query.present?
       @buildings = Building.where(university: @university)
@@ -23,7 +23,7 @@ class BuildingsController < ApplicationController
   def show
     @university = University.find_by!(url: params[:university_url])
     @building = @university.buildings.friendly.find(params[:id])
-    per_page = 6
+    per_page = 15
     @query = params["query"]
     if @query.present?
       @auditoriums = @building.auditoriums

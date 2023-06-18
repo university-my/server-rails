@@ -11,11 +11,11 @@ class TeachersController < ApplicationController
       @university.teachers
       .where(is_hidden: false)
       .where("lowercase_name LIKE ?", "%#{@query.downcase}%")
-      .paginate(page: params[:page], per_page: 6)
+      .paginate(page: params[:page], per_page: 15)
     else
       @university.teachers
       .where(is_hidden: false)
-      .paginate(page: params[:page], per_page: 6)
+      .paginate(page: params[:page], per_page: 15)
     end
     @all_teachers = @university.teachers.where(is_hidden: false)
   end
