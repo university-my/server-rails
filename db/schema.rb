@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_16_134150) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_18_110048) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -181,14 +181,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_16_134150) do
     t.index ["slug_en"], name: "index_departments_on_slug_en"
     t.index ["slug_uk"], name: "index_departments_on_slug_uk"
     t.index ["university_id"], name: "index_departments_on_university_id"
-  end
-
-  create_table "discipline_name_suggestions", force: :cascade do |t|
-    t.string "name"
-    t.bigint "discipline_id"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.index ["discipline_id"], name: "index_discipline_name_suggestions_on_discipline_id"
   end
 
   create_table "disciplines", force: :cascade do |t|
