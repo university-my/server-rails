@@ -18,10 +18,11 @@
         <div class="row">
           <% university_group.each do |university| %>
           <div class="col">
-            <div class="p-2">
-              <%= link_to university_url(url: university.url) do %>
-              <%= image_tag(university.picture_dark, size: "86x86") %>
+            <div class="card border-0">
+              <%= link_to university_url(url: university.url), class: "text-decoration-none" do %>
+              <%= image_tag(university.picture_dark, size: "86x86", class: "card-img-top") %>
               <% end %>
+              <div class="card-body"><p class="fs-5 fw-medium text-center card-text"><%= university.short_name %></p></div>
             </div>
           </div>
           <% end %>
