@@ -46,4 +46,40 @@ module NewKpiService
             end
         end
     end
+
+    def self.import_groups
+        url = "#{self.api_url}/schedule/groups"
+        json = ApplicationRecord.perform_request(url)
+        return if json.nil?
+        save_groups_from(json)
+    end
+    
+    def self.save_groups_from(json)
+        data = json['data']
+        return if data.nil?
+        
+        university = University.kpi
+        
+        data.each do |object|
+            name = object['name']
+            server_id_string = object['id']
+            
+            attributes = {}
+            attributes[:name] = name
+            attributes[:server_id] = self.server_id
+            attributes[:server_id_string] = server_id_string
+            attributes[:university] = university
+            
+            entity = Group.find_by(attributes)
+            next if entity.present?
+            
+            entity = Group.new(attributes)
+            UniversitiesHelper.generate_uuid(entity)
+            
+            unless entity.save
+                Rails.logger.error(entity.errors.full_messages)
+                next
+            end
+        end
+    end
 end
