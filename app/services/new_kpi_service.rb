@@ -192,6 +192,86 @@ module NewKpiService
             end
         end
     end
+
+    def self.import_records_for_teacher(teacher_id, selected_pair_date)
+        teacher = Teacher.find_by(server_id_string: teacher_id)
+        return if teacher.nil?
+        
+        url = "#{self.api_url}/schedule/lecturer?lecturerId=#{teacher_id}"
+        json = ApplicationRecord.perform_request(url)
+        return if json.nil?
+        
+        data = json['data']
+        return if data.nil?
+        
+        first_week = data['scheduleFirstWeek']
+        if first_week.present?
+            save_teacher_week_records_from(first_week, 1, selected_pair_date, University.kpi, teacher)
+        end
+        second_week = data['scheduleSecondWeek']
+        if second_week.present?
+            save_teacher_week_records_from(second_week, 2, selected_pair_date, University.kpi, teacher)
+        end
+    end
+    
+    def self.save_teacher_week_records_from(data, week_number, selected_pair_date, university, teacher)
+        day_number = 0
+        data.each do |day|
+            pairs = day['pairs']
+            next if pairs.nil?
+            
+            # Calculate pair date
+            current_week = week_for_selected_date(selected_pair_date)
+            year = selected_pair_date.year
+            week = selected_pair_date.cweek
+            day = day_number + 1
+            
+            if week_number == current_week
+                week = selected_pair_date.cweek
+            elsif week_number > current_week
+                week = selected_pair_date.cweek + 1
+            elsif week_number < current_week
+                week = selected_pair_date.cweek - 1
+            end
+            # `beginning_of_day` for prevent duplication
+            start_date = date_for_week(year, week, day).beginning_of_day
+            
+            # Don't update old data because we don't want to override it
+            # next if start_date < Date.today.beginning_of_day
+            
+            save_teacher_pairs_from(pairs, start_date, university, teacher)
+            
+            day_number += 1
+        end
+    end
+    
+    def self.save_teacher_pairs_from(data, start_date, university, teacher)
+        data.each do |object|
+            name = object['name']
+            kind = object['type']
+            time = object['time'].gsub('.', ':')
+            groups_string = object['group']
+            pair_start_date = (start_date.strftime('%F') + ' ' + time).to_datetime
+            
+            attributes = {}
+            attributes[:university_id] = university.id
+            attributes[:pair_start_date] = pair_start_date
+            attributes[:name] = name
+            attributes[:kind] = kind
+            attributes[:time] = time
+
+            lesson = Lesson.find_by(attributes)
+            next if lesson.present?
+            lesson = Lesson.new(attributes)
+
+            # auditorium = nil
+
+            # unless lesson.save
+            #     Rails.logger.error(lesson.errors.full_messages)
+            #     next
+            # end
+        end
+    end
     
     #
     # Import Discipline
