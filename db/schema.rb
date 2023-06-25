@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_18_110048) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_25_113759) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -316,6 +316,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_18_110048) do
     t.bigint "department_id"
     t.boolean "is_hidden", default: false
     t.string "uuid", default: ""
+    t.string "server_id_string"
     t.index ["department_id"], name: "index_teachers_on_department_id"
     t.index ["slug"], name: "index_teachers_on_slug"
     t.index ["slug_en"], name: "index_teachers_on_slug_en"
