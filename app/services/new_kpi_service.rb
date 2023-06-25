@@ -101,6 +101,9 @@ module NewKpiService
     end
     
     def self.import_records_for_group(group_id, selected_pair_date)
+        group = Group.find_by(server_id_string: group_id)
+        return if group.nil?
+        
         url = "#{self.api_url}/schedule/lessons?groupId=#{group_id}"
         json = ApplicationRecord.perform_request(url)
         return if json.nil?
@@ -110,15 +113,15 @@ module NewKpiService
         
         first_week = data['scheduleFirstWeek']
         if first_week.present?
-            save_group_week_records_from(first_week, 1, selected_pair_date, University.kpi)
+            save_group_week_records_from(first_week, 1, selected_pair_date, University.kpi, group)
         end
         second_week = data['scheduleSecondWeek']
         if second_week.present?
-            save_group_week_records_from(second_week, 2, selected_pair_date, University.kpi)
+            save_group_week_records_from(second_week, 2, selected_pair_date, University.kpi, group)
         end
     end
     
-    def self.save_group_week_records_from(data, week_number, selected_pair_date, university)
+    def self.save_group_week_records_from(data, week_number, selected_pair_date, university, group)
         day_number = 0
         data.each do |day|
             pairs = day['pairs']
@@ -143,17 +146,18 @@ module NewKpiService
             # Don't update old data because we don't want to override it
             # next if start_date < Date.today.beginning_of_day
             
-            save_group_pairs_from(pairs, start_date, university)
+            save_group_pairs_from(pairs, start_date, university, group)
             
             day_number += 1
         end
     end
     
-    def self.save_group_pairs_from(data, start_date, university)
+    def self.save_group_pairs_from(data, start_date, university, group)
         data.each do |object|
             name = object['name']
             kind = object['type']
             time = object['time'].gsub('.', ':')
+            teacher_id_string = object['lecturerId']
             pair_start_date = (start_date.strftime('%F') + ' ' + time).to_datetime
             
             attributes = {}
@@ -162,15 +166,43 @@ module NewKpiService
             attributes[:name] = name
             attributes[:kind] = kind
             attributes[:time] = time
-
-            entity = Lesson.find_by(attributes)
-            next if entity.present?
             
-            entity = Lesson.new(attributes)
-            unless entity.save
-                Rails.logger.error(entity.errors.full_messages)
+            lesson = Lesson.find_by(attributes)
+            next if lesson.present?
+            lesson = Lesson.new(attributes)
+            
+            auditorium = nil
+
+            # Push only unique groups
+            lesson.groups << group unless lesson.groups.include?(group)
+            
+            teacher = nil
+            if teacher_id_string.present?
+                # No need to find teacher by university_id becase server_id_string is only for KPI
+                teacher = Teacher.find_by(server_id_string: teacher_id_string)
+                lesson.teacher = teacher
+            end
+            
+            discipline = save_discipline(name, auditorium, [group], teacher)
+            lesson.discipline = discipline
+            
+            unless lesson.save
+                Rails.logger.error(lesson.errors.full_messages)
                 next
             end
         end
     end
+    
+    #
+    # Import Discipline
+    #
+    # @param [String] name
+    # @param [Auditorium] auditorium
+    # @param [Group] groups
+    # @param [Teacher] teacher
+    def self.save_discipline(name, auditorium, groups, teacher)
+        discipline = Discipline.save_or_update(name, University.kpi, auditorium, groups, teacher)
+        discipline
+    end
+    
 end
