@@ -52,3 +52,5 @@ exported_disciplines.json
 /node_modules
 
 .rbenv-vars
+
+/out/*
