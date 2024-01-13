@@ -6,20 +6,13 @@
 <main class="container" role="main">
 
   <div class="container">
-    <div class="row"><h1>Мій Університет для iOS</h1></div>
+    <div class="row"><h1>iOS додаток</h1></div>
   </div>
 
   <div class="container mt-2 mb-2">
     <div class="row">
 
-      <div class="col-md-8 order-md-1">
-        <div class="mt-4">
-          <p>
-            <%= link_to "https://apps.apple.com/ua/app/my-university/id1440425058?itsct=apps_box_link&itscg=30200", class: "text-decoration-none", target: "_blank" do %>
-            <%= image_tag("black.svg", class: "img-fluid") %>
-            <% end %>
-          </p>
-        </div>
+      <div class="col-md-7 order-md-1">
         <p><b>iOS</b> додаток для <i>викладачів і студентів</i> з розкладом пар.</p>
         <p><b>Основні особливості:</b></p>
         <p>
@@ -30,19 +23,9 @@
             <li>Темна та світла теми</li>
           </ul>
         </p>
-        <p><b>Підтримує такі заклади:</b></p>
-        <p>
-          <ul>
-            <% @universities.each do |university| %>
-            <li><%= university.full_name %> (<a href="<%= university.website %>" target="_blank"><%= university.short_name %></a>)</li>
-            <% end %>
-          </ul>
-        </p>
       </div>
 
-      <div class="col-md-4 order-md-2">
-        <%= image_tag("My University iOS 1.8.png", class: "mx-auto d-block w-75") %>
-      </div>
+      <div class="col-md-5 order-md-2"></div>
       </div>
     </div>
   </main>

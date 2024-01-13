@@ -6,20 +6,13 @@
 <main class="container" role="main">
 
   <div class="container">
-    <div class="row"><h1>Мій Університет для Android</h1></div>
+    <div class="row"><h1>Android додаток</h1></div>
   </div>
 
   <div class="container mt-2 mb-2">
     <div class="row">
 
       <div class="col-md-8 order-md-1">
-        <div class="mt-4">
-          <p>
-            <a href="https://play.google.com/store/apps/details?id=ua.com.myuniversity" target="_blank">
-              <%= image_tag("google-play-badge.png", style: "width:186px;height:72px;") %>
-            </a>
-          </p>
-        </div>
         <p><b>Android</b> додаток для <i>студентів та викладачів</i> з актуальним розкладом пар.</p>
         <p><b>Основні особливості:</b></p>
         <p>
@@ -27,14 +20,6 @@
             <li>Розклад груп, викладачів та аудиторій</li>
             <li>Перегляд розкладу без доступу до інтернету</li>
             <li>Вкладка "Обрані"</li>
-          </ul>
-        </p>
-        <p><b>Підтримує такі заклади:</b></p>
-        <p>
-          <ul>
-            <% @universities.each do |university| %>
-            <li><%= university.full_name %> (<a href="<%= university.website %>" target="_blank"><%= university.short_name %></a>)</li>
-            <% end %>
           </ul>
         </p>
       </div>

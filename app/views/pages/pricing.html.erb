@@ -8,7 +8,7 @@
   <div class="row">
     <div class="col-md-4">
       <div class="alert alert-primary mx-3" role="alert">
-        <a href="/My University.pdf" class="alert-link" rel="nofollow" target="_blank">Презентація у форматі PDF</a> 📄
+        <a href="/My University.pdf" class="alert-link" rel="nofollow" target="_blank">Презентація у форматі PDF</a>
       </div>
     </div>
   </div>
@@ -30,7 +30,7 @@
             <h1 class="card-title pricing-card-title">₴24,000 <small class="text-muted">/ рік</small></h1>
             <ul class="list-unstyled mt-3 mb-4">
               <li>Адаптивний дизайн сайту</li>
-              <li><%= link_to 'Панель адміністратора', admin_panel_url, target: "_blank" %></li>
+              <li><%= link_to 'Панель адміністратора', "/admin-panel.html", target: "_blank" %></li>
               <li>Підтримка в <b>Telegram</b></li>
             </ul>
             <a class="btn btn-lg btn-block btn-outline-primary" href="https://forms.gle/us91jctsQPoPBBTe7" target="_blank" rel="nofollow">Заповнити форму</a>
@@ -45,8 +45,8 @@
           <div class="card-body">
             <h1 class="card-title pricing-card-title">₴36,000 <small class="text-muted">/ рік</small></h1>
             <ul class="list-unstyled mt-3 mb-4">
-              <li><%= link_to 'iOS', ios_url %> Додаток</li>
-              <li><%= link_to 'Android', android_url %> Додаток</li>
+              <li><%= link_to 'iOS', "/ios.html" %> Додаток</li>
+              <li><%= link_to 'Android', "/android.html" %> Додаток</li>
               <li><u>Пріорітетна</u> підтримка в <b>Telegram</b></li>
             </ul>
             <a class="btn btn-lg btn-block btn-primary" href="https://forms.gle/us91jctsQPoPBBTe7" target="_blank" rel="nofollow">Почати</a>
@@ -65,7 +65,7 @@
               <li>Підтримка по <b>телефону</b></li>
               <li>Запити <u>нових функцій</u></li>
             </ul>
-            <%= link_to "Зв'яжіться з нами", contacts_url, class: "btn btn-lg btn-block btn-primary" %>
+            <%= link_to "Зв'яжіться з нами", "/contacts.html", class: "btn btn-lg btn-block btn-primary" %>
           </div>
         </div>
       </div>
@@ -98,7 +98,7 @@
               </td>
             </tr>
             <tr>
-              <td><%= link_to 'Панель адміністратора', admin_panel_url %> <span data-toggle="tooltip" title="На базі перевіреного фреймворку ActiveAdmin, без багів та помилок"><span style="color: #007bff"><i class="bi bi-question-circle"></i></span></span></td>
+              <td><%= link_to 'Панель адміністратора', '/admin-panel.html' %> <span data-toggle="tooltip" title="На базі перевіреного фреймворку ActiveAdmin, без багів та помилок"><span style="color: #007bff"><i class="bi bi-question-circle"></i></span></span></td>
               <td style="text-align: center; vertical-align: middle">
                 <%= render "layouts/green_checkmark" %>
               </td>
@@ -122,7 +122,7 @@
               </td>
             </tr>
             <tr>
-              <td><%= link_to 'iOS', ios_url %> Додаток <span data-toggle="tooltip" title="Підтримка iOS 13+"><span style="color: #007bff"><i class="bi bi-question-circle"></i></span></span></td>
+              <td><%= link_to 'iOS', "/ios.html" %> Додаток <span data-toggle="tooltip" title="Підтримка iOS 13+"><span style="color: #007bff"><i class="bi bi-question-circle"></i></span></span></td>
               <td style="text-align: center; vertical-align: middle">
                 <%= render "layouts/gray_close" %>
               </td>
@@ -134,7 +134,7 @@
               </td>
             </tr>
             <tr>
-              <td><%= link_to 'Android', android_url %> Додаток <span data-toggle="tooltip" title="Підтримка Android 7+"><span style="color: #007bff"><i class="bi bi-question-circle"></i></span></span></td>
+              <td><%= link_to 'Android', "/android.html" %> Додаток <span data-toggle="tooltip" title="Підтримка Android 7+"><span style="color: #007bff"><i class="bi bi-question-circle"></i></span></span></td>
               <td style="text-align: center; vertical-align: middle">
                 <%= render "layouts/gray_close" %>
               </td>
