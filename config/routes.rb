@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   get 'homepage/home'
-  get "/", to: "homepage#home", as: "root"
+  get "/", to: "pages#pricing", as: "root"
 
   # Pages
   get "/about", to: "pages#about"
