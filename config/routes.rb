@@ -14,20 +14,20 @@ Rails.application.routes.draw do
   # Pages
   get "/about", to: "pages#about"
   get "/cooperation", to: "pages#cooperation"
-  get "/contacts", to: "pages#contacts"
+  get "/contacts.:format", to: "pages#contacts", :defaults => { :format => 'html' }, as: 'contacts'
   get "/privacy-policy", to: "pages#privacy_policy"
   get "/privacy_policy_ios", to: "pages#privacy_policy_ios"
   get "/terms-of-service", to: "pages#terms_of_service"
   get "/zno-2019", to: "pages#zno2019"
-  get "/ios", to: "pages#ios"
-  get "/android", to: "pages#android"
+  get "/ios.:format", to: "pages#ios", :defaults => { :format => 'html' }, as: 'ios'
+  get "/android.:format", to: "pages#android", :defaults => { :format => 'html' }, as: 'android'
   get "/telegram-channels", to: "pages#telegram_channels"
   get "/patreon", to: "pages#patreon"
-  get "/pricing", to: "pages#pricing"
-  get "/admin-panel", to: "pages#admin_panel"
+  get "/pricing.:format", to: "pages#pricing", :defaults => { :format => 'html' }, as: 'pricing'
+  get "/admin-panel.:format", to: "pages#admin_panel", :defaults => { :format => 'html' }, as: 'admin_panel'
   get "/video-presentation", to: "pages#video_presentation"
   get "/ads", to: "pages#ads"
-  get "/hello", to: "pages#hello"
+  get "/hello.:format", to: "pages#hello", :defaults => { :format => 'html' }, as: 'hello'
   get "/stickers", to: "pages#stickers"
 
   # All universities on single page
